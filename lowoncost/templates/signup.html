@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Card</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/auth.css')}}">
+    <style>
+        
+    </style>
+</head>
+
+<body>
+    <div class="login-card">
+        <h2>Sign Up</h2>
+        <form method="POST" action="/api/signup">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="Username" required >
+
+            <label for="username">Email Id</label>
+            <input type="email" id="email" name="email" placeholder="Email" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Password" required>
+
+            <button type="submit">Create a New Account</button>
+        </form>
+        <br>
+        <div id="more">
+            Already have an account?<a style="color: #007bff; font-weight: 600;" href="/login"> Log in</a>
+        </div>
+    </div>
+
+</body>
+
+</html>
