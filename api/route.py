@@ -1,7 +1,6 @@
 from flask import render_template, request
 from api import api
 
-
 # other user routes
 
 @api.route("/api")
