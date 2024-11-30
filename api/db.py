@@ -14,9 +14,8 @@ def newuser(data):
     password =data["password"]
     encodepass = bcrypt.hashpw(password.encode("utf-16"), bcrypt.gensalt())
     data["password"] = encodepass
-    
     #print(userdata)
-    lol = collection.insert_one(data)
+    collection.insert_one(data)
     
 
 
@@ -26,3 +25,17 @@ def checkusername(uname):
         return {"massage":"username is Unique", "case":True}
     else: 
         return {"massage":"username is already taken", "case":False}
+    
+
+def login(logdata):
+    uname = logdata["username"]
+    password = logdata["password"]
+    user = list(collection.find({"username": uname}))
+    if user == []:
+        return {"msg":"User name not found", "case":False}
+    else: 
+        if bcrypt.checkpw(password.encode("utf-16"), user[0]['password']):
+            return {"msg":"You are logged in", "case":True}
+        else:
+            return {"msg":"Password did not match", "case":False}
+    

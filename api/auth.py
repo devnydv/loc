@@ -1,7 +1,7 @@
 from flask import render_template, request, flash
 from api import api
-from api.valid import SignupForm
-from api.db import newuser, checkusername
+from api.valid import SignupForm, LoginForm
+from api.db import newuser, checkusername, login
 
 
 
@@ -15,7 +15,7 @@ def apisignup():
     if request.method == "POST":
         data = request.get_json()
         chkuser = checkusername(data["username"])
-        print(chkuser)
+        
         form = SignupForm(data= data)
         if form.validate() and chkuser["case"]:
             newuser(data)
@@ -26,7 +26,7 @@ def apisignup():
             for field, errors in form.errors.items():
                 for error in errors:
                     #flash(f"Error in {getattr(form, field).label.text}: {error}", 'danger')
-                    #print(error)
+                    
                     return {"msg": error}
 
 
@@ -34,12 +34,20 @@ def apisignup():
 @api.route("/api/login", methods = ["GET", "POST"] )
 def apilogin():
     if request.method == "GET":
-        
         return {"msg":"this is login route"}
     if request.method == "POST":
-        form = request.form
+        data = request.get_json()
+        form = LoginForm(data= data)
+        if form.validate():
+            check = login(data)
+            if check["case"]:
 
-        return form
+                return {"msg":True}
+            else:
+                return {"msg":check["msg"]}
+            
+       
+        
 
 
     

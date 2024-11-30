@@ -10,7 +10,17 @@
 <body>
     <div class="login-card">
         <h2>Login</h2>
-        <form method="POST" action="/api/login">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        
+        <div class="" id="alertdiv">
+            {% for category, message in messages %}
+            <div class="alert" style="color: red;"><span>{{ message }}</span></div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+        <form method="POST" action="/login">
             <label for="username">Username</label>
             <input type="text" id="username" name="username" placeholder="Username" required>
             
@@ -28,4 +38,13 @@
     
     </div>
 </body>
+
+<script>
+    const myTimeout = setTimeout(myFunction, 5000);
+    function myFunction(){
+        let selecterr = document.getElementById("alertdiv")
+        selecterr.innerHTML = ""
+        
+    }
+    </script>
 </html>

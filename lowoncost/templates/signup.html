@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <div class="login-card">
+    <div class="login-card" style="margin-bottom: 10px;">
         <h2>Sign Up</h2>
         {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
@@ -48,5 +48,12 @@
     </div>
 
 </body>
-
+<script>
+const myTimeout = setTimeout(myFunction, 5000);
+function myFunction(){
+    let selecterr = document.getElementById("alertdiv")
+    selecterr.innerHTML = ""
+    
+}
+</script>
 </html>
