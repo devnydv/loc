@@ -14,12 +14,13 @@ def login():
 def sign():
     if request.method == "POST":
         data = request.form
-        saved = requests.post("http://127.0.0.1:5000/api/signup", json = data)
+        #saved = requests.post("http://127.0.0.1:5000/api/signup", json = data)
+        saved = requests.post("https://lowoncost.vercel.app/api/signup", json = data)
         res =saved.json()
         msg =res["msg"]
         if msg == True:
             return redirect("/login")
         else:
-            return render_template("signup.html", e = msg)
-            #flash(msg)
+            #return render_template("signup.html", e = msg)
+            flash(msg)
     return render_template("signup.html")
