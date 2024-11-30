@@ -1,5 +1,6 @@
 from lowoncost import app
-from flask import render_template
+from flask import render_template, request, redirect, flash
+import requests
 
 @app.route("/")
 def home():
@@ -9,6 +10,15 @@ def home():
 def login():
     return render_template("login.html")
 
-@app.route("/signup")
+@app.route("/signup", methods = ["GET", "POST"])
 def sign():
+    if request.method == "POST":
+        data = request.form
+        saved = requests.post("http://127.0.0.1:5000/api/signup", json = data)
+        res =saved.json()
+        msg =res["msg"]
+        if msg == True:
+            return redirect("/login")
+        else:
+            flash(msg)
     return render_template("signup.html")
