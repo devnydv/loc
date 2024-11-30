@@ -21,7 +21,7 @@ def apisignup():
             newuser(data)
             return {"msg": True}
         elif not chkuser["case"]:
-            return {"msg": "Username alredy taken"}
+            return {"msg": "Username already taken"}
         else:
             for field, errors in form.errors.items():
                 for error in errors:

@@ -20,5 +20,6 @@ def sign():
         if msg == True:
             return redirect("/login")
         else:
-            flash(msg)
+            return render_template("signup.html", e = msg)
+            #flash(msg)
     return render_template("signup.html")
