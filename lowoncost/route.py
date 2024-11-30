@@ -2,6 +2,9 @@ from lowoncost import app
 from flask import render_template, request, redirect, flash
 import requests
 
+local = "http://127.0.0.1:5000/api"
+prod = "https://lowoncost.vercel.app/api"
+url = prod
 @app.route("/")
 def home():
     return "hi there"
@@ -10,7 +13,7 @@ def home():
 def login():
     if request.method == "POST":
         data = request.form
-        saved = requests.post("http://127.0.0.1:5000/api/login", json = data)
+        saved = requests.post(f"{url}/login", json = data)
         res =saved.json()
         msg =res["msg"]
         if msg== True :
@@ -25,7 +28,7 @@ def sign():
     if request.method == "POST":
         data = request.form
         #saved = requests.post("http://127.0.0.1:5000/api/signup", json = data)
-        saved = requests.post("https://lowoncost.vercel.app/api/signup", json = data)
+        saved = requests.post(f"{url}/signup", json = data)
         res =saved.json()
         msg =res["msg"]
         if msg == True:
