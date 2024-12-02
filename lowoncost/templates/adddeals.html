@@ -1,0 +1,126 @@
+<html>
+
+<head>
+    <base href="/" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Deal - DealsHub</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/adddeal.css')}}">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="website-name">DealsHub</div>
+    </nav>
+
+    <div class="form-container">
+        <h2 class="form-title">Add New Deal</h2>
+        <form id="addDealForm">
+            <div class="form-group">
+                <label for="title">Deal Title</label>
+                <input type="text" id="title" name="title" required>
+            </div>
+
+            <div class="form-group">
+                <label for="imageUrl">Image URL</label>
+                <input type="url" id="imageUrl" name="imageUrl" placeholder="Enter the URL of the deal image" required>
+            </div>
+            <div class="form-group">
+                <label for="imageUrl">Deals Url</label>
+                <input type="url" id="imageUrl" name="imageUrl" placeholder="Enter the URL of the deal" required>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea id="description" name="description" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="category">Category</label>
+                <select id="category" name="category" required>
+                    <option value="">Select Category</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="fashion">Fashion</option>
+                    <option value="home">Home & Garden</option>
+                    <option value="sports">Sports</option>
+                    <option value="books">Books</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Sub Categories</label>
+                <div class="tags-input" id="tagsContainer">
+                    <!-- Tags will be added here -->
+                </div>
+                <input type="text" id="tagInput" placeholder="Type and press Enter to add tags"
+                    style="margin-top: 10px;">
+            </div>
+
+            <div class="form-group">
+                <label for="currentPrice">Current Price</label>
+                <input type="number" id="currentPrice" name="currentPrice" step="0.01" required>
+            </div>
+
+            <div class="form-group">
+                <label for="originalPrice">Original Price</label>
+                <input type="number" id="originalPrice" name="originalPrice" step="0.01" required>
+            </div>
+
+            <div class="button-group">
+                <button type="submit" class="btn btn-primary">Add Deal</button>
+                <button type="button" class="btn btn-secondary" onclick="window.location.href='/'">Cancel</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Handle tags input
+        const tagInput = document.getElementById('tagInput');
+        const tagsContainer = document.getElementById('tagsContainer');
+        let tags = [];
+
+        tagInput.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                const tag = this.value.trim();
+                if (tag && !tags.includes(tag)) {
+                    addTag(tag);
+                    this.value = '';
+                }
+            }
+        });
+
+        function addTag(text) {
+            tags.push(text);
+            const tag = document.createElement('span');
+            tag.className = 'tag';
+            tag.innerHTML = `
+                ${text}
+                <button type="button" onclick="removeTag('${text}')">×</button>
+            `;
+            tagsContainer.appendChild(tag);
+        }
+
+        function removeTag(text) {
+            tags = tags.filter(tag => tag !== text);
+            renderTags();
+        }
+
+        function renderTags() {
+            tagsContainer.innerHTML = '';
+            tags.forEach(addTag);
+        }
+
+        // Handle form submission
+        document.getElementById('addDealForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Here you would normally send the data to a server
+            // For now, we'll just show an alert and redirect
+            alert('Deal added successfully!');
+            window.location.href = '/';
+        });
+    </script>
+</body>
+
+</html>

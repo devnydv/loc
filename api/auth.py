@@ -37,15 +37,19 @@ def apilogin():
         return {"msg":"this is login route"}
     if request.method == "POST":
         data = request.get_json()
+        
         form = LoginForm(data= data)
         if form.validate():
             check = login(data)
             if check["case"]:
-
                 return {"msg":True}
             else:
                 return {"msg":check["msg"]}
-            
+        else:
+            for field, errors in form.errors.items():
+                for error in errors:
+                    #flash(f"Error in {getattr(form, field).label.text}: {error}", 'danger')
+                    return {"msg": error}  
        
         
 

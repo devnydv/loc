@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base href="/" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deals Grid Cards</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/home.css')}}">
+</head>
+
+<body>
+    <nav class="navbar">
+        <a href="/home/dev" style="text-decoration: none;">
+            <div class="website-name">LowonCost</div>
+        </a>
+        <div class="nav-icons">
+            <a href="{{url_for('editprofile')}}" style="text-decoration: none;">
+                <button class="nav-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    Edit Profile
+                </button>
+            </a>
+            <button class="nav-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="18" cy="5" r="3"></circle>
+                    <circle cx="6" cy="12" r="3"></circle>
+                    <circle cx="18" cy="19" r="3"></circle>
+                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                </svg>
+                Share
+            </button>
+            <!-- <button class="nav-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="7" r="4"></circle>
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                </svg>
+                Profile
+            </button> -->
+            <button class="nav-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                    <polyline points="16 17 21 12 16 7"></polyline>
+                    <line x1="21" y1="12" x2="9" y2="12"></line>
+                </svg>
+                Logout
+            </button>
+        </div>
+    </nav>
+    <!-- chip navigation for users -->
+    <div class="category-container">
+        <button class="category-btn">Electronics</button>
+        <button class="category-btn">Fashion</button>
+        <button class="category-btn">Home & Garden</button>
+        <button class="category-btn">Sports</button>
+        <button class="category-btn">Books</button>
+        <!-- <button class="category-btn add-category-btn">+ Add Category</button> -->
+    </div>
+
+
+
+    <div class="profile-segment">
+        <div class="profile-info">
+            <div class="profile-left">
+                <div class="profile-avatar">
+                    <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <circle cx="12" cy="10" r="3"></circle>
+                        <path d="M7 20.662V19a2 2 0 012-2h6a2 2 0 012 2v1.662"></path>
+                    </svg>
+                </div>
+                <div class="profile-details">
+                    <h2 class="profile-name">John Deals</h2>
+                    <p class="profile-description">Sharing the best deals and discounts around the web</p>
+                    <div class="profile-stats">
+                        <div class="basic-stats">
+                            <span class="stat-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20 12V8H6a2 2 0 01-2-2c0-1.1.9-2 2-2h12v4"></path>
+                                    <path d="M4 6v12c0 1.1.9 2 2 2h14v-4"></path>
+                                    <path d="M18 12H4"></path>
+                                </svg>
+                                245 Deals
+                            </span>
+                            <span class="stat-divider">•</span>
+                            <span class="stat-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="9" cy="7" r="4"></circle>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                </svg>
+                                15.2K Followers
+                            </span>
+                        </div>
+                        <div class="action-chips">
+                            <span class="stat-chip">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                                    <path d="M16 10a4 4 0 0 1-8 0"></path>
+                                </svg>
+                                32 Cart Items
+                            </span>
+                            <span class="stat-chip">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path
+                                        d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                                    </path>
+                                </svg>
+                                128 Wishlist
+                            </span>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="section-header">Browse Categories</h3>
+
+    <div class="category-container">
+        <button class="category-btn">Electronics</button>
+        <button class="category-btn">Fashion</button>
+        <button class="category-btn">Home & Garden</button>
+        <button class="category-btn">Sports</button>
+        <button class="category-btn">Books</button>
+        <!-- <button class="category-btn add-category-btn">+ Add Category</button> -->
+    </div>
+
+    <div class="deals-header">
+        <h3 class="section-header" style="margin: 0;">Latest Deals</h3>
+        <a href="{{url_for ('addnewdeal')}}" style="text-decoration: none;">
+            <button class="add-deal-btn">
+
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+                Add New Deal
+
+            </button>
+        </a>
+    </div>
+
+    <div class="deals-container">
+        <!-- Deal Card 1 -->
+        <div class="deal-card">
+            <div class="image-container">
+                <img class="deal-image" src="https://nis-gs.pix.in/inshorts/images/v1/variants/jpg/m/2024/12_dec/1_sun/img_1733073904922_614.jpg?" alt="" width="300" height="200" >
+                <!-- <svg class="deal-image" viewBox="0 0 300 200">
+                    <rect width="100%" height="100%" fill="#3d3d3d" />
+                    <text x="50%" y="50%" text-anchor="middle" fill="#cccccc" font-size="20">Product Image</text>
+                </svg> -->
+                <button class="share-button">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="18" cy="5" r="3" />
+                        <circle cx="6" cy="12" r="3" />
+                        <circle cx="18" cy="19" r="3" />
+                        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+                        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+                    </svg>
+                </button>
+            </div>
+            <div class="deal-content">
+                <h3 class="deal-title">Amazing Deal Title</h3>
+                <div class="tags-container">
+                    <span class="sub-category">Smartphones</span>
+                    <span class="sub-category">Best Seller</span>
+                    <span class="sub-category">Free Shipping</span>
+                    <span class="sub-category">Limited Time</span>
+                </div>
+                <p class="deal-description">Experience premium quality with this amazing deal. Limited time offer with
+                    exceptional features and warranty coverage.</p>
+                <div class="price-container">
+                    <span class="current-price">$79.99</span>
+                    <span class="original-price">$129.99</span>
+                    <span class="discount">-38%</span>
+                </div>
+                <div class="button-container">
+                    <button class="btn btn-view">View Offer</button>
+                    <button class="btn btn-details">Details</button>
+                    <!-- <button class="btn btn-edit">Edit Deal</button> -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Deal Card 2 -->
+        <div class="deal-card">
+            <div class="image-container">
+                <img class="deal-image" src="https://assets.ajio.com/medias/sys_master/root/20210420/R70k/607ecc5baeb269a9e3972075/dennislingo_premium_attire_green_full_sleeves_slim_fit_shirt.jpg" alt="">
+                <!-- <svg class="deal-image" viewBox="0 0 300 200">
+                    <rect width="100%" height="100%" fill="#3d3d3d" />
+                    <text x="50%" y="50%" text-anchor="middle" fill="#cccccc" font-size="20">Product Image</text>
+                </svg> -->
+                <button class="share-button">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="18" cy="5" r="3" />
+                        <circle cx="6" cy="12" r="3" />
+                        <circle cx="18" cy="19" r="3" />
+                        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+                        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+                    </svg>
+                </button>
+            </div>
+            <div class="deal-content">
+                <h3 class="deal-title">Special Offer Deal</h3>
+                <div class="tags-container">
+                    <span class="sub-category">Laptops</span>
+                    <span class="sub-category">Hot Deal</span>
+                    <span class="sub-category">24h Only</span>
+                    <span class="sub-category">Top Rated</span>
+                </div>
+                <p class="deal-description">Get the best value for your money with this special offer. Includes free
+                    shipping and extended warranty.</p>
+                <div class="price-container">
+                    <span class="current-price">$49.99</span>
+                    <span class="original-price">$89.99</span>
+                    <span class="discount">-44%</span>
+                </div>
+                <div class="button-container">
+                    <button class="btn btn-view">View Offer</button>
+                    <button class="btn btn-details">Details</button>
+                    <a href="{{url_for('addnewdeal')}}"><button class="btn btn-edit">Edit Deal</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.share-button').forEach(button => {
+            button.addEventListener('click', function (e) {
+                e.preventDefault();
+                alert('Share this deal!');
+            });
+        });
+
+        // document.querySelectorAll('.btn').forEach(button => {
+        //     button.addEventListener('click', function (e) {
+        //         const action = this.textContent;
+        //         alert(`${action} clicked!`);
+        //     });
+        // });
+
+        document.querySelectorAll('.category-btn').forEach(button => {
+            button.addEventListener('click', function (e) {
+                if (this.classList.contains('add-category-btn')) {
+                    const newCategory = prompt('Enter new category name:');
+                    if (newCategory) {
+                        const newButton = document.createElement('button');
+                        newButton.className = 'category-btn';
+                        newButton.textContent = newCategory;
+                        this.parentNode.insertBefore(newButton, this);
+                    }
+                } else {
+                    alert(`Selected category: ${this.textContent}`);
+                }
+            });
+        });
+
+        // document.querySelectorAll('.nav-icon').forEach(button => {
+        //     button.addEventListener('click', function() {
+        //         alert(`${this.textContent.trim()} clicked!`);
+        //     });
+        // });
+
+        document.querySelectorAll('.stat-chip').forEach(chip => {
+            chip.addEventListener('click', function () {
+                alert(`${this.textContent.trim()} clicked!`);
+            });
+        });
+
+        // document.querySelector('.add-deal-btn').addEventListener('click', function() {
+        //     alert('Add new deal clicked!');
+        // });
+    </script>
+</body>
+
+</html>

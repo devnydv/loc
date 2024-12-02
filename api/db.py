@@ -3,7 +3,7 @@ import bcrypt
 
 
 url= "mongodb+srv://bittumail:12356789@cluster0.fqrswkj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-client = MongoClient(url)
+client = MongoClient(url, socketTimeoutMS=30000, connectTimeoutMS=30000)
 db = client.lowoncost
 collection = db.users
 
