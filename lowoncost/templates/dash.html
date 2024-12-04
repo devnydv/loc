@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <base href="/" />
     <meta charset="UTF-8">
@@ -10,10 +11,21 @@
 
 <body>
     <nav class="navbar">
-        <a href="/home/dev" style="text-decoration: none;">
+        <a href="/profile/dev" style="text-decoration: none;">
             <div class="website-name">LowonCost</div>
         </a>
         <div class="nav-icons">
+            <a href="/" style="text-decoration: none">
+                <button class="nav-icon">
+
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg>
+                    Home
+
+                </button>
+            </a>
             <a href="{{url_for('editprofile')}}" style="text-decoration: none;">
                 <button class="nav-icon">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -50,15 +62,7 @@
             </button>
         </div>
     </nav>
-    <!-- chip navigation for users -->
-    <div class="category-container">
-        <button class="category-btn">Electronics</button>
-        <button class="category-btn">Fashion</button>
-        <button class="category-btn">Home & Garden</button>
-        <button class="category-btn">Sports</button>
-        <button class="category-btn">Books</button>
-        <!-- <button class="category-btn add-category-btn">+ Add Category</button> -->
-    </div>
+
 
 
 
@@ -113,7 +117,7 @@
                                 </svg>
                                 128 Wishlist
                             </span>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -151,7 +155,9 @@
         <!-- Deal Card 1 -->
         <div class="deal-card">
             <div class="image-container">
-                <img class="deal-image" src="https://nis-gs.pix.in/inshorts/images/v1/variants/jpg/m/2024/12_dec/1_sun/img_1733073904922_614.jpg?" alt="" width="300" height="200" >
+                <img class="deal-image"
+                    src="https://nis-gs.pix.in/inshorts/images/v1/variants/jpg/m/2024/12_dec/1_sun/img_1733073904922_614.jpg?"
+                    alt="" width="300" height="200">
                 <!-- <svg class="deal-image" viewBox="0 0 300 200">
                     <rect width="100%" height="100%" fill="#3d3d3d" />
                     <text x="50%" y="50%" text-anchor="middle" fill="#cccccc" font-size="20">Product Image</text>
@@ -188,11 +194,55 @@
                 </div>
             </div>
         </div>
+        <!-- Deal Card 1 -->
+        <div class="deal-card">
+            <div class="image-container">
+                <img class="deal-image"
+                    src="https://nis-gs.pix.in/inshorts/images/v1/variants/jpg/m/2024/12_dec/1_sun/img_1733073904922_614.jpg?"
+                    alt="" width="300" height="200">
+                <!-- <svg class="deal-image" viewBox="0 0 300 200">
+            <rect width="100%" height="100%" fill="#3d3d3d" />
+            <text x="50%" y="50%" text-anchor="middle" fill="#cccccc" font-size="20">Product Image</text>
+        </svg> -->
+                <button class="share-button">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="18" cy="5" r="3" />
+                        <circle cx="6" cy="12" r="3" />
+                        <circle cx="18" cy="19" r="3" />
+                        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+                        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+                    </svg>
+                </button>
+            </div>
+            <div class="deal-content">
+                <h3 class="deal-title">Amazing Deal Title</h3>
+                <div class="tags-container">
+                    <span class="sub-category">Smartphones</span>
+                    <span class="sub-category">Best Seller</span>
+                    <span class="sub-category">Free Shipping</span>
+                    <span class="sub-category">Limited Time</span>
+                </div>
+                <p class="deal-description">Experience premium quality with this amazing deal. Limited time offer with
+                    exceptional features and warranty coverage.</p>
+                <div class="price-container">
+                    <span class="current-price">$79.99</span>
+                    <span class="original-price">$129.99</span>
+                    <span class="discount">-38%</span>
+                </div>
+                <div class="button-container">
+                    <button class="btn btn-view">View Offer</button>
+                    <button class="btn btn-details">Details</button>
+                    <!-- <button class="btn btn-edit">Edit Deal</button> -->
+                </div>
+            </div>
+        </div>
 
         <!-- Deal Card 2 -->
         <div class="deal-card">
             <div class="image-container">
-                <img class="deal-image" src="https://assets.ajio.com/medias/sys_master/root/20210420/R70k/607ecc5baeb269a9e3972075/dennislingo_premium_attire_green_full_sleeves_slim_fit_shirt.jpg" alt="">
+                <img class="deal-image"
+                    src="https://assets.ajio.com/medias/sys_master/root/20210420/R70k/607ecc5baeb269a9e3972075/dennislingo_premium_attire_green_full_sleeves_slim_fit_shirt.jpg"
+                    alt="">
                 <!-- <svg class="deal-image" viewBox="0 0 300 200">
                     <rect width="100%" height="100%" fill="#3d3d3d" />
                     <text x="50%" y="50%" text-anchor="middle" fill="#cccccc" font-size="20">Product Image</text>
@@ -224,8 +274,9 @@
                 </div>
                 <div class="button-container">
                     <button class="btn btn-view">View Offer</button>
-                    <button class="btn btn-details">Details</button>
-                    <a href="{{url_for('addnewdeal')}}"><button class="btn btn-edit">Edit Deal</button></a>
+                    <a href="{{url_for('addnewdeal')}}" class="btn btn-details" >Details</a>
+                    <!-- <button class="btn btn-details">Details</button> -->
+                    <a href="{{url_for('addnewdeal')}}" class="btn btn-edit" >Edit Deal</a>
                 </div>
             </div>
         </div>
