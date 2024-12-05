@@ -10,50 +10,7 @@ body {
     color: #ffffff;
 }
 
-.navbar {
-    background: #2d2d2d;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    padding: 15px 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    flex-wrap: wrap;
-    /* Allow wrapping on smaller screens */
-    gap: 15px;
-    /* Add gap between wrapped elements */
-}
 
-.website-name {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #3498db;
-}
-
-.nav-icons {
-    display: flex;
-    gap: 15px;
-    align-items: center;
-    flex-wrap: wrap;
-    /* Allow wrapping on smaller screens */
-}
-
-.nav-icon {
-    background: none;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    color: #cccccc;
-    transition: color 0.3s ease;
-}
-
-.nav-icon:hover {
-    color: #3498db;
-}
 
 .profile-segment {
     background: transparent;
@@ -425,18 +382,7 @@ body {
 }
 
 @media screen and (max-width: 768px) {
-    .navbar {
-        padding: 10px 15px;
-    }
-
-    .website-name {
-        font-size: 1.3rem;
-    }
-
-    .nav-icon {
-        font-size: 0.9rem;
-        padding: 5px;
-    }
+    
 
     .category-btn {
         font-size: 0.9rem;
@@ -478,15 +424,7 @@ body {
 }
 
 @media screen and (max-width: 480px) {
-    .navbar {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .nav-icons {
-        justify-content: center;
-        width: 100%;
-    }
+    
 
     .deal-card {
         margin: 0 10px;
