@@ -1,6 +1,7 @@
 from pymongo.mongo_client import MongoClient
 import bcrypt
-
+from bson import json_util
+import json
 
 url= "mongodb+srv://bittumail:12356789@cluster0.fqrswkj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 client = MongoClient(url, socketTimeoutMS=30000, connectTimeoutMS=30000)
@@ -49,4 +50,14 @@ def login(logdata):
             return {"msg":"You are logged in", "case":True, "user": user[0]}
         else:
             return {"msg":"Password did not match", "case":False}
+
+def get_user_data(uname):
+    user = list(collection.find({"username": uname}))
+    
+    if user == []:
+        return []
+    else: 
+        data = json.loads(json_util.dumps(user))
+        return json.dumps(data)
+    
 

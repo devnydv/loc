@@ -28,6 +28,8 @@
                 </button>
             </a>
             {%if loggedin%}
+            {%if otherprofile !=True %}
+            
             <a href="{{url_for('editprofile')}}" style="text-decoration: none;">
                 <button class="nav-icon">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -37,6 +39,7 @@
                     Edit Profile
                 </button>
             </a>
+            {%endif%}
             <button class="nav-icon">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <circle cx="18" cy="5" r="3"></circle>
@@ -54,14 +57,16 @@
                 </svg>
                 Profile
             </button> -->
-            <button class="nav-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-                    <polyline points="16 17 21 12 16 7"></polyline>
-                    <line x1="21" y1="12" x2="9" y2="12"></line>
-                </svg>
-                Logout
-            </button>
+            <a href="/logout">
+                <button class="nav-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                        <polyline points="16 17 21 12 16 7"></polyline>
+                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                    </svg>
+                    Logout
+                </button>
+            </a>
             {%else%}
             <a href="/login" style="text-decoration: none">
                 <button class="nav-icon">
@@ -112,7 +117,7 @@
                                 </svg>
                                 245 Deals
                             </span>
-                            <span class="stat-divider">•</span>
+                            <!-- <span class="stat-divider">•</span> -->
                             <!-- <span class="stat-item">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
@@ -123,6 +128,7 @@
                                 15.2K Followers
                             </span> -->
                         </div>
+                        {%if edit%}
                         <div class="action-chips">
                             <span class="stat-chip">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -142,6 +148,7 @@
                             </span> -->
 
                         </div>
+                        {%endif%}
                     </div>
                 </div>
             </div>
@@ -161,7 +168,9 @@
 
     <div class="deals-header">
         <h3 class="section-header" style="margin: 0;">Latest Deals</h3>
+        {%if edit%}
         <a href="{{url_for ('addnewdeal')}}" style="text-decoration: none;">
+
             <button class="add-deal-btn">
 
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -172,6 +181,7 @@
 
             </button>
         </a>
+        {%endif%}
     </div>
 
     <div class="deals-container">
@@ -297,9 +307,11 @@
                 </div>
                 <div class="button-container">
                     <button class="btn btn-view">View Offer</button>
-                    <a href="{{url_for('addnewdeal')}}" class="btn btn-details" >Details</a>
+                    <a href="{{url_for('addnewdeal')}}" class="btn btn-details">Details</a>
                     <!-- <button class="btn btn-details">Details</button> -->
-                    <a href="{{url_for('addnewdeal')}}" class="btn btn-edit" >Edit Deal</a>
+                    {%if edit%}
+                    <a href="{{url_for('addnewdeal')}}" class="btn btn-edit">Edit Deal</a>
+                    {%endif%}
                 </div>
             </div>
         </div>
