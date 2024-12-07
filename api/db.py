@@ -10,7 +10,15 @@ collection = db.users
 
 # insert data to db when new user signp
 def newuser(data):
-    data.popitem()
+    username = data["username"]
+    data["username"] = username.lower()
+    
+    data["description"]="Not Found..."
+    data["cart_items"] = []
+    data["total_deals"] = []
+    
+    
+    data.pop("confirm_password")
     password =data["password"]
     encodepass = bcrypt.hashpw(password.encode("utf-16"), bcrypt.gensalt())
     data["password"] = encodepass
@@ -29,13 +37,16 @@ def checkusername(uname):
 
 def login(logdata):
     uname = logdata["username"]
+    uname = uname.lower()
     password = logdata["password"]
     user = list(collection.find({"username": uname}))
+    
     if user == []:
         return {"msg":"User name not found", "case":False}
     else: 
         if bcrypt.checkpw(password.encode("utf-16"), user[0]['password']):
-            return {"msg":"You are logged in", "case":True}
+            
+            return {"msg":"You are logged in", "case":True, "user": user[0]}
         else:
             return {"msg":"Password did not match", "case":False}
-    
+

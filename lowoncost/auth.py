@@ -15,14 +15,15 @@ url = prod
 def login():
     if request.method == "POST":
         data = request.form
-        
         saved = requests.post(f"{url}/login", json = data)
         res =saved.json()
+        
         msg =res["msg"]
+        
         if msg== True :
             session["username"] = data["username"]
             username = session["username"]
-            return redirect(f"/home/{username}")
+            return redirect(f"/profile/{username}")
         else:
             #return render_template("signup.html", e = msg)
             flash(msg)

@@ -1,4 +1,4 @@
-from flask import render_template, request, flash
+from flask import render_template, request, flash, session
 from api import api
 from api.valid import SignupForm, LoginForm
 from api.db import newuser, checkusername, login
@@ -14,7 +14,8 @@ def apisignup():
         return {"msg":"this is signup"}
     if request.method == "POST":
         data = request.get_json()
-        chkuser = checkusername(data["username"])
+        username = data["username"]
+        chkuser = checkusername(username.lower())
         
         form = SignupForm(data= data)
         if form.validate() and chkuser["case"]:
@@ -41,10 +42,12 @@ def apilogin():
         form = LoginForm(data= data)
         if form.validate():
             check = login(data)
+            
             if check["case"]:
-                return {"msg":True}
+
+                return {"user":check["user"]["username"] ,"msg":True}
             else:
-                return {"msg":check["msg"]}
+                return {"msg":check["msg"] }
         else:
             for field, errors in form.errors.items():
                 for error in errors:
