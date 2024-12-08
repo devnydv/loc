@@ -39,3 +39,13 @@
 .nav-icon:hover {
     color: #3498db;
 }
+
+@media screen and (max-width: 490px) {
+    .navbar{
+        display: block;
+        
+    }
+    .website-name{
+        padding: 8px 0 8px 0;
+    }
+}

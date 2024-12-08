@@ -5,7 +5,7 @@
     <base href="/" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deals Grid Cards</title>
+    <title>User profile of {{userdata[0]['username']}}</title>
     <link rel="stylesheet" href="{{url_for('static', filename='css/home.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='css/nav.css')}}">
 </head>
@@ -90,7 +90,7 @@
             {%endif%}
         </div>
     </nav>
-
+    
 
 
 
@@ -104,9 +104,10 @@
                         <path d="M7 20.662V19a2 2 0 012-2h6a2 2 0 012 2v1.662"></path>
                     </svg>
                 </div>
+                
                 <div class="profile-details">
-                    <h2 class="profile-name">John Deals</h2>
-                    <p class="profile-description">Sharing the best deals and discounts around the web</p>
+                    <h2 class="profile-name">@ {{userdata[0]['username'] | title}}</h2>
+                    <p class="profile-description">{{userdata[0]['description']}}</p>
                     <div class="profile-stats">
                         <div class="basic-stats">
                             <span class="stat-item">
@@ -115,7 +116,7 @@
                                     <path d="M4 6v12c0 1.1.9 2 2 2h14v-4"></path>
                                     <path d="M18 12H4"></path>
                                 </svg>
-                                245 Deals
+                                {{userdata[0]['cart_items'] | length}} Deals
                             </span>
                             <!-- <span class="stat-divider">•</span> -->
                             <!-- <span class="stat-item">
@@ -129,7 +130,7 @@
                             </span> -->
                         </div>
                         {%if edit%}
-                        <div class="action-chips">
+                        <!-- <div class="action-chips">
                             <span class="stat-chip">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
@@ -137,7 +138,7 @@
                                     <path d="M16 10a4 4 0 0 1-8 0"></path>
                                 </svg>
                                 32 Cart Items
-                            </span>
+                            </span> -->
                             <!-- <span class="stat-chip">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path
@@ -158,6 +159,7 @@
     <h3 class="section-header">Browse Categories</h3>
 
     <div class="category-container">
+        <button class="category-btn">All</button>
         <button class="category-btn">Electronics</button>
         <button class="category-btn">Fashion</button>
         <button class="category-btn">Home & Garden</button>
@@ -213,8 +215,8 @@
                     <span class="sub-category">Free Shipping</span>
                     <span class="sub-category">Limited Time</span>
                 </div>
-                <p class="deal-description">Experience premium quality with this amazing deal. Limited time offer with
-                    exceptional features and warranty coverage.</p>
+                <!-- <p class="deal-description">Experience premium quality with this amazing deal. Limited time offer with
+                    exceptional features and warranty coverage.</p> -->
                 <div class="price-container">
                     <span class="current-price">$79.99</span>
                     <span class="original-price">$129.99</span>
@@ -255,8 +257,8 @@
                     <span class="sub-category">Free Shipping</span>
                     <span class="sub-category">Limited Time</span>
                 </div>
-                <p class="deal-description">Experience premium quality with this amazing deal. Limited time offer with
-                    exceptional features and warranty coverage.</p>
+                <!-- <p class="deal-description">Experience premium quality with this amazing deal. Limited time offer with
+                    exceptional features and warranty coverage.</p> -->
                 <div class="price-container">
                     <span class="current-price">$79.99</span>
                     <span class="original-price">$129.99</span>
@@ -298,8 +300,8 @@
                     <span class="sub-category">24h Only</span>
                     <span class="sub-category">Top Rated</span>
                 </div>
-                <p class="deal-description">Get the best value for your money with this special offer. Includes free
-                    shipping and extended warranty.</p>
+                <!-- <p class="deal-description">Get the best value for your money with this special offer. Includes free
+                    shipping and extended warranty.</p> -->
                 <div class="price-container">
                     <span class="current-price">$49.99</span>
                     <span class="original-price">$89.99</span>

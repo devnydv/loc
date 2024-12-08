@@ -2,6 +2,7 @@ from lowoncost import app
 from flask import render_template, request, redirect, flash, session, url_for
 import requests
 from lowoncost.midleware import auth
+import json
 
 local = "http://127.0.0.1:5000/api"
 prod = "https://lowoncost.vercel.app/api"
@@ -34,15 +35,16 @@ def dash(username):
     saved = requests.post(f"{url}/user", json = data)
     res =saved.json()
     if "userdata" in res:
-        print(res["userdata"])
+        userdata = res["userdata"]
+        userdata = json.loads(userdata)
         if "username" in session:
             session_name = session["username"]
             if session_name == username:
-                return render_template("dash.html", loggedin = loggedin, edit= True, userdata = res["userdata"] )
+                return render_template("dash.html", loggedin = loggedin, edit= True, userdata = userdata )
             else:
-                return render_template("dash.html", loggedin = True, otherprofile =True, edit= False)
+                return render_template("dash.html", loggedin = True, userdata = userdata, otherprofile =True, edit= False)
         else:
-            return render_template("dash.html", loggedin = False, edit= False)
+            return render_template("dash.html", loggedin = False, userdata = userdata, edit= False)
     else:
         return redirect(url_for('error_404'))
 

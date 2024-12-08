@@ -14,7 +14,7 @@ def newuser(data):
     username = data["username"]
     data["username"] = username.lower()
     
-    data["description"]="Not Found..."
+    data["description"]="Sharing the best deals and offers on best prices."
     data["cart_items"] = []
     data["total_deals"] = []
     
