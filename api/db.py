@@ -2,8 +2,14 @@ from pymongo.mongo_client import MongoClient
 import bcrypt
 from bson import json_util
 import json
+from dotenv import load_dotenv, find_dotenv
+import os
+envpath = find_dotenv()
+load_dotenv(envpath)
 
-url= "mongodb+srv://bittumail:12356789@cluster0.fqrswkj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+url = os.getenv('db')
+
+
 client = MongoClient(url, socketTimeoutMS=30000, connectTimeoutMS=30000)
 db = client.lowoncost
 collection = db.users
