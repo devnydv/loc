@@ -1,13 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{%extends"base.html" %}
+{%block seo%}
     <link rel="stylesheet" href="{{url_for('static', filename='css/auth.css')}}">
-    <title>Login Card</title>
-    
-</head>
-<body>
+    <title>Login to LowonCost</title>
+{%endblock%}
+
+{%block content%}
     <div class="login-card">
         <h2>Login</h2>
         {% with messages = get_flashed_messages(with_categories=true) %}
@@ -37,7 +34,7 @@
     </div>
     
     </div>
-</body>
+
 
 <script>
     const myTimeout = setTimeout(myFunction, 5000);
@@ -47,4 +44,4 @@
         
     }
     </script>
-</html>
+{%endblock%}
