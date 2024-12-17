@@ -4,12 +4,10 @@ from bson import json_util
 import json
 from dotenv import load_dotenv, find_dotenv
 import os
+
 envpath = find_dotenv()
 load_dotenv(envpath)
-
 url = os.getenv('db')
-
-
 client = MongoClient(url, socketTimeoutMS=30000, connectTimeoutMS=30000)
 db = client.lowoncost
 collection = db.users
