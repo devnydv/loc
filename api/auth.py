@@ -41,7 +41,7 @@ def apilogin():
         data = request.get_json()
         lowername = data["username"]
         data["username"] = lowername.lower()
-        print(data)
+        
         form = LoginForm(data= data)
         if form.validate():
             check = login(data)
@@ -55,7 +55,7 @@ def apilogin():
             for field, errors in form.errors.items():
                 for error in errors:
                     #flash(f"Error in {getattr(form, field).label.text}: {error}", 'danger')
-                    return {"msg": error}, 400
+                    return {"msg": error}
        
         
 
