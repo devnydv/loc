@@ -2,7 +2,7 @@ from flask import render_template, request, flash, session
 from api import api
 from api.valid import SignupForm, LoginForm
 from api.db import newuser, checkusername, login
-from api.data.auth import testing
+
 
 
 
