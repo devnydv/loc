@@ -1,16 +1,12 @@
-<html>
-
-<head>
-    
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{%extends"base.html" %}
+{%block seo%}
     <title>Edit Profile - DealsHub</title>
     <link rel="stylesheet" href="{{url_for('static', filename='css/nav.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='css/editprofile.css')}}">
     
-</head>
+    {%endblock%}
 
-<body>
+    {%block content%}
     <nav class="navbar">
         <div class="website-name">LowonCost</div>
         <div class="nav-icons">
@@ -43,7 +39,7 @@
                 </svg>
                 Share
             </button>
-            <a href="/home/dev" style="text-decoration: none">
+            <a href="{{url_for('dash', username='dev' )}}" style="text-decoration: none">
                 <button class="nav-icon">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <circle cx="12" cy="7" r="4"></circle>
@@ -175,6 +171,4 @@
             });
         });
     </script>
-</body>
-
-</html>
+{%endblock%}

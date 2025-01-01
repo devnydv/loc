@@ -1,16 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <base href="/" />
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{%extends"base.html" %}
+{%block seo%}
     <title>User profile of {{userdata[0]['username']}}</title>
     <link rel="stylesheet" href="{{url_for('static', filename='css/home.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='css/nav.css')}}">
-</head>
+    {%endblock%}
 
-<body>
+    {%block content%}
     <nav class="navbar">
 
         <div class="website-name">LowonCost</div>
@@ -314,6 +309,7 @@
                     <!-- <button class="btn btn-details">Details</button> -->
                     {%if edit%}
                     <a href="{{url_for('addnewdeal')}}" class="btn btn-edit">Edit Deal</a>
+                    
                     {%endif%}
                 </div>
             </div>
@@ -367,6 +363,6 @@
         //     alert('Add new deal clicked!');
         // });
     </script>
-</body>
 
-</html>
+
+{%endblock%}

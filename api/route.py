@@ -1,6 +1,7 @@
-from flask import render_template, request
+from flask import render_template, request, session
 from api import api
-from api.db import checkusername, get_user_data
+from api.db import checkusername, get_user_data, addnewdeal
+from api.valid import adddeal
 
 # other user routes
 
@@ -28,3 +29,21 @@ def getuser():
 
     
 
+@api.route("/api/newdeal/<username>", methods = ["GET", "POST"])
+def newdeal(username):
+    if request.method == "POST":
+        data = request.get_json()
+        data["status"] = False
+        data["username"] = username
+        form = adddeal(data= data)
+        if form.validate():
+            res = addnewdeal(data)
+            return {"msg": True, "res": res}
+        else:
+            for field, errors in form.errors.items():
+                for error in errors:
+                    return {"msg": error}  
+        return {"msg": "validating the form"}
+    else:
+        return {'msg': "created a new deal"}, 201
+        #return {"msg":"not found"}

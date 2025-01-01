@@ -5,7 +5,7 @@ def auth (view_func):
     def decorator(*arg, **kwargs):
         if "username" in session:
             username = session["username"]
-            return redirect(f"/home/{username}")
+            return redirect(f"/profile/{username}")
         return view_func(*arg, **kwargs)
     return decorator
 

@@ -7,7 +7,7 @@ from lowoncost.midleware import auth
 
 local = "http://127.0.0.1:5000/api"
 prod = "https://lowoncost.vercel.app/api"
-url = prod
+url = local
 
 
 @app.route("/login", methods = ["GET", "POST"])
@@ -21,7 +21,7 @@ def login():
         msg =res["msg"]
         
         if msg== True :
-            session["username"] = data["username"]
+            session["username"] = data["username"].lower()
             username = session["username"]
             return redirect(f"/profile/{username}")
         else:
@@ -44,3 +44,9 @@ def sign():
             #return render_template("signup.html", e = msg)
             flash(msg)
     return render_template("signup.html")
+
+
+@app.route("/logout", methods = ["GET", "POST"])
+def logout():
+    session.clear()
+    return redirect(url_for('home'))

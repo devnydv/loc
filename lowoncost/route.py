@@ -4,9 +4,9 @@ import requests
 from lowoncost.midleware import auth
 import json
 
-local = "http://127.0.0.1:5000/api"
-prod = "https://lowoncost.vercel.app/api"
-url = prod
+lo = "http://127.0.0.1:5000/api"
+pr = "https://lowoncost.vercel.app/api"
+url = pr
 
 
 def session_user():
@@ -55,11 +55,17 @@ def addnewdeal():
             username = session["username"]
             return render_template("adddeals.html", name= username)
         else:
-            return redirect(url_for('error_404'))
+            return redirect(url_for('login'))
     if request.method == "POST":
+        data = request.form
         if "username" in session:
-            return "yes"
-    
+            username = session["username"]
+            saved = requests.post(f"{url}/newdeal/{username}", json = data)
+            res =saved.json()
+            
+            return redirect(url_for('dash', username=username))
+        else:
+            return redirect(url_for('login'))
 
     
 
@@ -72,10 +78,7 @@ def editprofile():
     else:
         return redirect(url_for('error_404'))
 
-@app.route("/logout", methods = ["GET", "POST"])
-def logout():
-    session.clear()
-    return redirect(url_for('home'))
+
 
 
 
