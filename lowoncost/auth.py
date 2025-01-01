@@ -5,9 +5,9 @@ from lowoncost.midleware import auth
 
 
 
-local = "http://127.0.0.1:5000/api"
-prod = "https://lowoncost.vercel.app/api"
-url = local
+lo = "http://127.0.0.1:5000/api"
+pr = "https://lowoncost.vercel.app/api"
+url = pr
 
 
 @app.route("/login", methods = ["GET", "POST"])
