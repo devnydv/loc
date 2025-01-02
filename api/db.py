@@ -62,8 +62,25 @@ def get_user_data(uname):
         return []
     else: 
         data = json.loads(json_util.dumps(user))
-        return json.dumps(data)
-    
+        
+        pipeline = [
+        {
+        "$match": { "username": uname }  # Match the specific user
+        },
+        {
+        "$lookup": {
+            "from": "deals",         # Items collection name
+            "localField": "total_deals",  # Field in users collection
+            "foreignField": "_id",      # Field in items collection
+            "as": "item_details"        # Output array field
+        }
+        }
+        ]
+
+        result = db.users.aggregate(pipeline)
+        deals = json.loads(json_util.dumps(result))
+        return json.dumps({"data": deals, "deals": deals})
+        
 
 def addnewdeal(post_data):
     print(post_data)

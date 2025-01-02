@@ -87,7 +87,7 @@
     </nav>
     
 
-
+    
 
     <div class="profile-segment">
         <div class="profile-info">
@@ -111,7 +111,7 @@
                                     <path d="M4 6v12c0 1.1.9 2 2 2h14v-4"></path>
                                     <path d="M18 12H4"></path>
                                 </svg>
-                                {{userdata[0]['cart_items'] | length}} Deals
+                                {{userdata[0]['total_deals'] |length}} Deals
                             </span>
                             <!-- <span class="stat-divider">•</span> -->
                             <!-- <span class="stat-item">
@@ -183,11 +183,18 @@
     </div>
 
     <div class="deals-container">
+
+
+        {%set items = userdata[0]["item_details"]%}
+        
+        {%for item in items%}
+        
+        
         <!-- Deal Card 1 -->
         <div class="deal-card">
             <div class="image-container">
                 <img class="deal-image"
-                    src="https://nis-gs.pix.in/inshorts/images/v1/variants/jpg/m/2024/12_dec/1_sun/img_1733073904922_614.jpg?"
+                    src="{{item['imageUrl']}}" 
                     alt="" width="300" height="200">
                 <!-- <svg class="deal-image" viewBox="0 0 300 200">
                     <rect width="100%" height="100%" fill="#3d3d3d" />
@@ -204,69 +211,31 @@
                 </button>
             </div>
             <div class="deal-content">
-                <h3 class="deal-title">Amazing Deal Title</h3>
+                <h3 class="deal-title">{{item['title']}}</h3>
                 <div class="tags-container">
-                    <span class="sub-category">Smartphones</span>
-                    <span class="sub-category">Best Seller</span>
-                    <span class="sub-category">Free Shipping</span>
-                    <span class="sub-category">Limited Time</span>
+                    <span class="sub-category">{{item['category']|title}}</span>
+                    <span class="sub-category">@{{userdata[0]['username'] | title}}</span>
+                    
                 </div>
                 <!-- <p class="deal-description">Experience premium quality with this amazing deal. Limited time offer with
                     exceptional features and warranty coverage.</p> -->
                 <div class="price-container">
-                    <span class="current-price">$79.99</span>
-                    <span class="original-price">$129.99</span>
+                    <span class="current-price">₹{{item['currentPrice']}}</span>
+                    <span class="original-price">₹{{item['originalPrice']}}</span>
                     <span class="discount">-38%</span>
                 </div>
                 <div class="button-container">
                     <button class="btn btn-view">View Offer</button>
                     <button class="btn btn-details">Details</button>
                     <!-- <button class="btn btn-edit">Edit Deal</button> -->
+                    {%if edit%}
+                    <a href="{{url_for('addnewdeal')}}" class="btn btn-edit">Edit Deal</a>
+                    
+                    {%endif%}
                 </div>
             </div>
         </div>
-        <!-- Deal Card 1 -->
-        <div class="deal-card">
-            <div class="image-container">
-                <img class="deal-image"
-                    src="https://nis-gs.pix.in/inshorts/images/v1/variants/jpg/m/2024/12_dec/1_sun/img_1733073904922_614.jpg?"
-                    alt="" width="300" height="200">
-                <!-- <svg class="deal-image" viewBox="0 0 300 200">
-            <rect width="100%" height="100%" fill="#3d3d3d" />
-            <text x="50%" y="50%" text-anchor="middle" fill="#cccccc" font-size="20">Product Image</text>
-        </svg> -->
-                <button class="share-button">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="18" cy="5" r="3" />
-                        <circle cx="6" cy="12" r="3" />
-                        <circle cx="18" cy="19" r="3" />
-                        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
-                        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
-                    </svg>
-                </button>
-            </div>
-            <div class="deal-content">
-                <h3 class="deal-title">Amazing Deal Title</h3>
-                <div class="tags-container">
-                    <span class="sub-category">Smartphones</span>
-                    <span class="sub-category">Best Seller</span>
-                    <span class="sub-category">Free Shipping</span>
-                    <span class="sub-category">Limited Time</span>
-                </div>
-                <!-- <p class="deal-description">Experience premium quality with this amazing deal. Limited time offer with
-                    exceptional features and warranty coverage.</p> -->
-                <div class="price-container">
-                    <span class="current-price">$79.99</span>
-                    <span class="original-price">$129.99</span>
-                    <span class="discount">-38%</span>
-                </div>
-                <div class="button-container">
-                    <button class="btn btn-view">View Offer</button>
-                    <button class="btn btn-details">Details</button>
-                    <!-- <button class="btn btn-edit">Edit Deal</button> -->
-                </div>
-            </div>
-        </div>
+        {%endfor%}
 
         <!-- Deal Card 2 -->
         <div class="deal-card">

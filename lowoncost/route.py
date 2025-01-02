@@ -6,7 +6,7 @@ import json
 
 lo = "http://127.0.0.1:5000/api"
 pr = "https://lowoncost.vercel.app/api"
-url = pr
+url = lo
 
 
 def session_user():
@@ -28,19 +28,24 @@ def home():
 
 
 @app.route("/profile/<username>", methods = ["GET", "POST"])
-
 def dash(username):
     loggedin = session_user()
-    data = {"username": username }
-    saved = requests.post(f"{url}/user", json = data)
+    #data = {"username": username }
+    saved = requests.post(f"{url}/user/{username}")
     res =saved.json()
+    
+    #res = res['data']
     if "userdata" in res:
         userdata = res["userdata"]
+        
         userdata = json.loads(userdata)
+        deals = userdata
+        userdata = userdata['data']
+        
         if "username" in session:
             session_name = session["username"]
             if session_name == username:
-                return render_template("dash.html", loggedin = loggedin, edit= True, userdata = userdata )
+                return render_template("dash.html", loggedin = loggedin, edit= True, userdata = userdata, deals= deals )
             else:
                 return render_template("dash.html", loggedin = True, userdata = userdata, otherprofile =True, edit= False)
         else:

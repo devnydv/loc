@@ -9,13 +9,12 @@ from api.valid import adddeal
 def apihome():
     return {"msg":"this is home page for the api. Do not missuse this end point."}
 
-@api.route("/api/user", methods = ["GET", "POST"])
-def getuser():
+@api.route("/api/user/<username>", methods = ["GET", "POST"])
+def getuser(username):
     
     if request.method == "POST":
-        data = request.get_json()
-        username = data["username"]
-        
+        #data = request.get_json()
+        #username = data["username"]
         data = get_user_data(username)
         
         if data == []:
