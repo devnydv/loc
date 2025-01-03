@@ -4,4 +4,4 @@ app = Flask(__name__)
 app.secret_key ="doNotTryToSuck"
 
 from lowoncost import route
-from lowoncost import auth
+from lowoncost.authfile import auth

@@ -1,6 +1,6 @@
 from flask import render_template, request, session
 from api import api
-from api.db import checkusername, get_user_data, addnewdeal
+from api.database.db import get_user_data, addnewdeal
 from api.valid import adddeal
 
 # other user routes
@@ -21,7 +21,6 @@ def getuser(username):
             return {"msg":"User Not Found", "case": False}
         else: 
             return {"userdata": data, "case":True}
-        
     else:
         return {"msg":"not found"}
     
