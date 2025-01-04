@@ -89,14 +89,14 @@ class adddeal(Form):
         'currentPrice ',
         validators=[
             DataRequired(message="Current price is required."),
-            Length(min=1, max=9, message="Price must be more than 0 and less than 999999999.") 
+            # Length(min=1, max=9, message="Price must be more than 0 and less than 999999999.")
         ]
     )
     originalPrice = StringField(
-        'url',
+        'originalPrice',
         validators=[
             DataRequired(message="Original price is required."),
-            Length(min=1, max=9, message="Price must be more than 0 and less than 999999999.") 
+            # Length(min=1, max=9, message="Price must be more than 0 and less than 999999999.") 
         ]
     )
     

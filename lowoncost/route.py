@@ -44,6 +44,7 @@ def dash(username):
         
         if "username" in session:
             session_name = session["username"]
+            session['data'] = userdata
             if session_name == username:
                 return render_template("dash.html", loggedin = loggedin, edit= True, userdata = userdata, deals= deals )
             else:
@@ -83,6 +84,16 @@ def editprofile():
     else:
         return redirect(url_for('error_404'))
 
+
+@app.route('/addnewdeal/<id>')
+def editnewdeal(id):
+    data =session["data"]
+    items = data[0]['item_details']
+    for item in items:
+        if item['_id']['$oid'] == id:
+            mainitem = item
+    
+    return render_template("editdeal.html", item = mainitem)
 
 
 

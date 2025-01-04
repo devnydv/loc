@@ -31,8 +31,13 @@ def getuser(username):
 def newdeal(username):
     if request.method == "POST":
         data = request.get_json()
+        correntprice = int(data["currentPrice"])
+        originalprice = int(data["originalPrice"])
         data["status"] = False
         data["username"] = username
+        data["currentPrice"] = correntprice
+        data["originalPrice"] = originalprice
+        print(data)
         form = adddeal(data= data)
         if form.validate():
             res = addnewdeal(data)
@@ -43,5 +48,5 @@ def newdeal(username):
                     return {"msg": error}  
         return {"msg": "validating the form"}
     else:
-        return {'msg': "created a new deal"}, 201
+        return {'msg': "created a new deal"}
         #return {"msg":"not found"}

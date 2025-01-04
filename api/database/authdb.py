@@ -11,7 +11,6 @@ def newuser(data):
     data["cart_items"] = []
     data["total_deals"] = []
     
-    
     data.pop("confirm_password")
     password =data["password"]
     encodepass = bcrypt.hashpw(password.encode("utf-16"), bcrypt.gensalt())
