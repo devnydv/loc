@@ -1,7 +1,7 @@
 from flask import render_template, request, session
 from api import api
 from api.database.db import get_user_data, addnewdeal
-from api.valid import adddeal
+from api.validate.dealvalidate import adddeal
 
 # other user routes
 
