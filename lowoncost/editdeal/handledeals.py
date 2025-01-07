@@ -4,9 +4,9 @@ import requests
 from lowoncost.midleware import auth
 import json
 
-lo = "http://127.0.0.1:5000/api"
-pr = "https://lowoncost.vercel.app/api"
-url = lo
+from lowoncost.url import apiurl
+
+url = apiurl()
 
 
 @app.route("/profile/addnewdeal", methods = ["GET", "POST"])
