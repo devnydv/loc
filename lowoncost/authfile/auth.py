@@ -2,12 +2,11 @@ from lowoncost import app
 from flask import render_template, request, redirect, flash, session, url_for
 import requests
 from lowoncost.midleware import auth
+from lowoncost.url import apiurl
+
+url = apiurl()
 
 
-
-lo = "http://127.0.0.1:5000/api"
-pr = "https://lowoncost.vercel.app/api"
-url = pr
 
 
 @app.route("/login", methods = ["GET", "POST"])

@@ -3,10 +3,9 @@ from flask import render_template, request, redirect, flash, session, url_for
 import requests
 from lowoncost.midleware import auth
 import json
+from lowoncost.url import apiurl
 
-lo = "http://127.0.0.1:5000/api"
-pr = "https://lowoncost.vercel.app/api"
-url = pr
+url = apiurl()
 
 
 def session_user():
@@ -53,27 +52,6 @@ def dash(username):
             return render_template("dash.html", loggedin = False, userdata = userdata, edit= False)
     else:
         return redirect(url_for('error_404'))
-
-@app.route("/profile/addnewdeal", methods = ["GET", "POST"])
-def addnewdeal():
-    if request.method == "GET":
-        if "username" in session:
-            username = session["username"]
-            return render_template("adddeals.html", name= username)
-        else:
-            return redirect(url_for('login'))
-    if request.method == "POST":
-        data = request.form
-        if "username" in session:
-            username = session["username"]
-            saved = requests.post(f"{url}/newdeal/{username}", json = data)
-            res =saved.json()
-            
-            return redirect(url_for('dash', username=username))
-        else:
-            return redirect(url_for('login'))
-
-    
 
 
 @app.route("/profile/editprofile", methods = ["GET", "POST"])
