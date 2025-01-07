@@ -32,13 +32,14 @@
             <span class="discount">-{{disc | int}}% </span>
         </div>
         <div class="button-container">
-            <button class="btn btn-view">View Offer</button>
+            <a href="{{item['dealUrl']}}" target="_blank" class="btn btn-view">View Offer</a>
+            
             <button class="btn btn-details">Details</button>
             <!-- <button class="btn btn-edit">Edit Deal</button> -->
             {%if edit%}
             {%set id = item['_id']['$oid'] %}
 
-            <a href="/addnewdeal/{{id}}" class="btn btn-edit">Edit Deal</a>
+            <a href="/profile/editdeal/{{id}}" class="btn btn-edit">Edit Deal</a>
             {%endif%}
         </div>
     </div>

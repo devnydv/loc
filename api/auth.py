@@ -1,4 +1,4 @@
-from flask import render_template, request, flash, session
+from flask import request, flash, session
 from api import api
 from api.validate.authvalidate import SignupForm, LoginForm
 from api.database.authdb import login, newuser, checkusername

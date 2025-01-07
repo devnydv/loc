@@ -27,3 +27,26 @@ def addnewdeal():
             return redirect(url_for('dash', username=username))
         else:
             return redirect(url_for('login'))
+        
+
+
+@app.route('/profile/editdeal/<id>')
+def editnewdeal(id):
+    data =session["data"]
+    items = data[0]['item_details']
+    for item in items:
+        if item['_id']['$oid'] == id:
+            mainitem = item
+    
+    return render_template("editdeal.html", item = mainitem, id= id)
+
+
+@app.route('/profile/delete/<id>')
+def deletedeal(id):
+    print(id)
+    saved = requests.get(f"{url}/deletedeal/{id}")
+    res = saved.json()
+    username = session["username"]
+    return redirect(url_for('dash', username=username))
+
+

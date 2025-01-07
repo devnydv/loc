@@ -63,19 +63,6 @@ def editprofile():
         return redirect(url_for('error_404'))
 
 
-@app.route('/addnewdeal/<id>')
-def editnewdeal(id):
-    data =session["data"]
-    items = data[0]['item_details']
-    for item in items:
-        if item['_id']['$oid'] == id:
-            mainitem = item
-    
-    return render_template("editdeal.html", item = mainitem)
-
-
-
-
 
 
 

@@ -130,7 +130,8 @@ textarea {
 .btn-third {
     background: #f53513;
     color: white;
-    font-weight: 600;
+    font-weight: 500;
+    text-decoration: none;
 }
 .btn:hover {
     transform: translateY(-2px);

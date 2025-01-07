@@ -45,19 +45,4 @@ def get_user_data(uname):
         return json.dumps({"data": deals, "deals": deals})
         
 
-def addnewdeal(post_data):
-    print(post_data)
-    # Insert the new deal into the deals collection
-    deals_collection = db.deals
-    result = deals_collection.insert_one(post_data)
-    #return { "deal_id": str(result.inserted_id)}
-
-    # Update the user's deals array
-    users_collection = db.users
-    user_id = post_data.get("username")
-    if user_id:
-        users_collection.update_one(
-            {"username": user_id},
-            {"$push": {"total_deals": result.inserted_id}}
-        )
-    return {"deal_id": str(result.inserted_id)}   
+   
