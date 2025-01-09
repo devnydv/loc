@@ -31,7 +31,7 @@ def addnewdeal():
 
 
 @app.route('/profile/editdeal/<id>')
-def editnewdeal(id):
+def editdeal(id):
     data =session["data"]
     items = data[0]['item_details']
     for item in items:
