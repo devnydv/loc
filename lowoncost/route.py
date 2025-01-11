@@ -13,7 +13,8 @@ def session_user():
 @app.route("/")
 def home():
     loggedin = session_user()
-    return render_template("index.html", loggedin = loggedin, userprofile = False)
+    username = session['username']
+    return render_template("index.html", loggedin = loggedin, userprofile = False, username= username)
 
 
 # Custom error pages

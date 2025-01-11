@@ -9,7 +9,7 @@
 
     {%block content%}
 
-    {{nav(loggedin = True, userprofile = False)}}
+    {{nav(loggedin = True, userprofile = False, username = name)}}
      <!-- <nav class="navbar">
         <div class="website-name">LowonCost</div>
         <div class="nav-icons">
@@ -87,7 +87,16 @@
                     Upload Photo
                 </button> -->
             </div>
-
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            
+            <div class="" id="alertdiv">
+                {% for category, message in messages %}
+                <div class="alert" style="color: red;"><span>{{ message }}</span></div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% endwith %}
             <div class="form-group">
                 {{form.username.label(class="form-label")}}
                 {{form.username(class="form-input", value = name, placeholder="Enter a new username")}}
@@ -127,7 +136,7 @@
 
             <div class="button-group">
                 <button type="button" class="btn btn-cancel"><a href="/profile/{{name}}">Cancel</a></button>
-                <button type="submit" class="btn btn-save"><a href="">Save Changes</a></button>
+                <button type="submit" class="btn btn-save">Save Changes</button>
             </div>
             <br>
             <hr>
@@ -149,7 +158,7 @@
         </form>
     </div>
 
-    <script>
+    <!-- <script>
         document.getElementById('editProfileForm').addEventListener('submit', function (e) {
             e.preventDefault();
             alert('Profile changes saved!');
@@ -177,5 +186,5 @@
                 alert(`${this.textContent.trim()} clicked!`);
             });
         });
-    </script>
+    </script> -->
 {%endblock%}
