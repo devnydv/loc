@@ -1,4 +1,6 @@
-{%macro nav(loggedin, userprofile  )%}
+<!-- this nave is not in use  -->
+{%macro nav(loggedin, userprofile, username)%}
+
 <nav class="navbar">
     <div class="website-name">LowonCost</div>
     <div class="nav-icons">
@@ -13,7 +15,7 @@
         </a>
         {%if loggedin %}
         {%if userprofile == False%}
-        <a href="/profile/dev" style="text-decoration: none">
+        <a href="/profile/{{username}}" style="text-decoration: none">
             <button class="nav-icon">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <circle cx="12" cy="7" r="4"></circle>

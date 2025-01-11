@@ -29,13 +29,23 @@ def get_user_data(uname):
         return json.dumps({"data": deals})
     
 def edit_user_data(uname, post_data):
-    user = collection.find({"username": uname}, {"password": 0})
+    newname = post_data["username"]
+    user = list(collection.find({"username":newname}, {"password": 0}))
+    print(user)
+    for i in user:
+        print(i)
+    
     if user == []:
-        result = collection.update_one(
+        result = collection.find_one_and_update(
             {"username": uname},
             {"$set": post_data}
         )
-    
+        return True
+    elif newname == uname:
+        result = collection.find_one_and_update(
+            {"username": uname},
+            {"$set": post_data}
+        )
         return True
     else:
-        return {"msg": "Username already exists."}
+        return {"msg": "Username already exists chose other name."}
