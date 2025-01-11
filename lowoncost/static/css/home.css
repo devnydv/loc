@@ -1,0 +1,476 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+
+
+.profile-segment {
+    background: transparent;
+    /* Remove white background */
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.profile-info {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+}
+
+.profile-left {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.profile-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #3d3d3d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-avatar svg {
+    color: #cccccc;
+}
+
+.profile-details {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.profile-name {
+    font-size: 1.5rem;
+    color: #ffffff;
+    margin: 0;
+}
+
+.profile-description {
+    color: #cccccc;
+    font-size: 0.95rem;
+    margin: 0;
+    max-width: 600px;
+}
+
+.profile-stats {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #cccccc;
+    font-size: 0.9rem;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.basic-stats {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.action-chips {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+    /* Add space between basic stats and action chips */
+    width: 100%;
+    /* Make it take full width */
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #cccccc;
+}
+
+.stat-item svg {
+    width: 16px;
+    height: 16px;
+}
+
+.stat-divider {
+    color: #666666;
+}
+
+.stat-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    background: #3d3d3d;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    color: #cccccc;
+}
+
+.stat-chip:hover {
+    background: #4d4d4d;
+}
+
+.stat-chip svg {
+    width: 16px;
+    height: 16px;
+}
+
+.category-container {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 15px;
+    /* Add padding for smaller screens */
+    justify-content: center;
+}
+
+.category-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 20px;
+    background: #2d2d2d;
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    /* Updated for smaller screens */
+}
+
+.category-btn:hover {
+    background: #3d3d3d;
+}
+
+.add-category-btn {
+    background: #2ecc71;
+    color: white;
+}
+
+.deals-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+    /* Add padding for smaller screens */
+}
+
+.deal-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    /* Make cards equal height */
+    min-width: 250px;
+    /* Minimum card width */
+    background: #2d2d2d;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.deal-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.image-container {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+    
+}
+
+.deal-image {
+    width: 100%;
+    height: 100%;
+    object-fit:contain;
+}
+
+.share-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(45, 45, 45, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
+}
+
+.share-button:hover {
+    background: #3d3d3d;
+}
+
+.deal-content {
+    padding: 20px;
+    /* Improved padding */
+    flex: 1;
+    /* Allow content to expand */
+    display: flex;
+    flex-direction: column;
+}
+
+.deal-title {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.sub-category {
+    font-size: 0.85rem;
+    color: #cccccc;
+    margin-bottom: 0;
+    background: #3d3d3d;
+    padding: 4px 12px;
+    border-radius: 15px;
+    display: inline-block;
+    transition: all 0.2s ease;
+}
+
+.sub-category:hover {
+    background: #4d4d4d;
+}
+
+.deal-description {
+    color: #cccccc;
+    margin: 8px 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    /* Improved line-height */
+}
+
+.price-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 15px 0;
+    /* Updated margin */
+    flex-wrap: wrap;
+}
+
+.current-price {
+    font-size: 1.5rem;
+    color: #2ecc71;
+    font-weight: bold;
+}
+
+.original-price {
+    text-decoration: line-through;
+    color: #999999;
+}
+
+.discount {
+    background: #ff4757;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+
+.button-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: auto;
+    /* Push buttons to bottom */
+}
+
+.btn {
+    padding: 10px;
+    /* Improved padding */
+    border: none;
+    border-radius: 6px;
+    /* Improved border-radius */
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    font-size: 0.95rem;
+    /* Updated font size */
+}
+
+.btn-view {
+    background: #2ecc71;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+}
+
+.btn-details {
+    background: #3498db;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+}
+
+.btn-edit {
+    background: #f1c40f;
+    color: #333;
+    text-align: center;
+    text-decoration: none;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+.section-header {
+    max-width: 1200px;
+    margin: 20px auto 10px;
+    padding: 0 15px;
+    text-align: center;
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.deals-header {
+    max-width: 1200px;
+    margin: 30px auto 20px;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add-deal-btn {
+    background: #2ecc71;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.add-deal-btn:hover {
+    background: #27ae60;
+    transform: translateY(-2px);
+}
+
+@media screen and (max-width: 768px) {
+    
+
+    .category-btn {
+        font-size: 0.9rem;
+        padding: 6px 12px;
+    }
+
+    .profile-info {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+
+    .profile-left {
+        flex-direction: column;
+    }
+
+    .profile-details {
+        align-items: center;
+    }
+
+    .profile-description {
+        text-align: center;
+    }
+
+    .section-header {
+        font-size: 1.1rem;
+        text-align: center;
+    }
+
+    .deals-header {
+        flex-direction: column;
+        gap: 15px;
+        align-items: stretch;
+    }
+
+    .add-deal-btn {
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    
+
+    .deal-card {
+        margin: 0 10px;
+    }
+
+    .button-container {
+        grid-template-columns: 1fr;
+        /* Stack buttons on very small screens */
+        gap: 8px;
+    }
+
+    .deal-title {
+        font-size: 1.1rem;
+    }
+
+    .current-price {
+        font-size: 1.3rem;
+    }
+
+    .profile-name {
+        font-size: 1.3rem;
+    }
+
+    .profile-description {
+        font-size: 0.9rem;
+    }
+
+    .profile-stats {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .basic-stats {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .action-chips {
+        justify-content: center;
+    }
+}
+
+.deal-image rect {
+    fill: #3d3d3d;
+}
+
+.deal-image text {
+    fill: #cccccc;
+}

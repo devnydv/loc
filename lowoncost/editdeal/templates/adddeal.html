@@ -1,0 +1,74 @@
+{%extends"base.html" %}
+{% from "macros/form.html" import dealform%}
+
+
+{%block seo%}
+<title>Add New Deal - LowonCost</title>
+<link rel="shortcut icon" href="{{url_for('static', filename='icons/icon.webp')}}" type="image/x-icon">
+<link rel="stylesheet" href="{{url_for('static', filename='css/adddeal.css')}}">
+{%endblock%}
+
+{%block content%}
+
+    <nav class="navbar">
+        <div class="website-name">LowonCost</div>
+    </nav>
+
+    <div class="form-container">
+        <h2 class="form-title">Add New Deal</h2>
+        <form id="addDealForm" method="POST" action="/profile/addnewdeal">
+            {{dealform(form, item)}}
+        </form>
+    </div>
+
+    <script>
+        // Handle tags input
+        //     const tagInput = document.getElementById('tagInput');
+        //     const tagsContainer = document.getElementById('tagsContainer');
+        //     let tags = [];
+
+        //     tagInput.addEventListener('keypress', function (e) {
+        //         if (e.key === 'Enter') {
+        //             e.preventDefault();
+        //             const tag = this.value.trim();
+        //             if (tag && !tags.includes(tag)) {
+        //                 addTag(tag);
+        //                 this.value = '';
+        //             }
+        //         }
+        //     });
+
+        //     function addTag(text) {
+        //         tags.push(text);
+        //         const tag = document.createElement('span');
+        //         tag.className = 'tag';
+        //         tag.innerHTML = `
+        //             ${text}
+        //             <button type="button" onclick="removeTag('${text}')">×</button>
+        //         `;
+        //         tagsContainer.appendChild(tag);
+        //     }
+
+        //     function removeTag(text) {
+        //         tags = tags.filter(tag => tag !== text);
+        //         renderTags();
+        //     }
+
+        //     function renderTags() {
+        //         tagsContainer.innerHTML = '';
+        //         tags.forEach(addTag);
+        //     }
+
+        //     // Handle form submission
+        //     document.getElementById('addDealForm').addEventListener('submit', function (e) {
+        //         e.preventDefault();
+
+        //         // Here you would normally send the data to a server
+        //         // For now, we'll just show an alert and redirect
+        //         alert('Deal added successfully!');
+        //         window.location.href = '/';
+        //     });
+    </script>
+
+
+    {%endblock%} 

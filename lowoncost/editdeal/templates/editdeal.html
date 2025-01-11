@@ -1,0 +1,127 @@
+{%extends"base.html" %}
+{% from "macros/form.html" import dealform%}
+{%block seo%}
+    <title>Edit Deal - LowonCost</title>
+    <link rel="shortcut icon" href="{{url_for('static', filename='icons/icon.webp')}}" type="image/x-icon">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/adddeal.css')}}">
+{%endblock%}
+{%block content%}
+    <nav class="navbar">
+        <div class="website-name">LowonCost</div>
+    </nav>
+
+    <div class="form-container">
+        <h2 class="form-title">Edit Deal</h2>
+        <form id="addDealForm" method="POST" action="/profile/editdeal/{{id}}">
+            <div class="form-group">
+                
+                {{form.title.label}}
+                {{form.title(placeholder="Edit deal title", value=item['title'])}}
+            </div>
+
+            <div class="form-group">
+                {{form.imageUrl.label}}
+                {{form.imageUrl(placeholder="Enter the URL of the deal image" , value=item['imageUrl'])}}
+            </div>
+            <div class="form-group">
+                {{form.dealUrl.label}}
+                {{form.dealUrl(placeholder="Enter the URL of the deal" , value=item['dealUrl'])}}
+            </div>
+
+            <div class="form-group">
+                {{form.description.label}}
+                {{form.description(placeholder="Description of the deal under 500 characters")}}
+            </div>
+
+            <div class="form-group">
+                <label for="category">Category</label>
+                <select id="category" name="category" required>
+                    
+                    <option value="">Select Category</option>
+                    <!-- <option value="{{item['category']}}" selected>{{item['category'] | title}}</option> -->
+                    <option value="electronics" {% if item["category"] == "electronics" %}selected{% endif %}>Electronics</option>
+                    <option value="fashion" {% if item['category'] == "fashion" %}selected{% endif %}>Fashion</option>
+                    <option value="home" {% if item['category'] == "home" %}selected{% endif %}>Home & Garden</option>
+                    <option value="sports" {% if item['category'] == "sports" %}selected{% endif %}>Sports</option>
+                    <option value="books" {% if item['category'] == "books" %}selected{% endif %}>Books</option>
+                    <option value="others" {% if item['category'] == "others" %}selected{% endif %}>Others</option>
+                </select>
+            </div>
+
+            <!-- <div class="form-group">
+                <label>Sub Categories</label>
+                <div class="tags-input" id="tagsContainer">
+                    Tags will be added here 
+                </div>
+                <input type="text" id="tagInput" placeholder="Type and press Enter to add tags"
+                    style="margin-top: 10px;">
+            </div> -->
+
+            <div class="form-group">
+                {{form.currentPrice.label}}
+                {{form.currentPrice(placeholder="Price after Discount", value=item['currentPrice'] )}}
+            </div>
+
+            <div class="form-group">
+                {{form.originalPrice.label}}
+                {{form.originalPrice(placeholder="Price before Discount", value=item['originalPrice'])}}
+            </div>
+
+            <div class="button-group">
+                <button type="submit" class="btn btn-primary">Confirm Edit</button>
+                <button type="button" class="btn btn-secondary" onclick="window.location.href='/'">Cancel</button>
+                <a href="/profile/delete/{{id}}" class="btn btn-third">Delete This Deal</a>
+                <!-- <button type="button" class="btn btn-third" onclick="window.location.href='/'">Delete This Deal</button> -->
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Handle tags input
+    //     const tagInput = document.getElementById('tagInput');
+    //     const tagsContainer = document.getElementById('tagsContainer');
+    //     let tags = [];
+
+    //     tagInput.addEventListener('keypress', function (e) {
+    //         if (e.key === 'Enter') {
+    //             e.preventDefault();
+    //             const tag = this.value.trim();
+    //             if (tag && !tags.includes(tag)) {
+    //                 addTag(tag);
+    //                 this.value = '';
+    //             }
+    //         }
+    //     });
+
+    //     function addTag(text) {
+    //         tags.push(text);
+    //         const tag = document.createElement('span');
+    //         tag.className = 'tag';
+    //         tag.innerHTML = `
+    //             ${text}
+    //             <button type="button" onclick="removeTag('${text}')">×</button>
+    //         `;
+    //         tagsContainer.appendChild(tag);
+    //     }
+
+    //     function removeTag(text) {
+    //         tags = tags.filter(tag => tag !== text);
+    //         renderTags();
+    //     }
+
+    //     function renderTags() {
+    //         tagsContainer.innerHTML = '';
+    //         tags.forEach(addTag);
+    //     }
+
+    //     // Handle form submission
+    //     document.getElementById('addDealForm').addEventListener('submit', function (e) {
+    //         e.preventDefault();
+
+    //         // Here you would normally send the data to a server
+    //         // For now, we'll just show an alert and redirect
+    //         alert('Deal added successfully!');
+    //         window.location.href = '/';
+    //     });
+     </script>
+     {%endblock%}

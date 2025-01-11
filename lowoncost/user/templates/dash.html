@@ -1,0 +1,168 @@
+{%extends"base.html" %}
+{% from "macros/category.html" import category%}
+{% from "macros/dealsCard.html" import Card%}
+{% from "macros/nav.html" import nav%}
+{%block seo%}
+<title>User profile of {{userdata[0]['username']}}</title>
+<link rel="stylesheet" href="{{url_for('static', filename='css/home.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='css/nav.css')}}">
+{%endblock%}
+
+{%block content%}
+
+{{nav(loggedin, userprofile)}}
+
+
+
+
+<div class="profile-segment">
+    <div class="profile-info">
+        <div class="profile-left">
+            <div class="profile-avatar">
+                <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <circle cx="12" cy="10" r="3"></circle>
+                    <path d="M7 20.662V19a2 2 0 012-2h6a2 2 0 012 2v1.662"></path>
+                </svg>
+            </div>
+            <div class="profile-details">
+                <h2 class="profile-name">@ {{userdata[0]['username'] | title}}</h2>
+                <p class="profile-description">{{userdata[0]['description']}}</p>
+                <div class="profile-stats">
+                    <div class="basic-stats">
+                        <span class="stat-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 12V8H6a2 2 0 01-2-2c0-1.1.9-2 2-2h12v4"></path>
+                                <path d="M4 6v12c0 1.1.9 2 2 2h14v-4"></path>
+                                <path d="M18 12H4"></path>
+                            </svg>
+                            {{userdata[0]['total_deals'] |length}} Deals
+                        </span>
+                        <!-- <span class="stat-divider">•</span> -->
+                        <!-- <span class="stat-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="9" cy="7" r="4"></circle>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                </svg>
+                                15.2K Followers
+                            </span> -->
+                    </div>
+                    {%if edit%}
+                    <!-- <div class="action-chips">
+                            <span class="stat-chip">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                                    <path d="M16 10a4 4 0 0 1-8 0"></path>
+                                </svg>
+                                32 Cart Items
+                            </span> -->
+                    <!-- <span class="stat-chip">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path
+                                        d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                                    </path>
+                                </svg>
+                                128 Wishlist
+                            </span> 
+
+                        </div> -->
+                    {%endif%}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{category()}}
+
+<div class="deals-header">
+    <h3 class="section-header" style="margin: 0;">Latest Deals</h3>
+    {%if edit%} 
+    <a href="{{url_for ('newdeal')}}" style="text-decoration: none;">
+
+        <button class="add-deal-btn">
+
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            Add New Deal
+
+        </button>
+    </a>
+    {%endif%}
+</div>
+
+{%set items = userdata[0]["item_details"]%}
+{%set username = userdata[0]['username']%}
+{%if items==[]%}
+<h3 style="text-align: center;">No deals found. Add new deal...</h3>
+{%endif%}
+
+<div class="deals-container">
+
+    {%for item in items%}
+    
+
+    <!-- card comming from main template macros file -->
+    {{Card(item, username, edit)}}
+    
+    <!-- Deal Card 1 -->
+    {%endfor%}
+
+
+</div>
+
+<script>
+    document.querySelectorAll('.share-button').forEach(button => {
+        button.addEventListener('click', function (e) {
+            e.preventDefault();
+            alert('Share this deal!');
+        });
+    });
+
+    // document.querySelectorAll('.btn').forEach(button => {
+    //     button.addEventListener('click', function (e) {
+    //         const action = this.textContent;
+    //         alert(`${action} clicked!`);
+    //     });
+    // });
+
+    document.querySelectorAll('.category-btn').forEach(button => {
+        button.addEventListener('click', function (e) {
+            if (this.classList.contains('add-category-btn')) {
+                const newCategory = prompt('Enter new category name:');
+                if (newCategory) {
+                    const newButton = document.createElement('button');
+                    newButton.className = 'category-btn';
+                    newButton.textContent = newCategory;
+                    this.parentNode.insertBefore(newButton, this);
+                }
+            } else {
+                alert(`Selected category: ${this.textContent}`);
+            }
+        });
+    });
+
+    // document.querySelectorAll('.nav-icon').forEach(button => {
+    //     button.addEventListener('click', function() {
+    //         alert(`${this.textContent.trim()} clicked!`);
+    //     });
+    // });
+
+    document.querySelectorAll('.stat-chip').forEach(chip => {
+        chip.addEventListener('click', function () {
+            alert(`${this.textContent.trim()} clicked!`);
+        });
+    });
+
+    // document.querySelector('.add-deal-btn').addEventListener('click', function() {
+    //     alert('Add new deal clicked!');
+    // });
+</script>
+
+
+{%endblock%}

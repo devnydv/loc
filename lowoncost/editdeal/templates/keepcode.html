@@ -1,0 +1,71 @@
+<div class="form-group">
+    {{form.title.label}}
+    {{form.title(placeholder="Enter deal title")}}
+    
+</div>
+
+<div class="form-group">
+    {{form.imageUrl.label}}
+    {{form.imageUrl(placeholder="Enter the URL of the deal image")}}
+    <!-- <label for="imageUrl">Image URL</label>
+    <input type="url" id="imageUrl" name="imageUrl" placeholder="Enter the URL of the deal image" required
+        maxlength="200"> -->
+</div>
+<div class="form-group">
+    {{form.dealUrl.label}}
+    {{form.dealUrl(placeholder="Enter the URL of the deal")}}
+    <!-- <label for="dealUrl">Deals Url</label>
+    <input type="url" id="dealUrl" name="dealUrl" placeholder="Enter the URL of the deal" required
+        maxlength="200"> -->
+</div>
+
+<div class="form-group">
+    {{form.description.label}}
+    {{form.description(placeholder="Description of the deal under 500 characters")}}
+    <!-- <label for="description">Description</label>
+    <textarea id="description" name="description" required
+        placeholder="Description of the deal under 500 characters" maxlength="500"></textarea> -->
+</div>
+
+<div class="form-group">
+    <label for="category">Category</label>
+    <select id="category" name="category" required>
+        <option value="">Select Category</option>
+        <option value="electronics">Electronics</option>
+        <option value="fashion">Fashion</option>
+        <option value="home">Home & Garden</option>
+        <option value="sports">Sports</option>
+        <option value="books">Books</option>
+        <option value="books">Others</option>
+    </select>
+</div>
+
+<!-- <div class="form-group">
+    <label>Sub Categories</label>
+    <div class="tags-input" id="tagsContainer">
+        Tags will be added here 
+    </div>
+    <input type="text" id="tagInput" placeholder="Type and press Enter to add tags"
+        style="margin-top: 10px;">
+</div> -->
+
+<div class="form-group">
+    {{form.currentPrice.label}}
+    {{form.currentPrice(placeholder="Price after Discount")}}
+    <!-- <label for="currentPrice">Price after Discount</label>
+    <input type="number" id="currentPrice" name="currentPrice" step="1" required min="0" max="99999999"> -->
+</div>
+
+<div class="form-group">
+    {{form.originalPrice.label}}
+    {{form.originalPrice(placeholder="Price before Discount")}}
+    <!-- <label for="originalPrice">Original Price</label>
+    <input type="number" id="originalPrice" name="originalPrice" step="1" required min="0" max="99999999"> -->
+</div>
+
+<div class="button-group">
+    
+    <button type="submit" class="btn btn-primary">Create Deal</button>
+    <button type="button" class="btn btn-secondary" onclick="window.location.href='/profile/{{name}}'">Cancel</button>
+    <!-- <button type="button" class="btn btn-third" onclick="window.location.href='/'">Delete This Deal</button> -->
+</div>
