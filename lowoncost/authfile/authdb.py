@@ -1,9 +1,12 @@
-from api.database.db import collection
+from lowoncost.db import collection
 import bcrypt
+import json
 
 
 # insert data to db when new user signp
 def newuser(data):
+    data = json.loads(data)
+    print(data)
     username = data["username"]
     data["username"] = username.lower()
     
@@ -17,18 +20,18 @@ def newuser(data):
     data["password"] = encodepass
     #print(userdata)
     collection.insert_one(data)
-    
 
 
 def checkusername(uname):
-    user = list(collection.find({"username": uname}))
+    user = list(collection.find({"username": uname}, {"_id":0,  'username':1}))
     if user == []:
         return {"massage":"username is Unique", "case":True}
     else: 
         return {"massage":"username is already taken", "case":False}
     
     
-def login(logdata):
+def userlogin(logdata):
+    logdata = json.loads(logdata)
     uname = logdata["username"]
     uname = uname.lower()
     password = logdata["password"]

@@ -161,7 +161,10 @@ textarea.form-input {
     background: #e74c3c;
     color: white;
 }
-
+.btn a{
+    text-decoration: none;
+    color: white;
+}
 .btn:hover {
     transform: translateY(-2px);
     opacity: 0.9;

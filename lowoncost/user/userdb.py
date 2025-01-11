@@ -1,25 +1,9 @@
-from pymongo.mongo_client import MongoClient
-import bcrypt
-from bson import json_util
+from lowoncost.db import db, collection
 import json
-from dotenv import load_dotenv, find_dotenv
-import os
+from bson import json_util
 
-envpath = find_dotenv()
-load_dotenv(envpath)
-url = os.getenv('db')
-client = MongoClient(url, socketTimeoutMS= 60000, connectTimeoutMS=60000)
-db = client.lowoncost
-collection = db.users
-
-
-
-    
-
-
-#get user data from db and his dealsS
 def get_user_data(uname):
-    user = list(collection.find({"username": uname}))
+    user = list(collection.find({"username": uname}, {"password": 0}))
 
     if user == []:
         return []
@@ -42,7 +26,16 @@ def get_user_data(uname):
 
         result = db.users.aggregate(pipeline)
         deals = json.loads(json_util.dumps(result))
-        return json.dumps({"data": deals, "deals": deals})
-        
-
-   
+        return json.dumps({"data": deals})
+    
+def edit_user_data(uname, post_data):
+    user = collection.find({"username": uname}, {"password": 0})
+    if user == []:
+        result = collection.update_one(
+            {"username": uname},
+            {"$set": post_data}
+        )
+    
+        return True
+    else:
+        return {"msg": "Username already exists."}

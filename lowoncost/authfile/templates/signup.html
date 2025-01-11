@@ -19,7 +19,22 @@
     {% endwith %}
 
     <form method="POST" action="/signup">
-        <label for="username">Username</label>
+        {{form.username.label}}
+        {{form.username(placeholder="Username", required="required")}}
+        {%for error in form.username.errors%}
+        {{error}}
+        {%endfor%}
+        {{form.email.label}}
+        {{form.email(type="email", placeholder="Email", required="required")}}
+        
+        {{form.password.label}}
+        {{form.password(placeholder="Password", required="required")}}
+            
+        {{form.confirm_password.label}}
+        {{form.confirm_password(placeholder="Confirm Password", required="required")}}
+            
+        
+        <!-- <label for="username">Username</label>
         <input type="text" id="username" name="username" placeholder="Username" required>
 
         <label for="email">Email</label>
@@ -30,7 +45,7 @@
 
         <label for="confirm_password">Confirm Password</label>
         <input type="confirm_password" id="confirm_password" name="confirm_password" placeholder="Confirm Password"
-            required>
+            required> -->
 
         <button type="submit">Create a New Account</button>
     </form>

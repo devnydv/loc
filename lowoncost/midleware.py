@@ -8,4 +8,3 @@ def auth (view_func):
             return redirect(f"/profile/{username}")
         return view_func(*arg, **kwargs)
     return decorator
-
