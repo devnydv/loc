@@ -13,7 +13,10 @@ def session_user():
 @app.route("/")
 def home():
     loggedin = session_user()
-    username = session['username']
+    if loggedin:
+        username = session['username']
+    else:
+        username = None
     return render_template("index.html", loggedin = loggedin, userprofile = False, username= username)
 
 
