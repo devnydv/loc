@@ -2,6 +2,7 @@ from lowoncost import app
 from flask import render_template, request, redirect, session, url_for
 from lowoncost.editdeal.validate_edit import adddeal
 from lowoncost.editdeal.editdealdb import addnewdeal, editdealdata, deletedeal
+from lowoncost.user.userdb import get_user_data
 import json
 
 
@@ -37,17 +38,26 @@ def newdeal():
 
 @app.route('/profile/editdeal/<id>' , methods = ["GET", "POST"])
 def editdeal(id):
-
     form = adddeal(request.form)
-    data =session["data"]
+    if "username"in session:
+        
+        username = session["username"]
+        if "data" in session:
+            data = session["data"]
+        else:
+            alldata =  get_user_data(username)
+            data = json.loads(alldata)
+            data = data["data"]
+        if request.method == "GET":
+            items = data[0]['item_details']
+            for item in items:
+                if item['_id']['$oid'] == id:
+                    form.description.data = item["description"]
+                    mainitem = item
+            return render_template("editdeal.html", form = form, item = mainitem, id= id)
+    else:
+        return redirect(url_for('login'))
     
-    if request.method == "GET":
-        items = data[0]['item_details']
-        for item in items:
-            if item['_id']['$oid'] == id:
-                form.description.data = item["description"]
-                mainitem = item
-        return render_template("editdeal.html", form = form, item = mainitem, id= id)
     if request.method == "POST":
         data = request.form
         data = dict(data)

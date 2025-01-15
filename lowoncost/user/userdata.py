@@ -52,3 +52,10 @@ def editprofile():
         return render_template("editprofile.html", name= name , form = form)
     else:
         return redirect(url_for('error_404'))
+    
+
+@app.route('/profile/delete/<username>')
+def deleteprofile(username):
+    username = session["username"]
+    #deleteuser(username)
+    return redirect(url_for('sign'))

@@ -9,7 +9,7 @@
 {%endblock%}
 
 {%block content%}
-{{username}}
+
 {{nav(loggedin, userprofile, username )}}
 
 
@@ -103,10 +103,7 @@
 {%endif%}
 
 <div class="deals-container">
-
-    {%for item in items%}
-    
-
+    {%for item in items | reverse%}
     <!-- card comming from main template macros file -->
     {{Card(item, username, edit)}}
     
