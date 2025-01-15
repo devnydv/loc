@@ -17,7 +17,7 @@ def login():
         check = userlogin(data)
         if form.validate() and check["case"]:
             session["username"] = username
-            return redirect(url_for("home"))
+            return redirect(url_for("dash", username = username))
         else:
             flash(check["msg"])
             
