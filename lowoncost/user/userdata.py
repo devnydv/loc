@@ -5,7 +5,7 @@ from lowoncost.user.userdb import get_user_data, edit_user_data
 from lowoncost.user.validate_profile_edit import edit_profile
 
 
-@app.route("/profile/<username>", methods = ["GET", "POST"])
+@app.route("/profile/<username>/", methods = ["GET", "POST"])
 def dash(username):
     data = get_user_data(username)
     if data == []:
@@ -13,17 +13,20 @@ def dash(username):
     elif "username" in session and username == session['username']:
         data = json.loads(data)
         data = data["data"]
+        items = data[0]["item_details"]
         session['data'] = data
-        return render_template("dash.html", userdata = data, loggedin = True, edit = True, userprofile = True )
+        return render_template("dash.html", userdata = data, navshow = {"loggedin": True, 'userprofile' : True, "items": items})
         #return  {"username":username, "logged in":True, "edit":True}
     elif "username" in session and username != session['username']:
         data = json.loads(data)
         data = data["data"]
-        return render_template("dash.html", userdata = data, loggedin = True, edit = False, userprofile = False )
+        items = data[0]["item_details"]
+        return render_template("dash.html", userdata = data, navshow = {"loggedin": True, 'userprofile' : False, "items": items})
     else:
         data = json.loads(data)
         data = data["data"]
-        return render_template("dash.html", userdata = data, loggedin = False, edit = False, userprofile =False )
+        items = data[0]["item_details"]
+        return render_template("dash.html", userdata = data, navshow = {"loggedin": False, 'userprofile' : False, "items": items})
     
 
 
@@ -53,6 +56,36 @@ def editprofile():
     else:
         return redirect(url_for('error_404'))
     
+
+
+@app.route("/profile/<username>/<cat>", methods = ["GET", "POST"])
+def dash_cate(username,cat):
+    data = get_user_data(username)
+    if data == []:
+        return redirect(url_for('error_404'))
+    elif "username" in session and username == session['username']:
+        data = json.loads(data)
+        data = data["data"]
+        items = data[0]["item_details"]
+        session['data'] = data
+        return render_template("dash.html", userdata = data, navshow = {"loggedin": True, 'userprofile' : True, "items": items} )
+        #return  {"username":username, "logged in":True, "edit":True}
+    elif "username" in session and username != session['username']:
+        data = json.loads(data)
+        data = data["data"]
+        items = data[0]["item_details"]
+        return render_template("dash.html", userdata = data, navshow = {"loggedin": True, 'userprofile' : False, "items": items} )
+    else:
+        data = json.loads(data)
+        data = data["data"]
+        items = data[0]["item_details"]
+        return render_template("dash.html", userdata = data, navshow = {"loggedin": False, 'userprofile' : False, "items": items} )
+
+
+
+
+
+
 
 @app.route('/profile/delete/<username>')
 def deleteprofile(username):

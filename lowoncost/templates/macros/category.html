@@ -1,14 +1,18 @@
-{%macro category()%}
+{%macro category(username)%}
 <h3 class="section-header">Browse Categories</h3>
-
+{% if username:%}
+{%set route = "/profile/"+username+"/" %}
+{%else%}
+{%set route = "/"%}
+{%endif%}
     <div class="category-container">
-        <button class="category-btn">All</button>
-        <button class="category-btn">Electronics</button>
-        <button class="category-btn">Fashion</button>
-        <button class="category-btn">Home & Garden</button>
-        <button class="category-btn">Sports</button>
-        <button class="category-btn">Books</button>
-        <button class="category-btn">Others</button>
+        <a href="{{route}}" ><button class="category-btn">All</button></a>
+        <a href="{{route}}electronics" ><button class="category-btn">Electronics</button></a>
+        <a href="{{route}}fashion" ><button class="category-btn">Fashion</button></a>
+        <a href="{{route}}homeandgarden" ><button class="category-btn">Home & Garden</button></a>
+        <a href="{{route}}sports" ><button class="category-btn">Sports</button></a>
+        <a href="{{route}}books" ><button class="category-btn">Books</button></a>
+        <a href="{{route}}others" ><button class="category-btn">Others</button></a>
         <!-- <button class="category-btn add-category-btn">+ Add Category</button> -->
     </div>
-    {%endmacro%}
+{%endmacro%}
