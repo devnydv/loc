@@ -1,4 +1,5 @@
-{%macro Card(item, username, edit)%}
+{%macro Card(item, username, userprofile)%}
+
 {% set disc = (item['originalPrice'] - item['currentPrice'])/ item['originalPrice'] *100%}
 <div class="deal-card">
     <div class="image-container">
@@ -36,7 +37,8 @@
             
             <button class="btn btn-details">Details</button>
             <!-- <button class="btn btn-edit">Edit Deal</button> -->
-            {%if edit%}
+            {%if userprofile%}
+            
             {%set id = item['_id']['$oid'] %}
 
             <a href="/profile/editdeal/{{id}}" class="btn btn-edit">Edit Deal</a>
