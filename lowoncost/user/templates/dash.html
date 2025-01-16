@@ -2,15 +2,17 @@
 {% from "macros/category.html" import category%}
 {% from "macros/dealsCard.html" import Card%}
 {% from "macros/nav.html" import nav%}
+
+{%set username = userdata[0]['username']%}
 {%block seo%}
-<title>User profile of {{userdata[0]['username']}}</title>
+<title>User profile of {{username}}</title>
 <link rel="stylesheet" href="{{url_for('static', filename='css/home.css')}}">
 <link rel="stylesheet" href="{{url_for('static', filename='css/nav.css')}}">
 {%endblock%}
 
 {%block content%}
 
-{{nav(loggedin, userprofile, username )}}
+{{nav(navshow["loggedin"], navshow["userprofile"], username)}}
 
 
 
@@ -76,7 +78,7 @@
     </div>
 </div>
 
-{{category()}}
+{{category(username)}}
 
 <div class="deals-header">
     <h3 class="section-header" style="margin: 0;">Latest Deals</h3>
@@ -96,16 +98,15 @@
     {%endif%}
 </div>
 
-{%set items = userdata[0]["item_details"]%}
+{%set items = navshow["items"]%}
 {%set username = userdata[0]['username']%}
 {%if items==[]%}
 <h3 style="text-align: center;">No deals found. Add new deal...</h3>
 {%endif%}
-
 <div class="deals-container">
     {%for item in items | reverse%}
     <!-- card comming from main template macros file -->
-    {{Card(item, username, edit)}}
+    {{Card(item, username, navshow["userprofile"])}}
     
     <!-- Deal Card 1 -->
     {%endfor%}

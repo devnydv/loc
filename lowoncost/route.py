@@ -20,6 +20,16 @@ def home():
     return render_template("index.html", loggedin = loggedin, userprofile = False, username= username)
 
 
+@app.route("/<cat>")
+def home_category(cat):
+    loggedin = session_user()
+    if loggedin:
+        username = session['username']
+    else:
+        username = None
+    return render_template("index.html", loggedin = loggedin, userprofile = False, username= username)
+
+
 # Custom error pages
 @app.route('/error_404')
 def error_404():
