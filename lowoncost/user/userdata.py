@@ -56,7 +56,12 @@ def editprofile():
     else:
         return redirect(url_for('error_404'))
     
-
+def filter(items, cat ):
+    filterd_items = []
+    for item in items:
+        if item["category"] == cat:
+            filterd_items.append(item)
+    return filterd_items
 
 @app.route("/profile/<username>/<cat>", methods = ["GET", "POST"])
 def dash_cate(username,cat):
@@ -67,19 +72,22 @@ def dash_cate(username,cat):
         data = json.loads(data)
         data = data["data"]
         items = data[0]["item_details"]
+        filterd_items  = filter(items, cat)
         session['data'] = data
-        return render_template("dash.html", userdata = data, navshow = {"loggedin": True, 'userprofile' : True, "items": items} )
+        return render_template("dash.html", userdata = data, navshow = {"loggedin": True, 'userprofile' : True, "items": filterd_items} )
         #return  {"username":username, "logged in":True, "edit":True}
     elif "username" in session and username != session['username']:
         data = json.loads(data)
         data = data["data"]
         items = data[0]["item_details"]
-        return render_template("dash.html", userdata = data, navshow = {"loggedin": True, 'userprofile' : False, "items": items} )
+        filterd_items  = filter(items, cat)
+        return render_template("dash.html", userdata = data, navshow = {"loggedin": True, 'userprofile' : False, "items": filterd_items} )
     else:
         data = json.loads(data)
         data = data["data"]
         items = data[0]["item_details"]
-        return render_template("dash.html", userdata = data, navshow = {"loggedin": False, 'userprofile' : False, "items": items} )
+        filterd_items  = filter(items, cat)
+        return render_template("dash.html", userdata = data, navshow = {"loggedin": False, 'userprofile' : False, "items": filterd_items} )
 
 
 
