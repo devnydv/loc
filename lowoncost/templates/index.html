@@ -123,21 +123,21 @@
     //     });
     // });
 
-    document.querySelectorAll('.category-btn').forEach(button => {
-        button.addEventListener('click', function (e) {
-            if (this.classList.contains('add-category-btn')) {
-                const newCategory = prompt('Enter new category name:');
-                if (newCategory) {
-                    const newButton = document.createElement('button');
-                    newButton.className = 'category-btn';
-                    newButton.textContent = newCategory;
-                    this.parentNode.insertBefore(newButton, this);
-                }
-            } else {
-                alert(`Selected category: ${this.textContent}`);
-            }
-        });
-    });
+    // document.querySelectorAll('.category-btn').forEach(button => {
+    //    button.addEventListener('click', function (e) {
+     //       if (this.classList.contains('add-category-btn')) {
+     //           const newCategory = prompt('Enter new category name:');
+     //           if (newCategory) {
+    //                const newButton = document.createElement('button');
+    //                newButton.className = 'category-btn';
+    //                newButton.textContent = newCategory;
+     //               this.parentNode.insertBefore(newButton, this);
+    //            }
+   //         } else {
+     //           alert(`Selected category: ${this.textContent}`);
+     //       }
+    //    });
+    //});
 
     // document.querySelectorAll('.nav-icon').forEach(button => {
     //     button.addEventListener('click', function() {
