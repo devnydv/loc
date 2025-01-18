@@ -49,3 +49,11 @@ def deletedeal(deal_id, username):
     userresult = collection.update_one(filter_query, update_query)
     return {"deleted_count": result.deleted_count}
     
+
+def getaitem(id):
+    deals_collection = db.deals
+    id = ObjectId(id)
+    data = deals_collection.find_one({"_id":id})
+    
+
+    return data

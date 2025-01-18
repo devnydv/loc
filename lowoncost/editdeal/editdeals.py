@@ -1,7 +1,7 @@
 from lowoncost import app
 from flask import render_template, request, redirect, session, url_for
 from lowoncost.editdeal.validate_edit import adddeal
-from lowoncost.editdeal.editdealdb import addnewdeal, editdealdata, deletedeal
+from lowoncost.editdeal.editdealdb import addnewdeal, editdealdata, deletedeal, getaitem
 from lowoncost.user.userdb import get_user_data
 import json
 
@@ -71,9 +71,14 @@ def editdeal(id):
         print(res)
         return redirect(url_for('dash', username=session["username"]))
     
-@app.route('/details/')
-def dealdetails():
-    return render_template("dealdetail.html")
+@app.route('/details/<id>')
+def dealdetails(id):
+    data = getaitem(id)
+    if "username" in session:
+        username = session["username"]
+        return render_template("dealdetail.html", loggedin = True, userprofile = False, username = username, data = data)
+    else:
+        return render_template("dealdetail.html", loggedin = False, userprofile = False, data= data)
 
 
 @app.route('/profile/delete/<id>')

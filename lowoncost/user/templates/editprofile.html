@@ -99,8 +99,8 @@
             {% endwith %}
             <div class="form-group">
                 {{form.username.label(class="form-label")}}
-                {{form.username(class="form-input", value = name, placeholder="Enter a new username")}}
-                <p style="color: red;">Changing Username is not recomanded</p>
+                {{form.username(class="form-input", value = name, placeholder="Enter a new username", disabled=True)}}
+                <p style="color: red;">Changing Username is disabled</p>
                 <!-- <input type="text" class="form-input" value={{name}} placeholder="Enter your display name"> -->
             </div>
 

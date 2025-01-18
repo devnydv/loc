@@ -26,7 +26,7 @@
             {%if item['status']%}
             <span class="sub-category" style="background-color: #23cf6b; color:black;">Varified</span>
             {%else%}
-            <span class="sub-category" style="background-color:#eb414f; color:black;">Panding</span>
+            <span class="sub-category" style="background-color:#eb414f; ">Panding</span>
             {%endif%}
         </div>
         <!-- <p class="deal-description">Experience premium quality with this amazing deal. Limited time offer with
@@ -37,13 +37,14 @@
             <span class="discount">-{{disc | int}}% </span>
         </div>
         <div class="button-container">
+            {%set id = item['_id']['$oid'] %}
             <a href="{{item['dealUrl']}}" target="_blank" class="btn btn-view">View Offer</a>
-            
-            <button class="btn btn-details">Details</button>
+            <a href="/details/{{id}}" class="btn btn-details"> Details</a>
+            <!-- <button class="btn btn-details">Details</button> -->
             <!-- <button class="btn btn-edit">Edit Deal</button> -->
             {%if userprofile%}
             
-            {%set id = item['_id']['$oid'] %}
+            
 
             <a href="/profile/editdeal/{{id}}" class="btn btn-edit">Edit Deal</a>
             {%endif%}

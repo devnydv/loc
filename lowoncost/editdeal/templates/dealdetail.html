@@ -1,108 +1,112 @@
 {%extends"base.html" %}
 {% from "macros/nav.html" import nav%}
 {%block seo%}
-    
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deal Details</title>
-    <link rel="stylesheet" href="{{url_for('editdeal.static', filename='css/detail.css')}}">
-    <link rel="stylesheet" href="{{url_for('static', filename='css/nav.css')}}">
-    {%endblock%}
-    {%block content%}
 
-     <!-- Reuse existing navbar -->
-    {{nav(loggedin = True, userprofile = False, username = 'dev')}}
-   
-    
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deal Details</title>
+<link rel="stylesheet" href="{{url_for('editdeal.static', filename='css/detail.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='css/nav.css')}}">
+{%endblock%}
+{%block content%}
 
-    <div class="deal-details-container">
-        <div class="breadcrumb">
-            <a href="/">Home</a> &gt;
-            <a href="#">Electronics</a> &gt;
-            <span>Deal Details</span>
-        </div>
+<!-- Reuse existing navbar -->
+{{nav(loggedin, userprofile = False, username = 'dev')}}
 
-        <div class="deal-header">
-            <div class="deal-image-large">
-                <svg viewBox="0 0 600 400" width="100%" height="100%">
+{{data}}
+
+<div class="deal-details-container">
+    <div class="breadcrumb">
+        <a href="/">Home</a> &gt;
+        <a href="#">Electronics</a> &gt;
+        <span>Deal Details</span>
+    </div>
+
+    <div class="deal-header">
+        <div class="deal-image-large">
+            <img src="{{data['imageUrl']}}" alt="{{data['title']}}">
+            <!-- <svg viewBox="0 0 600 400" width="100%" height="100%">
                     <rect width="100%" height="100%" fill="#3d3d3d" />
                     <text x="50%" y="50%" text-anchor="middle" fill="#cccccc" font-size="24">Product Image</text>
-                </svg>
+                </svg> -->
+        </div>
+
+        <div class="deal-info">
+            <h1 class="deal-title-large">{{data['title']}}</h1>
+
+            <div class="tags-container">
+                <span class="tag">{{data['category'] |title}}</span>
+                <span class="tag">@ {{data['username']}}</span>
+
             </div>
 
-            <div class="deal-info">
-                <h1 class="deal-title-large">Premium Wireless Headphones - Limited Time Offer</h1>
-
-                <div class="tags-container">
-                    <span class="tag">Electronics</span>
-                    <span class="tag">Headphones</span>
-                    <span class="tag">Wireless</span>
-                    <span class="tag">Premium Audio</span>
-                </div>
-
-                <div class="created-date">
+            <!-- <div class="created-date">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <circle cx="12" cy="12" r="10" />
                         <polyline points="12 6 12 12 16 14" />
                     </svg>
                     Posted on: December 15, 2023
+                </div> -->
+            {%set saved = data['originalPrice'] -data['currentPrice'] %}
+            {% set disc = (data['originalPrice'] - data['currentPrice'])/ data['originalPrice'] *100%}
+            <div class="price-details">
+                <div class="price-row">
+                    <span class="current-price-large">₹{{data['currentPrice']}}</span>
+                    <span class="discount-large">{{disc |int}}% off</span>
                 </div>
-
-                <div class="price-details">
-                    <div class="price-row">
-                        <span class="current-price-large">&#x24;79.99</span>
-                        <span class="discount-large">-38%</span>
-                    </div>
-                    <div class="price-row">
-                        <span class="original-price-large">&#x24;129.99</span>
-                        <span>You save: &#x24;50.00</span>
-                    </div>
-                </div>
-
-                <div class="action-buttons">
-                    <button class="action-btn btn-primary">Get This Deal</button>
-                    <button class="action-btn btn-secondary">Add to Wishlist</button>
+                <div class="price-row">
+                    <span class="original-price-large">₹{{data['originalPrice']}}</span>
+                    <span>You save: ₹{{saved}}</span>
                 </div>
             </div>
+
+            <div class="action-buttons">
+                <!-- <button class="action-btn btn-primary">Get This Deal</button> -->
+                <a href="{{data['dealUrl']}}" target="_blank" class="action-btn btn-primary">Get This Deal</a>
+                <a href="/" class="action-btn btn-secondary">Explore more Deals</a>
+                <!-- <button class="action-btn btn-secondary">Explore more Deals</button> -->
+            </div>
         </div>
+    </div>
 
-        <div class="description-section">
-            <h2 class="section-title">About This Deal</h2>
-            <div class="description-content">
-                <p>Experience premium sound quality with these wireless headphones. Perfect for music enthusiasts and
-                    professionals alike, these headphones deliver crystal clear audio and deep bass in a comfortable,
-                    lightweight design.</p>
+    <div class="description-section">
+        <h2 class="section-title">About This Deal</h2>
+        <div class="description-content">
+            <p>{{data["description"]}}</p>
 
-                <ul class="features-list">
+            <!-- <ul class="features-list">
                     <li>Premium Sound Quality with Advanced Drivers</li>
                     <li>Active Noise Cancellation Technology</li>
                     <li>Up to 30 Hours Battery Life</li>
                     <li>Quick Charge Feature - 5 Hours Playback in 10 Minutes</li>
                     <li>Bluetooth 5.0 with Multi-Device Connectivity</li>
                     <li>Built-in High-Quality Microphone</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="terms-section">
-            <h2 class="section-title">Terms &amp; Conditions</h2>
-            <div class="description-content">
-                <ul class="features-list">
-                    <li>Offer valid until stocks last</li>
-                    <li>Free shipping available on orders above &#x24;100</li>
-                    <li>2-year manufacturer warranty included</li>
-                    <li>30-day money-back guarantee</li>
-                </ul>
-            </div>
+                </ul> -->
         </div>
     </div>
 
-    <!-- footer goes here -->
-     {% include "footer.html"%}
+    <div class="terms-section">
+        <h2 class="section-title">Terms &amp; Conditions</h2>
+        <div class="description-content">
+            <ul class="features-list">
+                <li>Check official website by clicking "Get This Deal" button for more details.</li>
+                <li>Deals are from third party websites we are not resposible for delivery or refund.</li>
+                <li>Price shown in the deal may not match from official website as it may change over time.</li>
+                <li>Deal can expire at any time so be active while making a choise.</li>
+            </ul>
+        </div>
+    </div>
+</div>
 
-    <script>document.querySelectorAll('.action-btn').forEach(button => {
+<!-- footer goes here -->
+<!-- {% include "footer.html"%} -->
+
+<!-- <script>
+        document.querySelectorAll('.action-btn').forEach(button => {
             button.addEventListener('click', function () {
-                alert(`${this.textContent} clicked!`);
+                //alert(`${this.textContent} clicked!`);
+               let val = window.confirm("Save data?");
+               console.log(val)
             });
         });
         document.querySelectorAll('.nav-icon').forEach(button => {
@@ -115,5 +119,6 @@
                 e.preventDefault();
                 alert(`Navigating to: ${this.textContent}`);
             });
-        });</script>
-        {%endblock%}
+        });
+    </script> -->
+{%endblock%}

@@ -45,6 +45,10 @@ def editprofile():
     if request.method == "POST":
         data = dict(request.form)
         name = session["username"]
+        # changing username is disabled
+        #just remove the below line and disabled from the template input to make it working
+        data['username'] = name
+        
         res = edit_user_data(name, data)
         
         if res == True:
