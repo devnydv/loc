@@ -74,21 +74,16 @@ def dash_cate(username,cat):
     if data == []:
         return redirect(url_for('error_404'))
     elif "username" in session and username == session['username']:
-        
         items = data[0]["item_details"]
         filterd_items  = filter(items, cat)
         session['data'] = data
         return render_template("dash.html", userdata = data, navshow = {"loggedin": True, 'userprofile' : True, "items": filterd_items} )
         #return  {"username":username, "logged in":True, "edit":True}
     elif "username" in session and username != session['username']:
-        data = json.loads(data)
-        data = data["data"]
         items = data[0]["item_details"]
         filterd_items  = filter(items, cat)
         return render_template("dash.html", userdata = data, navshow = {"loggedin": True, 'userprofile' : False, "items": filterd_items} )
     else:
-        data = json.loads(data)
-        data = data["data"]
         items = data[0]["item_details"]
         filterd_items  = filter(items, cat)
         return render_template("dash.html", userdata = data, navshow = {"loggedin": False, 'userprofile' : False, "items": filterd_items} )
