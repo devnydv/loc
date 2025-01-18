@@ -14,7 +14,6 @@
         <h2 class="form-title">Edit Deal</h2>
         <form id="addDealForm" method="POST" action="/profile/editdeal/{{id}}">
             <div class="form-group">
-                
                 {{form.title.label}}
                 {{form.title(placeholder="Edit deal title", value=item['title'])}}
             </div>
@@ -41,7 +40,7 @@
                     <!-- <option value="{{item['category']}}" selected>{{item['category'] | title}}</option> -->
                     <option value="electronics" {% if item["category"] == "electronics" %}selected{% endif %}>Electronics</option>
                     <option value="fashion" {% if item['category'] == "fashion" %}selected{% endif %}>Fashion</option>
-                    <option value="home" {% if item['category'] == "home" %}selected{% endif %}>Home & Garden</option>
+                    <option value="home_and_garden" {% if item['category'] == "home_and_garden" %}selected{% endif %}>Home & Garden</option>
                     <option value="sports" {% if item['category'] == "sports" %}selected{% endif %}>Sports</option>
                     <option value="books" {% if item['category'] == "books" %}selected{% endif %}>Books</option>
                     <option value="others" {% if item['category'] == "others" %}selected{% endif %}>Others</option>
