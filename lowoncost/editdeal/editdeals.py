@@ -64,13 +64,17 @@ def editdeal(id):
         correntprice = int(data["currentPrice"])
         originalprice = int(data["originalPrice"])
         data["status"] = False
-        
+        data["username"] = username
         data["currentPrice"] = correntprice
         data["originalPrice"] = originalprice
         res = editdealdata(id, data)
         print(res)
         return redirect(url_for('dash', username=session["username"]))
     
+@app.route('/details/')
+def dealdetails():
+    return render_template("dealdetail.html")
+
 
 @app.route('/profile/delete/<id>')
 def deletedeals(id):
