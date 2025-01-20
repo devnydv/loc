@@ -82,7 +82,7 @@
 
 <div class="deals-header">
     <h3 class="section-header" style="margin: 0;">Latest Deals</h3>
-    {%if edit%} 
+    {%if navshow["userprofile"]%} 
     <a href="{{url_for ('newdeal')}}" style="text-decoration: none;">
 
         <button class="add-deal-btn">
