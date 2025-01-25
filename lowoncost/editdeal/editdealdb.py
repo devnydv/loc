@@ -54,6 +54,4 @@ def getaitem(id):
     deals_collection = db.deals
     id = ObjectId(id)
     data = deals_collection.find_one({"_id":id})
-    
-
     return data

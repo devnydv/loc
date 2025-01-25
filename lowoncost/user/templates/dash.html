@@ -11,10 +11,7 @@
 {%endblock%}
 
 {%block content%}
-
 {{nav(navshow["loggedin"], navshow["userprofile"], username)}}
-
-
 
 
 <div class="profile-segment">
@@ -98,22 +95,25 @@
     {%endif%}
 </div>
 
+
+
 {%set items = navshow["items"]%}
-{%set username = userdata[0]['username']%}
 {%if items==[]%}
 <h3 style="text-align: center;">No deals found. Add new deal...</h3>
 {%endif%}
 <div class="deals-container">
-    {%for item in items | reverse%}
+    {%for item in items %}
     <!-- card comming from main template macros file -->
     {{Card(item, username, navshow["userprofile"])}}
     
     <!-- Deal Card 1 -->
     {%endfor%}
 
-
+    
 </div>
-
+<button id="loadbut" class="load-more" onclick="loadmore()">
+    <p>Load more...</p>
+</button>
 <script>
     document.querySelectorAll('.share-button').forEach(button => {
         button.addEventListener('click', function (e) {

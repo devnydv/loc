@@ -2,32 +2,62 @@ from lowoncost.db import db, collection
 import json
 from bson import json_util
 
-def get_user_data(uname):
-    user = list(collection.find({"username": uname}, {"password": 0}))
 
+def get_user_data(uname, page=1, page_size=12):
+    # Fetch user data
+    user = db.users.find_one({"username": uname}, {"password": 0})
     if user == []:
         return []
-    else: 
-        data = json.loads(json_util.dumps(user))
-        
-        pipeline = [
-        {
-        "$match": { "username": uname }  # Match the specific user
-        },
-        {
-        "$lookup": {
-            "from": "deals",         # Items collection name
-            "localField": "total_deals",  # Field in users collection
-            "foreignField": "_id",      # Field in items collection
-            "as": "item_details"        # Output array field
-        }
-        }
-        ]
-
-        result = db.users.aggregate(pipeline)
-        deals = json.loads(json_util.dumps(result))
-        return json.dumps({"data": deals})
     
+    skip = 12 - (12 * page)
+    # Fetch paginated deals
+    deals_cursor = db.deals.find(
+        {"_id": {"$in": user.get("total_deals", [])}}
+    ).sort('_id', -1).skip(skip).limit(page_size)
+    
+    deals = deals = json.loads(json_util.dumps(deals_cursor))
+    # deals = []
+    # for item in deals_cursor:
+    #     deals.append(item)
+    data = []
+    userdetails = {
+        "username": user.get('username'),
+        "description": user.get('description'),
+        "total_deals": user.get('total_deals'),
+        "item_details": deals
+    }
+    data.append(userdetails)
+    
+    return data
+
+
+def get_cat_data(uname,cate, page=1, page_size=12):
+    # Fetch user data
+    user = db.users.find_one({"username": uname}, {"password": 0})
+    if user == []:
+        return []
+    total_deals= len(user.get('total_deals'))
+    skip = 12 - (12 * page)
+    # Fetch paginated deals
+    deals_cursor = db.deals.find(
+        {"_id": {"$in": user.get("total_deals", [])}, "category": cate}
+    ).sort('_id', -1).skip(0).limit(page_size)
+    deals = deals = json.loads(json_util.dumps(deals_cursor))
+    data = []
+    userdetails = {
+        "username": user.get('username'),
+        "description": user.get('description'),
+        "total_deals": user.get('total_deals'),
+        "item_details": deals
+    }
+    data.append(userdetails)
+    
+    return data
+
+
+
+
+
 def edit_user_data(uname, post_data):
     newname = post_data["username"]
     user = list(collection.find({"username":newname}, {"password": 0}))

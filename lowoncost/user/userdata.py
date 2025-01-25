@@ -1,34 +1,31 @@
 from lowoncost import app
 from flask import render_template, redirect, session, url_for, request,flash
 import json
-from lowoncost.user.userdb import get_user_data, edit_user_data
+from lowoncost.user.userdb import get_user_data, edit_user_data, get_cat_data
 from lowoncost.user.validate_profile_edit import edit_profile
 
 
+
+    
 @app.route("/profile/<username>/", methods = ["GET", "POST"])
 def dash(username):
     data = get_user_data(username)
+    session['desc'] = data[0]["description"]
+    print(data[0])
     if data == []:
         return redirect(url_for('error_404'))
     elif "username" in session and username == session['username']:
-        data = json.loads(data)
-        data = data["data"]
+        # session['data'] = data
         items = data[0]["item_details"]
-        session['data'] = data
         return render_template("dash.html", userdata = data, navshow = {"loggedin": True, 'userprofile' : True, "items": items})
         #return  {"username":username, "logged in":True, "edit":True}
     elif "username" in session and username != session['username']:
-        data = json.loads(data)
-        data = data["data"]
         items = data[0]["item_details"]
         return render_template("dash.html", userdata = data, navshow = {"loggedin": True, 'userprofile' : False, "items": items})
     else:
-        data = json.loads(data)
-        data = data["data"]
+       
         items = data[0]["item_details"]
         return render_template("dash.html", userdata = data, navshow = {"loggedin": False, 'userprofile' : False, "items": items})
-    
-
 
 
 
@@ -38,9 +35,9 @@ def editprofile():
     if request.method == "GET":
         if "username" in session:
             username = session["username"]
-            data = session["data"]
+            desc = session["desc"]
             name = session["username"]
-            form.description.data = data[0]['description']
+            form.description.data = desc
             return render_template("editprofile.html", name= name , form = form, username = username)
     if request.method == "POST":
         data = dict(request.form)
@@ -67,32 +64,22 @@ def filter(items, cat ):
             filterd_items.append(item)
     return filterd_items
 
+
 @app.route("/profile/<username>/<cat>", methods = ["GET", "POST"])
 def dash_cate(username,cat):
-    if "data" not in session:
-        data = get_user_data(username)
-        data = json.loads(data)
-        data = data["data"]
-    else:
-        data = session["data"]
+    data = get_cat_data(username, cat)
     if data == []:
         return redirect(url_for('error_404'))
     elif "username" in session and username == session['username']:
         items = data[0]["item_details"]
-        filterd_items  = filter(items, cat)
-        session['data'] = data
-        return render_template("dash.html", userdata = data, navshow = {"loggedin": True, 'userprofile' : True, "items": filterd_items} )
+        return render_template("dash.html", userdata = data, navshow = {"loggedin": True, 'userprofile' : True, "items": items} )
         #return  {"username":username, "logged in":True, "edit":True}
     elif "username" in session and username != session['username']:
         items = data[0]["item_details"]
-        filterd_items  = filter(items, cat)
-        return render_template("dash.html", userdata = data, navshow = {"loggedin": True, 'userprofile' : False, "items": filterd_items} )
+        return render_template("dash.html", userdata = data, navshow = {"loggedin": True, 'userprofile' : False, "items": items} )
     else:
         items = data[0]["item_details"]
-        filterd_items  = filter(items, cat)
-        return render_template("dash.html", userdata = data, navshow = {"loggedin": False, 'userprofile' : False, "items": filterd_items} )
-
-
+        return render_template("dash.html", userdata = data, navshow = {"loggedin": False, 'userprofile' : False, "items": items} )
 
 
 
