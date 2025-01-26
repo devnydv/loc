@@ -1,0 +1,6 @@
+{% from "macros/dealsCard.html" import Card%}
+{%set items = navshow["items"]%}
+
+    {%for item in items %}
+    {{Card(item, username, navshow["userprofile"])}}
+    {%endfor%}

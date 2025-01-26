@@ -101,7 +101,7 @@
 {%if items==[]%}
 <h3 style="text-align: center;">No deals found. Add new deal...</h3>
 {%endif%}
-<div class="deals-container">
+<div class="deals-container" id="deals-container">
     {%for item in items %}
     <!-- card comming from main template macros file -->
     {{Card(item, username, navshow["userprofile"])}}
@@ -111,10 +111,50 @@
 
     
 </div>
+{%if items |length >= 12%}
 <button id="loadbut" class="load-more" onclick="loadmore()">
     <p>Load more...</p>
 </button>
+{%endif%}
 <script>
+    // function for loading more items from database
+    let loadbut = document.getElementById("loadbut")
+    const path = window.location.pathname;
+    const segments = path.split('/').filter(Boolean);
+    let username = segments[1]
+    let cat = segments[2]
+    let page = 2
+    if (cat == undefined) {
+        cat = "all"
+    }
+    console.log(cat)
+    async function loadmore() {
+        
+        const res = await fetch(`/page/${username}/${page}/${cat}`, {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' }, // Set the content type
+            
+        });
+        data = await res.text()
+        //console.log(data)
+        if (data !== "0") {
+            let html = data
+            
+            let newsdiv = document.getElementById("deals-container")
+            newsdiv.insertAdjacentHTML("beforeend", html)
+
+        } else {
+            loadbut.remove()
+        }
+
+        page++
+    }
+
+
+
+
+
+
     document.querySelectorAll('.share-button').forEach(button => {
         button.addEventListener('click', function (e) {
             e.preventDefault();

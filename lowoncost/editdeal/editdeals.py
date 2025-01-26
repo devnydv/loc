@@ -42,18 +42,13 @@ def editdeal(id):
     if "username"in session:
         
         username = session["username"]
-        if "data" in session:
-            data = session["data"]
-        else:
-            alldata =  get_user_data(username)
-            data = alldata
-            
+        
+        data = getaitem(id)
+        print(data)
         if request.method == "GET":
-            items = data[0]['item_details']
-            for item in items:
-                if item['_id']['$oid'] == id:
-                    form.description.data = item["description"]
-                    mainitem = item
+            item = data
+            form.description.data = item["description"]
+            mainitem = item
             return render_template("editdeal.html", form = form, item = mainitem, id= id)
     else:
         return redirect(url_for('login'))

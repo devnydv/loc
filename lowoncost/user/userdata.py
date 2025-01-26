@@ -11,7 +11,7 @@ from lowoncost.user.validate_profile_edit import edit_profile
 def dash(username):
     data = get_user_data(username)
     session['desc'] = data[0]["description"]
-    print(data[0])
+    
     if data == []:
         return redirect(url_for('error_404'))
     elif "username" in session and username == session['username']:
@@ -76,9 +76,12 @@ def dash_cate(username,cat):
         #return  {"username":username, "logged in":True, "edit":True}
     elif "username" in session and username != session['username']:
         items = data[0]["item_details"]
+        
         return render_template("dash.html", userdata = data, navshow = {"loggedin": True, 'userprofile' : False, "items": items} )
     else:
+        
         items = data[0]["item_details"]
+
         return render_template("dash.html", userdata = data, navshow = {"loggedin": False, 'userprofile' : False, "items": items} )
 
 
@@ -90,3 +93,46 @@ def deleteprofile(username):
     username = session["username"]
     #deleteuser(username)
     return redirect(url_for('sign'))
+
+
+@app.route('/page/<user>/<pagenum>/<cat>')
+def paginate(user, pagenum, cat):
+    pagenum = int(pagenum)
+    if "username" in session and user == session['username']:
+        if cat == "all":
+            data = get_user_data(user, pagenum)
+            items = data[0]["item_details"]
+            itemcount = len(items)
+            print(itemcount)
+            if itemcount == 0:
+                return "0"
+            return render_template("page.html", userdata = data, username = user, navshow = {'userprofile' : True, "items": items})
+        else :
+            data = get_cat_data(user, cat, pagenum )
+            items = data[0]["item_details"]
+            itemcount = len(items)
+            print(itemcount)
+            if itemcount == 0:
+                return "0"
+            return render_template("page.html", userdata = data, username = user, navshow = {'userprofile' : True, "items": items})
+    else:
+        if cat == "all":
+            data = get_user_data(user, pagenum)
+            items = data[0]["item_details"]
+            itemcount = len(items)
+            print(itemcount)
+
+            if itemcount == 0:
+                return "0"
+            return render_template("page.html", userdata = data, username = user, navshow = {'userprofile' : False, "items": items})
+        else :
+            data = get_cat_data(user, cat, pagenum )
+            items = data[0]["item_details"]
+            itemcount = len(items)
+            print(itemcount)
+            if itemcount == 0:
+                return "0"
+            return render_template("page.html", userdata = data, username = user, navshow = {'userprofile' : False, "items": items})
+        
+
+
