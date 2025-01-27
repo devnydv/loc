@@ -88,7 +88,7 @@ def dash_cate(username,cat):
 
 
 
-@app.route('/profile/delete/<username>')
+@app.route('/delete/<username>')
 def deleteprofile(username):
     username = session["username"]
     #deleteuser(username)

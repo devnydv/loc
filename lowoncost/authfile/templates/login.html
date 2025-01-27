@@ -1,10 +1,14 @@
 {%extends"base.html" %}
+{% from "macros/nav.html" import nav%}
 {%block seo%}
     <link rel="stylesheet" href="{{url_for('static', filename='css/auth.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/nav.css')}}">
     <title>Login to LowonCost</title>
 {%endblock%}
 
 {%block content%}
+{{nav(loggedin = False, userprofile = False)}}
+<div id="content">
     <div class="login-card">
         <h2>Login</h2>
         {% with messages = get_flashed_messages(with_categories=true) %}
@@ -29,7 +33,7 @@
             <label for="password">Password</label>
             <input type="password" id="password" name="password" placeholder="Password" required>
              -->
-            <button type="submit">Log In</button>
+            <button id="submitbut" type="submit">Log In</button>
         </form>
         <br>
         <div id="more"> 
@@ -39,7 +43,7 @@
     </div>
     
     </div>
-
+</div>
 
 <script>
     const myTimeout = setTimeout(myFunction, 5000);

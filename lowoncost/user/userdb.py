@@ -79,3 +79,8 @@ def edit_user_data(uname, post_data):
         return True
     else:
         return {"msg": "Username already exists chose other name."}
+    
+
+
+def deleteuser(username):
+    print(username)

@@ -39,7 +39,7 @@ def sign():
             newuser(data)
             return redirect(url_for("login"))
         else:
-            flash("Username is already taken")
+            flash("Username is INVALID")
     return render_template("signup.html", form = form)
 
 

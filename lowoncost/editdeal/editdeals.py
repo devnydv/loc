@@ -75,16 +75,14 @@ def dealdetails(id):
     else:
         return render_template("dealdetail.html", loggedin = False, userprofile = False, data= data)
 
-@app.route('/profile/delete/')
-def dele():
-    return {"data":"data"}
+
 
 @app.route('/api/delete/<id>')
 def deletedeals(id):
-    
-    username = session["username"]
-    deletedeal(id, username)
-    print(username)
-    
-    return redirect(url_for('dash', username=username))
+    if "username" in session:
+        username = session["username"]
+        deletedeal(id, username)
+        return redirect(url_for('dash', username=username))
+    else:
+        return redirect(url_for('login'))
     

@@ -1,40 +1,44 @@
 {%extends"base.html" %}
+{% from "macros/nav.html" import nav%}
 {%block seo%}
 <title>Sign Up to LowonCost</title>
 <link rel="stylesheet" href="{{url_for('static', filename='css/auth.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='css/nav.css')}}">
 {%endblock%}
 
 {%block content%}
-<div class="login-card" style="margin-bottom: 10px;">
-    <h2>Sign Up</h2>
-    {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
+{{nav(loggedin = False, userprofile = False)}}
+<div id="content">
+    <div class="login-card" style="margin-bottom: 10px;">
+        <h2>Sign Up</h2>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
 
-    <div class="" id="alertdiv">
-        {% for category, message in messages %}
-        <div class="alert" style="color: red;"><span>{{ message }}</span></div>
-        {% endfor %}
-    </div>
-    {% endif %}
-    {% endwith %}
+        <div class="" id="alertdiv">
+            {% for category, message in messages %}
+            <div class="alert" style="color: red;"><span>{{ message }}</span></div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
 
-    <form method="POST" action="/signup">
-        {{form.username.label}}
-        {{form.username(placeholder="Username", required="required")}}
-        {%for error in form.username.errors%}
-        {{error}}
-        {%endfor%}
-        {{form.email.label}}
-        {{form.email(type="email", placeholder="Email", required="required")}}
-        
-        {{form.password.label}}
-        {{form.password(placeholder="Password", required="required")}}
-            
-        {{form.confirm_password.label}}
-        {{form.confirm_password(placeholder="Confirm Password", required="required")}}
-            
-        
-        <!-- <label for="username">Username</label>
+        <form method="POST" action="/signup">
+            {{form.username.label}}
+            {{form.username(placeholder="Username", required="required")}}
+            {%for error in form.username.errors%}
+            <div class="alert" style="color: red;"><span>{{error}}</span></div>
+            {%endfor%}
+            {{form.email.label}}
+            {{form.email(type="email", placeholder="Email", required="required")}}
+
+            {{form.password.label}}
+            {{form.password(placeholder="Password", required="required")}}
+
+            {{form.confirm_password.label}}
+            {{form.confirm_password(placeholder="Confirm Password", required="required")}}
+
+
+            <!-- <label for="username">Username</label>
         <input type="text" id="username" name="username" placeholder="Username" required>
 
         <label for="email">Email</label>
@@ -47,11 +51,12 @@
         <input type="confirm_password" id="confirm_password" name="confirm_password" placeholder="Confirm Password"
             required> -->
 
-        <button type="submit">Create a New Account</button>
-    </form>
-    <br>
-    <div id="more">
-        Already have an account?<a style="color: #007bff; font-weight: 600;" href="/login"> Log in</a>
+            <button id="submitbut" type="submit">Create a New Account</button>
+        </form>
+        <br>
+        <div id="more">
+            Already have an account?<a style="color: #007bff; font-weight: 600;" href="/login"> Log in</a>
+        </div>
     </div>
 </div>
 
