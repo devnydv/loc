@@ -1,5 +1,6 @@
 {%extends"base.html" %}
 {% from "macros/category.html" import category%}
+{% from "macros/dealsCard.html" import Card%}
 {% from "macros/nav.html" import nav%}
 {%block seo%}
 
@@ -20,10 +21,12 @@
 
 <div class="deals-header">
     <h3 class="section-header" style="margin: 0;">Latest Deals</h3>
-
 </div>
 
 <div class="deals-container">
+    {%for item in items %}
+    {{Card(item, username, userprofile)}}
+    {%endfor%}
     <!-- Deal Card 1 -->
     <div class="deal-card">
         <div class="image-container">
@@ -125,17 +128,17 @@
 
     // document.querySelectorAll('.category-btn').forEach(button => {
     //    button.addEventListener('click', function (e) {
-     //       if (this.classList.contains('add-category-btn')) {
-     //           const newCategory = prompt('Enter new category name:');
-     //           if (newCategory) {
+    //       if (this.classList.contains('add-category-btn')) {
+    //           const newCategory = prompt('Enter new category name:');
+    //           if (newCategory) {
     //                const newButton = document.createElement('button');
     //                newButton.className = 'category-btn';
     //                newButton.textContent = newCategory;
-     //               this.parentNode.insertBefore(newButton, this);
+    //               this.parentNode.insertBefore(newButton, this);
     //            }
-   //         } else {
-     //           alert(`Selected category: ${this.textContent}`);
-     //       }
+    //         } else {
+    //           alert(`Selected category: ${this.textContent}`);
+    //       }
     //    });
     //});
 
