@@ -36,14 +36,12 @@ def home_category(cat):
     else:
         username = None
     items = get_deals(cat)
-    print(items)
     return render_template("index.html", loggedin = loggedin, userprofile = False, username= username, items = items)
 
 @app.route("/homepage/<pagenum>/<cat>")
 def home_paginate(pagenum, cat):
     pagenum = int(pagenum)
     items = get_deals(cat, page=pagenum )
-    print(items)
     if items == []:
         return "0"
     else:
