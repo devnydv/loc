@@ -1,8 +1,9 @@
 from lowoncost import app
 from lowoncost.db import get_deals
 from flask import render_template, request, redirect, flash, session, url_for
+
 import requests
-import json
+
 
 def session_user():
     if "username" in session:
@@ -15,8 +16,12 @@ def session_user():
 @app.route("/")
 def home():
     loggedin = session_user()
-    username = session['username']
-    items = get_deals()
+    if loggedin:
+        username = session['username']
+    else:
+        username = None
+    
+    items = get_deals(cat = "all")
     return render_template("index.html", loggedin = loggedin, userprofile = False, username= username, items = items)
 
 
@@ -30,7 +35,20 @@ def home_category(cat):
         username = session['username']
     else:
         username = None
-    return render_template("index.html", loggedin = loggedin, userprofile = False, username= username)
+    items = get_deals(cat)
+    print(items)
+    return render_template("index.html", loggedin = loggedin, userprofile = False, username= username, items = items)
+
+@app.route("/homepage/<pagenum>/<cat>")
+def home_paginate(pagenum, cat):
+    pagenum = int(pagenum)
+    items = get_deals(cat, page=pagenum )
+    print(items)
+    if items == []:
+        return "0"
+    else:
+        return render_template("page.html", navshow = {'userprofile' : True, "items": items})
+
 
 
 # Custom error pages

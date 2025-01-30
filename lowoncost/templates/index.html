@@ -22,96 +22,70 @@
 <div class="deals-header">
     <h3 class="section-header" style="margin: 0;">Latest Deals</h3>
 </div>
-
-<div class="deals-container">
+{%if items==[]%}
+<h3 style="text-align: center;">No deals found. Add new deal...</h3>
+{%endif%}
+<div class="deals-container" id="deals-container">
     {%for item in items %}
+    <!-- Deal Cards -->
     {{Card(item, username, userprofile)}}
     {%endfor%}
-    <!-- Deal Card 1 -->
-    <div class="deal-card">
-        <div class="image-container">
-            <img class="deal-image"
-                src="https://nis-gs.pix.in/inshorts/images/v1/variants/jpg/m/2024/12_dec/1_sun/img_1733073904922_614.jpg?"
-                alt="" width="300" height="200">
 
-            <button class="share-button">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="18" cy="5" r="3" />
-                    <circle cx="6" cy="12" r="3" />
-                    <circle cx="18" cy="19" r="3" />
-                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
-                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
-                </svg>
-            </button>
-        </div>
-        <div class="deal-content">
-            <h3 class="deal-title">Amazing Deal Title</h3>
-            <div class="tags-container">
-                <span class="sub-category">Smartphones</span>
-                <span class="sub-category">Best Seller</span>
-                <!-- <span class="sub-category">Free Shipping</span>
-                <span class="sub-category">Limited Time</span> -->
-            </div>
-            <!-- <p class="deal-description">Experience premium quality with this amazing deal. Limited time offer with
-                exceptional features and warranty coverage.</p> -->
-            <div class="price-container">
-                <span class="current-price">$79.99</span>
-                <span class="original-price">$129.99</span>
-                <span class="discount">-38%</span>
-            </div>
-            <div class="button-container">
-                <button class="btn btn-view">View Offer</button>
-                <button class="btn btn-details">Details</button>
-                <!-- <button class="btn btn-edit">Edit Deal</button> -->
-            </div>
-        </div>
-    </div>
 
-    <!-- Deal Card 2 -->
-    <div class="deal-card">
-        <div class="image-container">
-            <img class="deal-image"
-                src="https://assets.ajio.com/medias/sys_master/root/20210420/R70k/607ecc5baeb269a9e3972075/dennislingo_premium_attire_green_full_sleeves_slim_fit_shirt.jpg"
-                alt="">
-            <!-- <svg class="deal-image" viewBox="0 0 300 200">
-                    <rect width="100%" height="100%" fill="#3d3d3d" />
-                    <text x="50%" y="50%" text-anchor="middle" fill="#cccccc" font-size="20">Product Image</text>
-                </svg> -->
-            <button class="share-button">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="18" cy="5" r="3" />
-                    <circle cx="6" cy="12" r="3" />
-                    <circle cx="18" cy="19" r="3" />
-                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
-                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
-                </svg>
-            </button>
-        </div>
-        <div class="deal-content">
-            <h3 class="deal-title">Special Offer Deal</h3>
-            <div class="tags-container">
-                <span class="sub-category">Laptops</span>
-                <span class="sub-category">Hot Deal</span>
-                <!-- <span class="sub-category">24h Only</span>
-                <span class="sub-category">Top Rated</span> -->
-            </div>
-            <!-- <p class="deal-description">Get the best value for your money with this special offer. Includes free
-                shipping and extended warranty.</p> -->
-            <div class="price-container">
-                <span class="current-price">$49.99</span>
-                <span class="original-price">$89.99</span>
-                <span class="discount">-44%</span>
-            </div>
-            <div class="button-container">
-                <button class="btn btn-view">View Offer</button>
-                <button class="btn btn-details">Details</button>
 
-            </div>
-        </div>
-    </div>
 </div>
-
+{%if items |length >= 12%}
+<button id="loadbut" class="load-more" onclick="loadmore()">
+    <p>Load more...</p>
+</button>
+{%endif%}
 <script>
+
+    let loadbut = document.getElementById("loadbut")
+    const path = window.location.pathname;
+    const segments = path.split('/').filter(Boolean);
+    let cat = segments[1]
+    
+    let page = 2
+    if (cat == undefined) {
+        cat = "all"
+    }
+    console.log(cat)
+    async function loadmore() {
+        
+        const res = await fetch(`/homepage/${page}/${cat}`, {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' }, // Set the content type
+            
+        });
+        data = await res.text()
+        //console.log(data)
+        if (data !== "0") {
+            let html = data
+            
+            let newsdiv = document.getElementById("deals-container")
+            newsdiv.insertAdjacentHTML("beforeend", html)
+
+        } else {
+            loadbut.remove()
+        }
+
+        page++
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     document.querySelectorAll('.share-button').forEach(button => {
         button.addEventListener('click', function (e) {
             e.preventDefault();

@@ -15,7 +15,7 @@ def get_user_data(uname, page=1, page_size=12):
         {"_id": {"$in": user.get("total_deals", [])}}
     ).sort('_id', -1).skip(skip).limit(page_size)
     
-    deals = deals = json.loads(json_util.dumps(deals_cursor))
+    deals = json.loads(json_util.dumps(deals_cursor))
     # deals = []
     # for item in deals_cursor:
     #     deals.append(item)
