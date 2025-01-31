@@ -14,7 +14,7 @@
         {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
 
-        <div class="" id="alertdiv">
+        <div class="alertdiv" id="alertdiv">
             {% for category, message in messages %}
             <div class="alert" style="color: red;"><span>{{ message }}</span></div>
             {% endfor %}
@@ -26,7 +26,9 @@
             {{form.username.label}}
             {{form.username(placeholder="Username", required="required")}}
             {%for error in form.username.errors%}
-            <div class="alert" style="color: red;"><span>{{error}}</span></div>
+            <div class="alertdiv" id="alertdiv">
+                <div class="alert" style="color: red;"><span>{{error}}</span></div>
+            </div>
             {%endfor%}
             {{form.email.label}}
             {{form.email(type="email", placeholder="Email", required="required")}}
@@ -64,8 +66,14 @@
 <script>
     const myTimeout = setTimeout(myFunction, 5000);
     function myFunction() {
-        let selecterr = document.getElementById("alertdiv")
-        selecterr.innerHTML = ""
+        let selecterr = document.querySelectorAll(".alertdiv")
+        console.log(selecterr)
+        selecterr.forEach(removed)
+        function removed(item){
+            item.innerHTML = ""
+        }
+        
+        
 
     }
 </script>

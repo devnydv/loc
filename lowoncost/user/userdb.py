@@ -83,4 +83,5 @@ def edit_user_data(uname, post_data):
 
 
 def deleteuser(username):
-    print(username)
+    result = collection.delete_one({"username": username})
+    return True

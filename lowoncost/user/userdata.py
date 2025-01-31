@@ -1,7 +1,7 @@
 from lowoncost import app
 from flask import render_template, redirect, session, url_for, request,flash
 import json
-from lowoncost.user.userdb import get_user_data, edit_user_data, get_cat_data
+from lowoncost.user.userdb import get_user_data, edit_user_data, get_cat_data, deleteuser
 from lowoncost.user.validate_profile_edit import edit_profile
 
 
@@ -53,7 +53,7 @@ def editprofile():
         
         if res == True:
             session["username"] = data["username"]
-            return redirect(url_for('dash', username = session["username"]))
+            return redirect(url_for('dash', name = session["username"]))
         flash(res["msg"])
         name = session["username"]
         return render_template("editprofile.html", name= name , form = form)
@@ -91,11 +91,15 @@ def dash_cate(username,cat):
 
 
 
-@app.route('/delete/<username>')
-def deleteprofile(username):
-    username = session["username"]
-    #deleteuser(username)
-    return redirect(url_for('sign'))
+@app.route('/delete/<name>')
+def deleteprofile(name):
+    if "username" in session:
+        username = session["username"]
+        deleteuser(username)
+        session.clear()
+        return redirect(url_for('sign'))
+    else:
+        return redirect(url_for('sign'))
 
 
 @app.route('/page/<user>/<pagenum>/<cat>')

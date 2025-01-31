@@ -1,7 +1,22 @@
 from wtforms import Form, StringField, PasswordField, TextAreaField
 from wtforms.validators import DataRequired, Email, Length, EqualTo, Regexp
+from email_validator import validate_email, EmailNotValidError
+import dns.resolver
 # from wtforms.fields import html5
 # from wtforms.widgets import html5 as h5w
+
+def is_valid_email(email):
+    try:
+        # Validate email format
+        valid = validate_email(email, check_deliverability=False)
+        domain = valid.domain
+
+        # Check if domain has MX records
+        return bool(dns.resolver.resolve(domain, 'MX'))
+    
+    except (EmailNotValidError, dns.resolver.NoAnswer, dns.resolver.NXDOMAIN):
+        return False
+
 
 
 class SignupForm(Form):
@@ -58,3 +73,5 @@ class LoginForm(Form):
             Length(min=6, max=20, message="Password must be more than 6 and less than 20 characters.")
         ]
     )
+
+
