@@ -11,8 +11,13 @@
 {%endblock%}
 
 {%block content%}
-{{nav(navshow["loggedin"], navshow["userprofile"], username)}}
 
+{%if navshow["sessionname"] %}
+
+{{nav(navshow["loggedin"], navshow["userprofile"], navshow["sessionname"])}}
+{%else%}
+{{nav(navshow["loggedin"], navshow["userprofile"], username)}}
+{%endif%}
 
 <div class="profile-segment">
     <div class="profile-info">

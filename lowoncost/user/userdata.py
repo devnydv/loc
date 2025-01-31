@@ -7,23 +7,26 @@ from lowoncost.user.validate_profile_edit import edit_profile
 
 
     
-@app.route("/profile/<username>/", methods = ["GET", "POST"])
-def dash(username):
-    data = get_user_data(username)
+@app.route("/profile/<name>/", methods = ["GET", "POST"])
+def dash(name):
+    data = get_user_data(name)
     session['desc'] = data[0]["description"]
     
     if data == []:
         return redirect(url_for('error_404'))
-    elif "username" in session and username == session['username']:
+    elif "username" in session and name == session['username']:
         # session['data'] = data
         items = data[0]["item_details"]
         return render_template("dash.html", userdata = data, navshow = {"loggedin": True, 'userprofile' : True, "items": items})
         #return  {"username":username, "logged in":True, "edit":True}
-    elif "username" in session and username != session['username']:
+    elif "username" in session and name != session['username']:
+        
+        username = session["username"]
+        
         items = data[0]["item_details"]
-        return render_template("dash.html", userdata = data, navshow = {"loggedin": True, 'userprofile' : False, "items": items})
+        
+        return render_template("dash.html", userdata = data, navshow = {"loggedin": True, 'userprofile' : False, "items": items, "sessionname" : username})
     else:
-       
         items = data[0]["item_details"]
         return render_template("dash.html", userdata = data, navshow = {"loggedin": False, 'userprofile' : False, "items": items})
 

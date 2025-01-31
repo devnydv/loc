@@ -45,7 +45,7 @@ def home_paginate(pagenum, cat):
     if items == []:
         return "0"
     else:
-        return render_template("page.html", navshow = {'userprofile' : True, "items": items})
+        return render_template("page.html", navshow = {'userprofile' : False, "items": items})
 
 
 
