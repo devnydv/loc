@@ -60,6 +60,9 @@ def privacy():
 @app.route('/about')
 def about():
     return render_template("about.html")
+@app.route('/how-it-works')
+def how():
+    return render_template("how.html")
 
 # Custom error pages
 @app.route('/error_404')

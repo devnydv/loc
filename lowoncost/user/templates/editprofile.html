@@ -92,7 +92,7 @@
             <br>
             <P style="text-align: center;">Your profile can get deleted in one click. There is no way of recovery. Hover your mouse carefully.</P>
             <div class="delete-account-section">
-                <a href="/delete/{{name}}">
+                <!-- <a href="/delete/{{name}}"> -->
                 <button type="button" class="btn-delete-account">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M3 6h18"></path>
@@ -103,17 +103,30 @@
                     </svg>
                     Delete Account
                 </button>
-            </a>
+            <!-- </a> -->
             </div>
         </form>
     </div>
 <script>
+    name = "{{name|safe}}"
     document.querySelector('.btn-delete-account').addEventListener('click', function () {
         if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
             // Here you would typically make an API call to delete the account
-            
-            console.log("deleting")
+            async function loadmore() {
+                const res = await fetch(`/delete/${name}`, {
+                    method: 'GET',
+                    headers: { 'Content-Type': 'application/json' }, // Set the content type
+                    
+                });
+                data = await res.json()
+                
+                if (data['data'] == true) {
+                    window.location.replace("/login");
+                }
+                
+            }loadmore()
         }
+        
     });
 </script>
     <!-- <script>

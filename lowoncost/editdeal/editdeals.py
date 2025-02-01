@@ -31,7 +31,7 @@ def newdeal():
             data["username"] = username
             
             addnewdeal(data)
-            return redirect(url_for('dash', username=username))
+            return redirect(url_for('dash', name=username))
         else:
             return redirect(url_for('login'))
         
@@ -64,11 +64,13 @@ def editdeal(id):
         data["originalPrice"] = originalprice
         res = editdealdata(id, data)
         print(res)
-        return redirect(url_for('dash', username=session["username"]))
+        return redirect(url_for('dash', name=session["username"]))
     
 @app.route('/details/<id>')
 def dealdetails(id):
     data = getaitem(id)
+    if data == None:
+        return redirect(url_for('error_404'))
     if "username" in session:
         username = session["username"]
         return render_template("dealdetail.html", loggedin = True, userprofile = False, username = username, data = data)
@@ -82,7 +84,7 @@ def deletedeals(id):
     if "username" in session:
         username = session["username"]
         deletedeal(id, username)
-        return redirect(url_for('dash', username=username))
+        return redirect(url_for('dash', name=username))
     else:
         return redirect(url_for('login'))
     

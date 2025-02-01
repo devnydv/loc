@@ -1,353 +1,257 @@
-<!DOCTYPE html>
-<html>
-<head>
-  
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FAQ - DealsHub</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
+{%extends"base.html" %}
+{% from "macros/nav.html" import nav%}
+{%block seo%}
+<title>FAQ - LowonCost</title>
+<link rel="stylesheet" href="{{url_for('static', filename='css/nav.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='css/footer.css')}}">
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
 
-    body {
-      background-color: #1a1a1a;
-      color: #ffffff;
-    }
+  body {
+    background-color: #1a1a1a;
+    color: #ffffff;
+  }
 
-    /* Reuse navbar styles */
-    .navbar {
-      background: #2d2d2d;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-      padding: 15px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      flex-wrap: wrap;
-      gap: 15px;
-    }
 
-    .website-name {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: #3498db;
-    }
 
-    .nav-icons {
-      display: flex;
-      gap: 15px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
+  /* FAQ specific styles */
+  .faq-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+  }
 
-    .nav-icon {
-      background: none;
-      border: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      color: #cccccc;
-      transition: color 0.3s ease;
-    }
+  .faq-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
 
-    .nav-icon:hover {
-      color: #3498db;
-    }
+  .faq-title {
+    font-size: 2.5rem;
+    color: #3498db;
+    margin-bottom: 15px;
+  }
 
-    /* FAQ specific styles */
-    .faq-container {
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
+  .faq-description {
+    color: #cccccc;
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
 
-    .faq-header {
-      text-align: center;
-      margin-bottom: 40px;
-    }
+  .faq-section {
+    margin-bottom: 30px;
+  }
+
+  .faq-category {
+    font-size: 1.5rem;
+    color: #3498db;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #3498db;
+  }
+
+  .faq-item {
+    background: #2d2d2d;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    overflow: hidden;
+  }
+
+  .faq-question {
+    padding: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 500;
+    color: #ffffff;
+    transition: background-color 0.3s ease;
+  }
+
+  .faq-question:hover {
+    background-color: #3d3d3d;
+  }
+
+  .faq-answer {
+    padding: 0 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease;
+    color: #cccccc;
+    line-height: 1.6;
+  }
+
+  .faq-item.active .faq-answer {
+    padding: 20px;
+    max-height: 500px;
+  }
+
+  .faq-toggle {
+    width: 20px;
+    height: 20px;
+    position: relative;
+    transition: transform 0.3s ease;
+  }
+
+  .faq-toggle::before,
+  .faq-toggle::after {
+    content: '';
+    position: absolute;
+    background-color: #3498db;
+    transition: transform 0.3s ease;
+  }
+
+  .faq-toggle::before {
+    width: 2px;
+    height: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .faq-toggle::after {
+    width: 100%;
+    height: 2px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .faq-item.active .faq-toggle::before {
+    transform: translateX(-50%) rotate(90deg);
+  }
+
+  .menu-icon {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+  }
+
+  @media (max-width: 768px) {
+
 
     .faq-title {
-      font-size: 2.5rem;
-      color: #3498db;
-      margin-bottom: 15px;
+      font-size: 2rem;
     }
+  }
 
-    .faq-description {
-      color: #cccccc;
-      font-size: 1.1rem;
-      line-height: 1.6;
-    }
+  /* Footer styles */
+</style>
+{%endblock%}
 
-    .faq-section {
-      margin-bottom: 30px;
-    }
+{%block content%}
+<!-- Navbar -->
+{{nav(loggedin, userprofile, username)}}
 
-    .faq-category {
-      font-size: 1.5rem;
-      color: #3498db;
-      margin-bottom: 20px;
-      padding-bottom: 10px;
-      border-bottom: 2px solid #3498db;
-    }
+<div class="faq-container">
+  <div class="faq-header">
+    <h1 class="faq-title">Frequently Asked Questions</h1>
+    <p class="faq-description">Find answers to common questions about DealsHub</p>
+  </div>
 
-    .faq-item {
-      background: #2d2d2d;
-      border-radius: 8px;
-      margin-bottom: 15px;
-      overflow: hidden;
-    }
-
-    .faq-question {
-      padding: 20px;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-weight: 500;
-      color: #ffffff;
-      transition: background-color 0.3s ease;
-    }
-
-    .faq-question:hover {
-      background-color: #3d3d3d;
-    }
-
-    .faq-answer {
-      padding: 0 20px;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease-out, padding 0.3s ease;
-      color: #cccccc;
-      line-height: 1.6;
-    }
-
-    .faq-item.active .faq-answer {
-      padding: 20px;
-      max-height: 500px;
-    }
-
-    .faq-toggle {
-      width: 20px;
-      height: 20px;
-      position: relative;
-      transition: transform 0.3s ease;
-    }
-
-    .faq-toggle::before,
-    .faq-toggle::after {
-      content: '';
-      position: absolute;
-      background-color: #3498db;
-      transition: transform 0.3s ease;
-    }
-
-    .faq-toggle::before {
-      width: 2px;
-      height: 100%;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    .faq-toggle::after {
-      width: 100%;
-      height: 2px;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    .faq-item.active .faq-toggle::before {
-      transform: translateX(-50%) rotate(90deg);
-    }
-
-    .menu-icon {
-      display: none;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 5px;
-    }
-
-    @media (max-width: 768px) {
-      .menu-icon {
-        display: block;
-      }
-      
-      .nav-icons {
-        display: none;
-        width: 100%;
-      }
-      
-      .nav-icons.show {
-        display: flex;
-        flex-direction: column;
-        align-items: stretch;
-      }
-      
-      .nav-icon {
-        padding: 10px;
-      }
-
-      .faq-title {
-        font-size: 2rem;
-      }
-    }
-
-    /* Footer styles */
-    .footer {
-      background: #2d2d2d;
-      padding: 40px 20px;
-      margin-top: 50px;
-    }
-
-    .footer-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 30px;
-    }
-
-    .footer-section h3 {
-      color: #3498db;
-      margin-bottom: 20px;
-      font-size: 1.2rem;
-    }
-
-    .footer-links {
-      list-style: none;
-    }
-
-    .footer-links li {
-      margin-bottom: 10px;
-    }
-
-    .footer-links a {
-      color: #cccccc;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    .footer-links a:hover {
-      color: #3498db;
-    }
-
-    .footer-bottom {
-      text-align: center;
-      margin-top: 30px;
-      padding-top: 20px;
-      border-top: 1px solid #3d3d3d;
-      color: #999;
-    }
-  </style>
-</head>
-<body>
-  <!-- Navbar -->
- 
-
-  <div class="faq-container">
-    <div class="faq-header">
-      <h1 class="faq-title">Frequently Asked Questions</h1>
-      <p class="faq-description">Find answers to common questions about DealsHub</p>
-    </div>
-
-    <div class="faq-section">
-      <h2 class="faq-category">General Questions</h2>
-      <div class="faq-item">
-        <div class="faq-question">
-          What is DealsHub?
-          <div class="faq-toggle"></div>
-        </div>
-        <div class="faq-answer">
-          DealsHub is your one-stop destination for finding the best deals and discounts across various categories. We curate and verify deals from trusted retailers to help you save money on your purchases.
-        </div>
+  <div class="faq-section">
+    <h2 class="faq-category">General Questions</h2>
+    <div class="faq-item">
+      <div class="faq-question">
+        What is LowonCost?
+        <div class="faq-toggle"></div>
       </div>
-
-      <div class="faq-item">
-        <div class="faq-question">
-          How do I create an account?
-          <div class="faq-toggle"></div>
-        </div>
-        <div class="faq-answer">
-          Creating an account is simple! Click on the "Sign Up" button in the top right corner, fill in your details, and verify your email address. Once done, you can start saving and sharing deals!
-        </div>
+      <div class="faq-answer">
+        LowonCost is your one-stop destination for finding the best deals and discounts across various categories. We
+        curate and verify deals from trusted retailers to help you save money on your purchases.
       </div>
     </div>
 
-    <div class="faq-section">
-      <h2 class="faq-category">Deals & Offers</h2>
-      <div class="faq-item">
-        <div class="faq-question">
-          How do you verify deals?
-          <div class="faq-toggle"></div>
-        </div>
-        <div class="faq-answer">
-          Our team manually verifies each deal before it's published. We check for authenticity, price accuracy, and terms & conditions to ensure you get genuine savings opportunities.
-        </div>
+    <div class="faq-item">
+      <div class="faq-question">
+        How do I create an account?
+        <div class="faq-toggle"></div>
       </div>
-
-      <div class="faq-item">
-        <div class="faq-question">
-          What if a deal doesn't work?
-          <div class="faq-toggle"></div>
-        </div>
-        <div class="faq-answer">
-          If you encounter any issues with a deal, please report it using the "Report Issue" button on the deal page. Our team will investigate and update or remove the deal if necessary.
-        </div>
-      </div>
-    </div>
-
-    <div class="faq-section">
-      <h2 class="faq-category">Account & Settings</h2>
-      <div class="faq-item">
-        <div class="faq-question">
-          How do I change my password?
-          <div class="faq-toggle"></div>
-        </div>
-        <div class="faq-answer">
-          Go to your Profile Settings, click on "Security," and select "Change Password." Follow the prompts to update your password securely.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-question">
-          Can I delete my account?
-          <div class="faq-toggle"></div>
-        </div>
-        <div class="faq-answer">
-          Yes, you can delete your account through Profile Settings > Account > Delete Account. Please note this action is permanent and cannot be undone.
-        </div>
+      <div class="faq-answer">
+        Creating an account is simple! Click on the "Sign Up" button in the top right corner, fill in simple details. Once done, you can start saving and sharing deals!
       </div>
     </div>
   </div>
 
-  {% include "footer.html"%}
+  <div class="faq-section">
+    <h2 class="faq-category">Deals & Offers</h2>
+    <div class="faq-item">
+      <div class="faq-question">
+        How do you verify deals?
+        <div class="faq-toggle"></div>
+      </div>
+      <div class="faq-answer">
+        Our team manually verifies each deal before it's published. We check for authenticity, price accuracy, and terms
+        & conditions to ensure you get genuine savings opportunities.
+      </div>
+    </div>
 
-  <script>
-    
+    <div class="faq-item">
+      <div class="faq-question">
+        What if a deal doesn't work?
+        <div class="faq-toggle"></div>
+      </div>
+      <div class="faq-answer">
+        If you encounter any issues with a deal, please report it using the "Report Issue" button on the deal page. Our
+        team will investigate and update or remove the deal if necessary.
+      </div>
+    </div>
+  </div>
 
-    
+  <div class="faq-section">
+    <h2 class="faq-category">Account & Settings</h2>
+    <div class="faq-item">
+      <div class="faq-question">
+        How do I change my password?
+        <div class="faq-toggle"></div>
+      </div>
+      <div class="faq-answer">
+        As of now changing password can only be done by contacting the admin with your correct details.
+      </div>
+      <!-- <div class="faq-answer">
+        Go to your Profile Settings, click on "Security," and select "Change Password." Follow the prompts to update
+        your password securely.
+      </div> -->
+    </div>
 
-    
+    <div class="faq-item">
+      <div class="faq-question">
+        Can I delete my account?
+        <div class="faq-toggle"></div>
+      </div>
+      <div class="faq-answer">
+        Yes, you can delete your account through Profile > Edit Profile > Delete Account. Please note this action is
+        permanent and cannot be undone. Your account will be gone but deals that you have created may remain for some time.
+      </div>
+    </div>
+  </div>
+</div>
 
-    // FAQ toggle
-    document.querySelectorAll('.faq-question').forEach(question => {
-      question.addEventListener('click', () => {
-        const item = question.parentElement;
-        document.querySelectorAll('.faq-item').forEach(otherItem => {
-          if (otherItem !== item) {
-            otherItem.classList.remove('active');
-          }
-        });
-        item.classList.toggle('active');
+{% include "footer.html"%}
+
+<script>
+
+
+
+
+
+
+  // FAQ toggle
+  document.querySelectorAll('.faq-question').forEach(question => {
+    question.addEventListener('click', () => {
+      const item = question.parentElement;
+      document.querySelectorAll('.faq-item').forEach(otherItem => {
+        if (otherItem !== item) {
+          otherItem.classList.remove('active');
+        }
       });
+      item.classList.toggle('active');
     });
-  </script>
-</body>
-</html>
+  });
+</script>
+{%endblock%}

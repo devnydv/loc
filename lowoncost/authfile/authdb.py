@@ -13,7 +13,7 @@ def newuser(data):
     
     data["description"]="Sharing the best deals and offers on best prices."
     data["cart_items"] = []
-    data["total_deals"] = [ObjectId("6782ace8c6ff466c0e3b44d1")]
+    data["total_deals"] = []
     
     data.pop("confirm_password")
     password =data["password"]

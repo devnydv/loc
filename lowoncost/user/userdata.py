@@ -93,10 +93,11 @@ def deleteprofile(name):
     if "username" in session:
         username = session["username"]
         deleteuser(username)
+        
         session.clear()
-        return redirect(url_for('sign'))
+        return {"data":True}
     else:
-        return redirect(url_for('sign'))
+        return {"data":False}
 
 
 @app.route('/page/<user>/<pagenum>/<cat>')

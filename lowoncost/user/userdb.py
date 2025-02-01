@@ -84,5 +84,11 @@ def edit_user_data(uname, post_data):
 
 
 def deleteuser(username):
+    user = db.users.find_one({"username": username})
+    if user:
+        deal_ids = user.get("total_deals", [])
+        db.deals.delete_many({"_id": {"$in": deal_ids}})
     result = collection.delete_one({"username": username})
+    
     return True
+    
