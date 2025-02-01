@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About US</title>
+    <style>
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+    
+        body {
+          background-color: #1a1a1a;
+          color: #ffffff;
+        }
+    
+        /* Reuse navbar styles */
+        .navbar {
+          background: #2d2d2d;
+          box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+          padding: 15px 30px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          position: sticky;
+          top: 0;
+          z-index: 1000;
+          flex-wrap: wrap;
+          gap: 15px;
+        }
+    
+        .website-name {
+          font-size: 1.5rem;
+          font-weight: bold;
+          color: #3498db;
+        }
+    
+        .nav-icons {
+          display: flex;
+          gap: 15px;
+          align-items: center;
+          flex-wrap: wrap;
+        }
+    
+        .nav-icon {
+          background: none;
+          border: none;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          color: #cccccc;
+          transition: color 0.3s ease;
+        }
+    
+        .nav-icon:hover {
+          color: #3498db;
+        }
+    
+        /* Privacy Policy specific styles */
+        .privacy-container {
+          max-width: 800px;
+          margin: 40px auto;
+          padding: 0 20px;
+        }
+    
+        .privacy-header {
+          text-align: center;
+          margin-bottom: 40px;
+        }
+    
+        .privacy-title {
+          font-size: 2.5rem;
+          color: #3498db;
+          margin-bottom: 15px;
+        }
+    
+        .privacy-description {
+          color: #cccccc;
+          font-size: 1.1rem;
+          line-height: 1.6;
+        }
+    
+        .privacy-section {
+          background: #2d2d2d;
+          border-radius: 10px;
+          padding: 30px;
+          margin-bottom: 30px;
+        }
+    
+        .section-title {
+          font-size: 1.5rem;
+          color: #3498db;
+          margin-bottom: 20px;
+        }
+    
+        .section-content {
+          color: #cccccc;
+          line-height: 1.6;
+        }
+    
+        .section-content p {
+          margin-bottom: 15px;
+        }
+    
+        .section-content ul {
+          margin: 15px 0;
+          padding-left: 20px;
+        }
+    
+        .section-content li {
+          margin-bottom: 10px;
+        }
+    
+        .menu-icon {
+          display: none;
+          background: none;
+          border: none;
+          cursor: pointer;
+          padding: 5px;
+        }
+    
+        @media (max-width: 768px) {
+          .menu-icon {
+            display: block;
+          }
+          
+          .nav-icons {
+            display: none;
+            width: 100%;
+          }
+          
+          .nav-icons.show {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+          }
+          
+          .nav-icon {
+            padding: 10px;
+          }
+    
+          .privacy-title {
+            font-size: 2rem;
+          }
+        }
+    
+        /* Footer styles */
+        .footer {
+          background: #2d2d2d;
+          padding: 40px 20px;
+          margin-top: 50px;
+        }
+    
+        .footer-content {
+          max-width: 1200px;
+          margin: 0 auto;
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: 30px;
+        }
+    
+        .footer-section h3 {
+          color: #3498db;
+          margin-bottom: 20px;
+          font-size: 1.2rem;
+        }
+    
+        .footer-links {
+          list-style: none;
+        }
+    
+        .footer-links li {
+          margin-bottom: 10px;
+        }
+    
+        .footer-links a {
+          color: #cccccc;
+          text-decoration: none;
+          transition: color 0.3s ease;
+        }
+    
+        .footer-links a:hover {
+          color: #3498db;
+        }
+    
+        .footer-bottom {
+          text-align: center;
+          margin-top: 30px;
+          padding-top: 20px;
+          border-top: 1px solid #3d3d3d;
+          color: #999;
+        }
+      </style>
+</head>
+<body>
+    <div class="privacy-container">
+        <div class="privacy-header">
+          <h1 class="privacy-title">About US</h1>
+          <p class="privacy-description">Last updated: January 1, 2024</p>
+        </div>
+    
+        <div class="privacy-section">
+          <h2 class="section-title">Introduction</h2>
+          <div class="section-content">
+            <p>
+              At DealsHub, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services.
+            </p>
+            <p>
+              Please read this privacy policy carefully. If you do not agree with the terms of this privacy policy, please do not access the site.
+            </p>
+          </div>
+        </div>
+    
+        <div class="privacy-section">
+          <h2 class="section-title">Information We Collect</h2>
+          <div class="section-content">
+            <p>We collect information that you provide directly to us, including:</p>
+            <ul>
+              <li>Personal identification information (Name, email address, phone number)</li>
+              <li>Account credentials</li>
+              <li>Transaction information</li>
+              <li>Communication preferences</li>
+              <li>Device and usage information</li>
+            </ul>
+          </div>
+        </div>
+    
+        <div class="privacy-section">
+          <h2 class="section-title">How We Use Your Information</h2>
+          <div class="section-content">
+            <p>We use the information we collect to:</p>
+            <ul>
+              <li>Provide and maintain our services</li>
+              <li>Improve user experience</li>
+              <li>Send you updates and marketing communications</li>
+              <li>Protect against fraud and unauthorized access</li>
+              <li>Comply with legal obligations</li>
+            </ul>
+          </div>
+        </div>
+    
+        <div class="privacy-section">
+          <h2 class="section-title">Information Sharing</h2>
+          <div class="section-content">
+            <p>
+              We do not sell, trade, or rent your personal information to third parties. We may share your information with trusted partners who assist us in operating our website and conducting our business.
+            </p>
+          </div>
+        </div>
+      </div>
+      {% include "footer.html"%}
+</body>
+</html>

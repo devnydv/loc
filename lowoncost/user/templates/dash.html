@@ -8,6 +8,7 @@
 <title>User profile of {{username}}</title>
 <link rel="stylesheet" href="{{url_for('static', filename='css/home.css')}}">
 <link rel="stylesheet" href="{{url_for('static', filename='css/nav.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='css/footer.css')}}">
 {%endblock%}
 
 {%block content%}
@@ -84,7 +85,7 @@
 
 <div class="deals-header">
     <h3 class="section-header" style="margin: 0;">Latest Deals</h3>
-    {%if navshow["userprofile"]%} 
+    {%if navshow["userprofile"]%}
     <a href="{{url_for ('newdeal')}}" style="text-decoration: none;">
 
         <button class="add-deal-btn">
@@ -110,19 +111,21 @@
     {%for item in items %}
     <!-- card comming from main template macros file -->
     {{Card(item, username, navshow["userprofile"])}}
-    
+
     <!-- Deal Card 1 -->
     {%endfor%}
 
-    
+
 </div>
 {%if items |length >= 12%}
 <button id="loadbut" class="load-more" onclick="loadmore()">
     <p>Load more...</p>
 </button>
 {%endif%}
+
+{% include "footer.html"%}
 <script>
-    
+
     // function for loading more items from database
     let loadbut = document.getElementById("loadbut")
     const path = window.location.pathname;
@@ -135,17 +138,17 @@
     }
     console.log(cat)
     async function loadmore() {
-        
+
         const res = await fetch(`/page/${username}/${page}/${cat}`, {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' }, // Set the content type
-            
+
         });
         data = await res.text()
         //console.log(data)
         if (data !== "0") {
             let html = data
-            
+
             let newsdiv = document.getElementById("deals-container")
             newsdiv.insertAdjacentHTML("beforeend", html)
 

@@ -49,6 +49,18 @@ def home_paginate(pagenum, cat):
 
 
 
+
+@app.route('/faq')
+def faq():
+    return render_template("faq.html")
+
+@app.route('/privacy')
+def privacy():
+    return render_template("privacy.html")
+@app.route('/about')
+def about():
+    return render_template("about.html")
+
 # Custom error pages
 @app.route('/error_404')
 def error_404():

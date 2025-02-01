@@ -9,6 +9,7 @@
 <title>Deals Grid Cards</title>
 <link rel="stylesheet" href="{{url_for('static', filename='css/home.css')}}">
 <link rel="stylesheet" href="{{url_for('static', filename='css/nav.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='css/footer.css')}}">
 
 {%endblock%}
 
@@ -39,6 +40,9 @@
     <p>Load more...</p>
 </button>
 {%endif%}
+
+
+{% include "footer.html"%}
 <script>
 
     let loadbut = document.getElementById("loadbut")
