@@ -1,248 +1,153 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About US</title>
-    <meta name="description" content="Page for about Lowoncost and why it cam into existance">
-    <style>
-        * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+{%extends"base.html" %}
+{% from "macros/nav.html" import nav%}
+{%block seo%}
+<title>About Us</title>
+<meta name="description" content="Page for about Lowoncost and why it cam into existance">
+<link rel="stylesheet" href="{{url_for('static', filename='css/nav.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='css/footer.css')}}">
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  body {
+    background-color: #1a1a1a;
+    color: #ffffff;
+  }
+
+  
+
+  /* Privacy Policy specific styles */
+  .privacy-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+  }
+
+  .privacy-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .privacy-title {
+    font-size: 2.5rem;
+    color: #3498db;
+    margin-bottom: 15px;
+  }
+
+  .privacy-description {
+    color: #cccccc;
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+
+  .privacy-section {
+    background: #2d2d2d;
+    border-radius: 10px;
+    padding: 30px;
+    margin-bottom: 30px;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+    color: #3498db;
+    margin-bottom: 20px;
+  }
+
+  .section-content {
+    color: #cccccc;
+    line-height: 1.6;
+  }
+
+  .section-content p {
+    margin-bottom: 15px;
+  }
+
+  .section-content ul {
+    margin: 15px 0;
+    padding-left: 20px;
+  }
+
+  .section-content li {
+    margin-bottom: 10px;
+  }
+
+  .menu-icon {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+  }
+
+  @media (max-width: 768px) {
+    .menu-icon {
+      display: block;
+    }
+
     
-        body {
-          background-color: #1a1a1a;
-          color: #ffffff;
-        }
-    
-        /* Reuse navbar styles */
-        .navbar {
-          background: #2d2d2d;
-          box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-          padding: 15px 30px;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          position: sticky;
-          top: 0;
-          z-index: 1000;
-          flex-wrap: wrap;
-          gap: 15px;
-        }
-    
-        .website-name {
-          font-size: 1.5rem;
-          font-weight: bold;
-          color: #3498db;
-        }
-    
-        .nav-icons {
-          display: flex;
-          gap: 15px;
-          align-items: center;
-          flex-wrap: wrap;
-        }
-    
-        .nav-icon {
-          background: none;
-          border: none;
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-          gap: 5px;
-          color: #cccccc;
-          transition: color 0.3s ease;
-        }
-    
-        .nav-icon:hover {
-          color: #3498db;
-        }
-    
-        /* Privacy Policy specific styles */
-        .privacy-container {
-          max-width: 800px;
-          margin: 40px auto;
-          padding: 0 20px;
-        }
-    
-        .privacy-header {
-          text-align: center;
-          margin-bottom: 40px;
-        }
-    
-        .privacy-title {
-          font-size: 2.5rem;
-          color: #3498db;
-          margin-bottom: 15px;
-        }
-    
-        .privacy-description {
-          color: #cccccc;
-          font-size: 1.1rem;
-          line-height: 1.6;
-        }
-    
-        .privacy-section {
-          background: #2d2d2d;
-          border-radius: 10px;
-          padding: 30px;
-          margin-bottom: 30px;
-        }
-    
-        .section-title {
-          font-size: 1.5rem;
-          color: #3498db;
-          margin-bottom: 20px;
-        }
-    
-        .section-content {
-          color: #cccccc;
-          line-height: 1.6;
-        }
-    
-        .section-content p {
-          margin-bottom: 15px;
-        }
-    
-        .section-content ul {
-          margin: 15px 0;
-          padding-left: 20px;
-        }
-    
-        .section-content li {
-          margin-bottom: 10px;
-        }
-    
-        .menu-icon {
-          display: none;
-          background: none;
-          border: none;
-          cursor: pointer;
-          padding: 5px;
-        }
-    
-        @media (max-width: 768px) {
-          .menu-icon {
-            display: block;
-          }
-          
-          .nav-icons {
-            display: none;
-            width: 100%;
-          }
-          
-          .nav-icons.show {
-            display: flex;
-            flex-direction: column;
-            align-items: stretch;
-          }
-          
-          .nav-icon {
-            padding: 10px;
-          }
-    
-          .privacy-title {
-            font-size: 2rem;
-          }
-        }
-    
-        /* Footer styles */
-        .footer {
-          background: #2d2d2d;
-          padding: 40px 20px;
-          margin-top: 50px;
-        }
-    
-        .footer-content {
-          max-width: 1200px;
-          margin: 0 auto;
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-          gap: 30px;
-        }
-    
-        .footer-section h3 {
-          color: #3498db;
-          margin-bottom: 20px;
-          font-size: 1.2rem;
-        }
-    
-        .footer-links {
-          list-style: none;
-        }
-    
-        .footer-links li {
-          margin-bottom: 10px;
-        }
-    
-        .footer-links a {
-          color: #cccccc;
-          text-decoration: none;
-          transition: color 0.3s ease;
-        }
-    
-        .footer-links a:hover {
-          color: #3498db;
-        }
-    
-        .footer-bottom {
-          text-align: center;
-          margin-top: 30px;
-          padding-top: 20px;
-          border-top: 1px solid #3d3d3d;
-          color: #999;
-        }
-      </style>
-</head>
-<body>
-    <div class="privacy-container">
-        <div class="privacy-header">
-          <h1 class="privacy-title">About US</h1>
-          <p class="privacy-description">Last updated: January 1, 2024</p>
-        </div>
-    
-        <div class="privacy-section">
-          <h2 class="section-title">Introduction</h2>
-          <div class="section-content">
-            <p>
-              Lowoncost is an attempt to provide affiliate marketers with a platform where they can publish their deals and have the opportunity to earn money in this category.
-            </p>
-            <p>
-              We have made a small effort to create a platform that allows beginners to start affiliate marketing without needing a large audience.
-            </p>
-          </div>
-        </div>
-    
-        <div class="privacy-section">
-          <h2 class="section-title">How we can help</h2>
-          <div class="section-content">
-            <p>You Can Start with Zero Followers:</p>
-            <ul>
-              <li>In many places, you need an audience to generate income with affiliate marketing.</li>
-              <li>We provide you with a spot at the top of our website to help you grow faster.</li>
-              <li>Your deals and offers will define your reputation.</li>
-              
-            </ul>
-          </div>
-        </div>
-    
-        <div class="privacy-section">
-          <h2 class="section-title">Our vision</h2>
-          <div class="section-content">
-            <p>Start Small and Grow Big</p>
-            <ul>
-              <li>We started this journey many years ago and have been growing rapidly.</li>
-              <li>Initially, we are relying on a few deal finders, but soon, we will welcome more people to join us.</li>
-              <li>Your contributions can help improve and grow this platform. Together, we can create a thriving space for affiliate marketers!</li>
-            </ul>
-          </div>
-        </div>
-    
-        
-      </div>
-      {% include "footer.html"%}
-</body>
-</html>
+
+    .privacy-title {
+      font-size: 2rem;
+    }
+  }
+
+  
+</style>
+{%endblock%}
+
+{%block content%}
+{{nav(loggedin, userprofile, username)}}
+<div class="privacy-container">
+  <div class="privacy-header">
+    <h1 class="privacy-title">About US</h1>
+    <p class="privacy-description">Last updated: January 1, 2024</p>
+  </div>
+
+  <div class="privacy-section">
+    <h2 class="section-title">Introduction</h2>
+    <div class="section-content">
+      <p>
+        Lowoncost is an attempt to provide affiliate marketers with a platform where they can publish their deals and
+        have the opportunity to earn money in this category.
+      </p>
+      <p>
+        We have made a small effort to create a platform that allows beginners to start affiliate marketing without
+        needing a large audience.
+      </p>
+    </div>
+  </div>
+
+  <div class="privacy-section">
+    <h2 class="section-title">How we can help</h2>
+    <div class="section-content">
+      <p>You Can Start with Zero Followers:</p>
+      <ul>
+        <li>In many places, you need an audience to generate income with affiliate marketing.</li>
+        <li>We provide you with a spot at the top of our website to help you grow faster.</li>
+        <li>Your deals and offers will define your reputation.</li>
+
+      </ul>
+    </div>
+  </div>
+
+  <div class="privacy-section">
+    <h2 class="section-title">Our vision</h2>
+    <div class="section-content">
+      <p>Start Small and Grow Big</p>
+      <ul>
+        <li>We started this journey many years ago and have been growing rapidly.</li>
+        <li>Initially, we are relying on a few deal finders, but soon, we will welcome more people to join us.</li>
+        <li>Your contributions can help improve and grow this platform. Together, we can create a thriving space for
+          affiliate marketers!</li>
+      </ul>
+    </div>
+  </div>
+
+
+</div>
+{% include "footer.html"%}
+{%endblock%}
