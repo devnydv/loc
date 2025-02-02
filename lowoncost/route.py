@@ -1,6 +1,6 @@
 from lowoncost import app
 from lowoncost.db import get_deals
-from flask import render_template, request, redirect, flash, session, url_for
+from flask import render_template, request, flash, session, send_from_directory
 
 import requests
 
@@ -62,6 +62,10 @@ def about():
 @app.route('/how-it-works')
 def how():
     return render_template("how.html")
+
+@app.route('/robots.txt')
+def robots_txt():
+    return send_from_directory(app.root_path, 'robots.txt')
 
 # Custom error pages
 @app.route('/error_404')
