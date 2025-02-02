@@ -22,7 +22,11 @@
         <h3 class="deal-title">{{item['title'][:70]}}</h3>
         <div class="tags-container">
             <span class="sub-category">{{item['category']|title}}</span>
+            {%if userprofile ==False%}
+            <a href="/profile/{{item['username']}}"><span class="sub-category"> @{{item['username']|title}}</span></a>
+            {%else%}
             <span class="sub-category"> @{{item['username']|title}}</span>
+            {%endif%}
             {%if userprofile%}
             {%if item['status'] =="varified" and userprofile%}
             <span class="sub-category" style="background-color: #23cf6b; color:black;">Varified</span>
