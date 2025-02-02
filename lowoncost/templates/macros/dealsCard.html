@@ -24,10 +24,12 @@
             <span class="sub-category">{{item['category']|title}}</span>
             <span class="sub-category"> @{{item['username']|title}}</span>
             {%if userprofile%}
-            {%if item['status'] and userprofile%}
+            {%if item['status'] =="varified" and userprofile%}
             <span class="sub-category" style="background-color: #23cf6b; color:black;">Varified</span>
+            {%elif item['status'] == "rejected"%}
+            <span class="sub-category" style="background-color:#eb414f; ">Rejected</span>
             {%else%}
-            <span class="sub-category" style="background-color:#eb414f; ">Panding</span>
+            <span class="sub-category" style="background-color:#eb414f; ">Pending</span>
             {%endif%}{%endif%}
         </div>
         <!-- <p class="deal-description">Experience premium quality with this amazing deal. Limited time offer with

@@ -14,13 +14,12 @@ collection = db.users
 # db conn for home route
 
 def get_deals(cat, page=1, page_size=12):
-    print(cat)
     skip =   (12 * page) - 12
     collection = db.deals
     if cat == "all":
-        deals = list(collection.find({"status": True}).skip(skip).limit(page_size))
+        deals = list(collection.find({"status": "varified"}).skip(skip).limit(page_size))
     else: 
-        deals = list(collection.find({"status": True, "category": cat}).skip(skip).limit(page_size))
+        deals = list(collection.find({"status": "varified", "category": cat}).skip(skip).limit(page_size))
     deals = json.loads(json_util.dumps(deals))
     deals.reverse()
     return deals

@@ -7,7 +7,6 @@ import requests
 
 def session_user():
     if "username" in session:
-        
         return True
     else:
         return False

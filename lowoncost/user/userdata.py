@@ -108,7 +108,7 @@ def paginate(user, pagenum, cat):
             data = get_user_data(user, pagenum)
             items = data[0]["item_details"]
             itemcount = len(items)
-            print(itemcount)
+            
             if itemcount == 0:
                 return "0"
             return render_template("page.html", userdata = data, username = user, navshow = {'userprofile' : True, "items": items})
@@ -116,7 +116,7 @@ def paginate(user, pagenum, cat):
             data = get_cat_data(user, cat, pagenum )
             items = data[0]["item_details"]
             itemcount = len(items)
-            print(itemcount)
+            
             if itemcount == 0:
                 return "0"
             return render_template("page.html", userdata = data, username = user, navshow = {'userprofile' : True, "items": items})

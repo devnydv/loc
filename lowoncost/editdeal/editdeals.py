@@ -21,7 +21,7 @@ def newdeal():
         data = dict(data)
         correntprice = int(data["currentPrice"])
         originalprice = int(data["originalPrice"])
-        data["status"] = False
+        data["status"] = "pending"
         
         data["currentPrice"] = correntprice
         data["originalPrice"] = originalprice
@@ -58,7 +58,7 @@ def editdeal(id):
         data = dict(data)
         correntprice = int(data["currentPrice"])
         originalprice = int(data["originalPrice"])
-        data["status"] = False
+        data["status"] = "pending"
         data["username"] = username
         data["currentPrice"] = correntprice
         data["originalPrice"] = originalprice
