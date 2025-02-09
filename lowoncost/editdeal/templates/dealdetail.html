@@ -2,12 +2,11 @@
 {% from "macros/nav.html" import nav%}
 {%block seo%}
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{data['title'][:45]}} - LowonCost</title>
-<meta name="description" content="{{data['description'][:100]}}...">
 <link rel="stylesheet" href="{{url_for('editdeal.static', filename='css/detail.css')}}">
 <link rel="stylesheet" href="{{url_for('static', filename='css/nav.css')}}">
+
+<title>{{data['title'][:45]}} - LowonCost</title>
+<meta name="description" content="{{data['description'][:100]}}...">
 {%endblock%}
 {%block content%}
 

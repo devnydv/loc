@@ -5,10 +5,11 @@
 
 {%set username = userdata[0]['username']%}
 {%block seo%}
-<title>User profile of {{username}}</title>
 <link rel="stylesheet" href="{{url_for('static', filename='css/home.css')}}">
 <link rel="stylesheet" href="{{url_for('static', filename='css/nav.css')}}">
 <link rel="stylesheet" href="{{url_for('static', filename='css/footer.css')}}">
+<title>User profile of {{username}}</title>
+<meta name="description" content="{{userdata[0]['description'][:120]}}">
 {%endblock%}
 
 {%block content%}

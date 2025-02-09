@@ -1,9 +1,11 @@
 {%extends"base.html" %}
 {% from "macros/form.html" import dealform%}
 {%block seo%}
-    <title>Edit Deal - LowonCost</title>
+    
     <link rel="shortcut icon" href="{{url_for('static', filename='icons/icon.webp')}}" type="image/x-icon">
     <link rel="stylesheet" href="{{url_for('static', filename='css/adddeal.css')}}">
+    <title>Edit Deal - LowonCost</title>
+    <meta name="description" content="Edit existing deal and make it updated.">
 {%endblock%}
 {%block content%}
     <nav class="navbar">
