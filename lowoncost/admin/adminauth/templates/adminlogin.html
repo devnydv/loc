@@ -1,0 +1,47 @@
+{%extends"base.html" %}
+{% from "macros/nav.html" import nav%}
+{%block seo%}
+<link rel="stylesheet" href="{{url_for('static', filename='css/auth.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='css/nav.css')}}">
+<title>Login for Admin</title>
+<meta name="description" content="Log in to admin pannel of LowonCost.xyz.">
+{%endblock%}
+
+{%block content%}
+{{nav(loggedin = False, userprofile = False)}}
+<div id="content">
+    <div class="login-card">
+        <h2>Login</h2>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+
+        <div class="" id="alertdiv">
+            {% for category, message in messages %}
+            <div class="alert" style="color: red;"><span>{{ message }}</span></div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+        <form method="POST" action="/admin/login">
+            {{form.username.label}}
+            {{form.username(placeholder="Username", required="required")}}
+
+            {{form.password.label}}
+            {{form.password(placeholder="Password", required="required")}}
+            <button id="submitbut" type="submit">Log In</button>
+        </form>
+        <br>
+        
+
+    </div>
+</div>
+
+<script>
+    const myTimeout = setTimeout(myFunction, 5000);
+    function myFunction() {
+        let selecterr = document.getElementById("alertdiv")
+        selecterr.innerHTML = ""
+
+    }
+</script>
+{%endblock%}

@@ -71,3 +71,8 @@ def robots_txt():
 @app.route('/error_404')
 def error_404():
     return render_template("error.html") , 404
+
+# redirects to error page when user visits any unwanted Urls
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('error.html'), 404

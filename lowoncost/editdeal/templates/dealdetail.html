@@ -4,7 +4,8 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Deal Details</title>
+<title>{{data['title'][:45]}} - LowonCost</title>
+<meta name="description" content="{{data['description'][:100]}}...">
 <link rel="stylesheet" href="{{url_for('editdeal.static', filename='css/detail.css')}}">
 <link rel="stylesheet" href="{{url_for('static', filename='css/nav.css')}}">
 {%endblock%}
@@ -12,7 +13,6 @@
 
 <!-- Reuse existing navbar -->
 {{nav(loggedin, userprofile = False, username = 'dev')}}
-
 
 
 <div class="deal-details-container">
@@ -89,6 +89,7 @@
         <h2 class="section-title">Terms &amp; Conditions</h2>
         <div class="description-content">
             <ul class="features-list">
+                <li>This deal is created by {{data['username']}}. If there is any issue with the deal, please report the issue. </li>
                 <li>Check official website by clicking "Get This Deal" button for more details.</li>
                 <li>Deals are from third party websites we are not resposible for delivery or refund.</li>
                 <li>Price shown in the deal may not match from official website as it may change over time.</li>

@@ -7,7 +7,7 @@ from bson.objectid import ObjectId
 # insert data to db when new user signp
 def newuser(data):
     data = json.loads(data)
-    print(data)
+    
     username = data["username"]
     data["username"] = username.lower()
     
