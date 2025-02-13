@@ -18,10 +18,10 @@ def get_deals(cat, page=1, page_size=12):
     collection = db.deals
     if cat == "all":
         #deals = list(collection.find({"status": "varified"}).skip(skip).limit(page_size))
-        deals = list(collection.find().skip(skip).limit(page_size))
+        deals = list(collection.find().sort('_id', -1).skip(skip).limit(page_size))
     else: 
         #deals = list(collection.find({"status": "varified", "category": cat}).skip(skip).limit(page_size))
         deals = list(collection.find({"category": cat}).skip(skip).limit(page_size))
     deals = json.loads(json_util.dumps(deals))
-    deals.reverse()
+    
     return deals
