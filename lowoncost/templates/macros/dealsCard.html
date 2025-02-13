@@ -3,20 +3,20 @@
 {%set id = item['_id']['$oid'] %}
 <div class="deal-card">
     <div class="image-container">
-        <img class="deal-image" src="{{item['imageUrl']}}" alt="" width="300" height="200">
-        <!-- <svg class="deal-image" viewBox="0 0 300 200">
+            <img class="deal-image" src="{{item['imageUrl']}}" alt="" width="300" height="200">
+            <!-- <svg class="deal-image" viewBox="0 0 300 200">
                 <rect width="100%" height="100%" fill="#3d3d3d" />
                 <text x="50%" y="50%" text-anchor="middle" fill="#cccccc" font-size="20">Product Image</text>
             </svg> -->
-        <button class="share-button" data-url="/details/{{id}}" aria-label="Share">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="18" cy="5" r="3" />
-                <circle cx="6" cy="12" r="3" />
-                <circle cx="18" cy="19" r="3" />
-                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
-                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
-            </svg>
-        </button>
+            <button class="share-button" data-url="/details/{{id}}" aria-label="Share">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="18" cy="5" r="3" />
+                    <circle cx="6" cy="12" r="3" />
+                    <circle cx="18" cy="19" r="3" />
+                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+                </svg>
+            </button>
     </div>
     <div class="deal-content">
         <h3 class="deal-title">{{item['title'][:70]}}</h3>
@@ -44,14 +44,14 @@
             <span class="discount">-{{disc | int}}% </span>
         </div>
         <div class="button-container">
-            
+
             <a href="{{item['dealUrl']}}" target="_blank" class="btn btn-view">View Offer</a>
             <a href="/details/{{id}}" class="btn btn-details"> Details</a>
             <!-- <button class="btn btn-details">Details</button> -->
             <!-- <button class="btn btn-edit">Edit Deal</button> -->
             {%if userprofile%}
-            
-            
+
+
 
             <a href="/profile/editdeal/{{id}}" class="btn btn-edit">Edit Deal</a>
             {%endif%}

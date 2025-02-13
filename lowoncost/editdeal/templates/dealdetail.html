@@ -12,6 +12,23 @@
 <meta property="og:image" content="{{data['imageUrl']}}">
 <script type="application/ld+json">
     {
+      "@context": "https://schema.org/",
+      "@type": "Product",
+      "name": "{{data['title'][:45]}}",
+      "description": "{{data['description']}}",
+        "offers": {
+          "@type": "AggregateOffer",
+          "offerCount": 1,
+          "lowPrice": {{data['currentPrice']}},
+          "highPrice": {{data['originalPrice']}},
+          "priceCurrency": "INR"
+        }
+      
+      
+    }
+    </script>
+<script type="application/ld+json">
+    {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       "itemListElement": [{
