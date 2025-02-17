@@ -116,12 +116,11 @@
             </div>
         </div>
     </div>
-
     <div class="description-section">
         <h2 class="section-title">About This Deal</h2>
         <div class="description-content">
-            <p>{{data["description"]}}</p>
-
+            <p>Hurry! "{{data['title']}}" created by user {{data['username']}} is now available in {{data['category'] |title}} category! Originally ₹{{data['originalPrice']}}, now just ₹{{data['currentPrice']}} —a massive {{disc |int}}% off! 😱 Don’t miss out—grab yours before it’s gone! 🛒 </p> <br>
+            <p>{{data['description']}}</p>
             <!-- <ul class="features-list">
                     <li>Premium Sound Quality with Advanced Drivers</li>
                     <li>Active Noise Cancellation Technology</li>
@@ -129,9 +128,12 @@
                     <li>Quick Charge Feature - 5 Hours Playback in 10 Minutes</li>
                     <li>Bluetooth 5.0 with Multi-Device Connectivity</li>
                     <li>Built-in High-Quality Microphone</li>
-                </ul> -->
+            </ul> -->
         </div>
     </div>
+
+
+
 
     <div class="terms-section">
         <h2 class="section-title">Terms &amp; Conditions</h2>
