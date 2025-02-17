@@ -1,7 +1,8 @@
-let page = 2;
+    let page = 2;
     const path = window.location.pathname;
     const segments = path.split('/').filter(Boolean);
-    let cat = segments[1] || "all";
+    let cat = segments[0] || "all";
+
     let isLoading = false; // Prevent multiple requests
     
     async function loadmore() {
@@ -52,7 +53,7 @@ let page = 2;
                 const url = this.dataset.url;
                 if (navigator.share) {
                     navigator.share({
-                        title: 'Check out this news!',
+                        title: 'Check out this new deal!',
                         url: url
                     }).then(() => {
                         console.log('Thanks for sharing!');
@@ -61,7 +62,7 @@ let page = 2;
                     // Fallback for browsers that don't support the Web Share API
                     const tempInput = document.createElement('input');
                     document.body.appendChild(tempInput);
-                    tempInput.value = `https://lowoncost.vercel.app${url}`;
+                    tempInput.value = `https://www.lowoncost.xyz${url}`;
                     tempInput.select();
                     document.execCommand('copy');
                     document.body.removeChild(tempInput);
