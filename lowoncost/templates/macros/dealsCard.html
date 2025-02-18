@@ -3,7 +3,7 @@
 {%set id = item['_id']['$oid'] %}
 <div class="deal-card">
     <div class="image-container">
-            <img class="deal-image" src="{{item['imageUrl']}}" alt="" width="300" height="200">
+            <img class="deal-image" src="{{item['imageUrl']}}" alt="{{item['title'][:50]}}" width="300" height="200">
             <!-- <svg class="deal-image" viewBox="0 0 300 200">
                 <rect width="100%" height="100%" fill="#3d3d3d" />
                 <text x="50%" y="50%" text-anchor="middle" fill="#cccccc" font-size="20">Product Image</text>
@@ -23,7 +23,9 @@
         <div class="tags-container">
             <span class="sub-category">{{item['category']|title}}</span>
             {%if userprofile ==False%}
-            <a href="/profile/{{item['username']}}"><span class="sub-category"> @{{item['username']|title}}</span></a>
+            <a href="/profile/{{item['username']}}" title="Profile of {{item['username']}}">
+                <span class="sub-category"> @{{item['username']|title}}</span>
+            </a>
             {%else%}
             <span class="sub-category"> @{{item['username']|title}}</span>
             {%endif%}
@@ -45,15 +47,15 @@
         </div>
         <div class="button-container">
 
-            <a href="{{item['dealUrl']}}" target="_blank" class="btn btn-view">View Offer</a>
-            <a href="/details/{{id}}" class="btn btn-details"> Details</a>
+            <a href="{{item['dealUrl']}}" title="View Offer" target="_blank" class="btn btn-view">View Offer</a>
+            <a href="/details/{{id}}" title="Offer Details" class="btn btn-details"> Details</a>
             <!-- <button class="btn btn-details">Details</button> -->
             <!-- <button class="btn btn-edit">Edit Deal</button> -->
             {%if userprofile%}
 
 
 
-            <a href="/profile/editdeal/{{id}}" class="btn btn-edit">Edit Deal</a>
+            <a href="/profile/editdeal/{{id}}" title="Edit Deal" class="btn btn-edit">Edit Deal</a>
             {%endif%}
         </div>
     </div>

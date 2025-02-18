@@ -4,7 +4,7 @@
 <nav class="navbar">
     <div class="website-name"><h1>LowonCost</h1></div>
     <div class="nav-icons">
-        <a href="/" style="text-decoration: none">
+        <a href="/" title="Home" style="text-decoration: none">
             <button class="nav-icon">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
@@ -15,7 +15,7 @@
         </a>
         {%if loggedin %}
         {%if userprofile == False%}
-        <a href="/profile/{{username}}" style="text-decoration: none">
+        <a href="/profile/{{username}}" title="View Profile" style="text-decoration: none">
             <button class="nav-icon">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <circle cx="12" cy="7" r="4"></circle>
@@ -27,7 +27,7 @@
         {%endif%}
         {%if userprofile == True%}
         
-        <a href="{{url_for('editprofile')}}" style="text-decoration: none;">
+        <a href="{{url_for('editprofile')}}" title="Edit Profile" style="text-decoration: none;">
             <button class="nav-icon">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
@@ -50,7 +50,7 @@
             Share
         </button>
         
-        <a href="{{url_for('logout')}}" style="text-decoration: none">
+        <a href="{{url_for('logout')}}" title="LogOut" style="text-decoration: none">
             <button class="nav-icon">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
@@ -62,7 +62,7 @@
         </a>
         
         {%else%}
-        <a href="/login" style="text-decoration: none">
+        <a href="/login" title="Login to LowonCost" style="text-decoration: none">
             <button class="nav-icon">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
@@ -72,7 +72,7 @@
                 LogIn
             </button>
         </a>
-        <a href="/signup" style="text-decoration: none">
+        <a href="/signup" title="Sign Up to LowonCost" style="text-decoration: none">
             <button class="nav-icon">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>

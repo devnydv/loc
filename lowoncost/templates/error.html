@@ -1,10 +1,11 @@
 {% extends "base.html"%}
-
+{% from "macros/nav.html" import nav%}
 
 {%block seo %}
   
   <title>LowonCost - 404 Not Found</title>
   <meta name="description" content="Page not found">
+  <link rel="stylesheet" href="{{url_for('static', filename='css/nav.css')}}">
   <style>
     :root {
       --primary-color: #3498db;
@@ -13,7 +14,10 @@
       --text-color: #f0f0f0;
       --error-color: #e74c3c;
     }
-
+    .website-name h1 {
+      font-size: 1.5rem;
+      margin: 0;
+    }
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
@@ -25,33 +29,7 @@
       min-height: 100vh;
     }
 
-    header {
-      background-color: rgba(52, 152, 219, 0.1);
-      padding: 1rem;
-      text-align: center;
-    }
 
-    .logo {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: var(--primary-color);
-    }
-
-    nav {
-      margin-top: 1rem;
-    }
-
-    nav a {
-      color: var(--text-color);
-      text-decoration: none;
-      margin: 0 1rem;
-      font-size: 1rem;
-      transition: color 0.3s ease;
-    }
-
-    nav a:hover {
-      color: var(--primary-color);
-    }
 
     main {
       flex-grow: 1;
@@ -66,13 +44,13 @@
       text-align: center;
     }
 
-    h1 {
+    #head {
       font-size: 4rem;
       color: var(--error-color);
       margin-bottom: 1rem;
     }
 
-    p {
+    main p {
       font-size: 1.2rem;
       margin-bottom: 2rem;
     }
@@ -115,7 +93,7 @@
     }
 
     @media (max-width: 768px) {
-      h1 {
+      #head {
         font-size: 3rem;
       }
 
@@ -127,18 +105,7 @@
   {% endblock %}
  
   {%block content%}
-
-
-  <header>
-    <div class="logo">LowonCost</div>
-    <nav>
-      <a href="/">Home</a>
-      <a href="/login">Login</a>
-      <a href="/signup">Sign up</a>
-      
-    </nav>
-  </header>
-
+  {{nav(loggedin, userprofile, username)}}
   <main>
     <div class="error-container">
       <svg class="error-image" width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
@@ -146,7 +113,7 @@
         <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Arial, sans-serif"
           font-size="80" fill="#e74c3c">404</text>
       </svg>
-      <h1>Page Not Found</h1>
+      <h1 id="head">Page Not Found</h1>
       <p>Oops! It looks like you've wandered into uncharted territory. The page you're looking for doesn't exist or may
         have been moved.</p>
       <p>Don't worry, even the best explorers get lost sometimes. Let's get you back on track!</p>
