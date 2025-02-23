@@ -1,6 +1,6 @@
 from lowoncost import app
 from lowoncost.db import get_deals
-from flask import render_template, request, flash, session, send_from_directory
+from flask import render_template, request, flash, session, send_from_directory, Response
 
 import requests
 
@@ -47,7 +47,21 @@ def home_paginate(pagenum, cat):
         return render_template("page.html", navshow = {'userprofile' : False, "items": items})
 
 
-
+@app.route('/manifest.xml')
+def manifest():
+    xml_content = """<?xml version="1.0" encoding="UTF-8"?>
+    <manifest>
+        <name>LowonCost</name>
+        <short_name>LowonCost</short_name>
+        <description>Find the lowest prices on the product you love with Lowoncost.</description>
+        <version>1.0</version>
+        <start_url>/</start_url>
+        <display>standalone</display>
+        <theme_color>#ffffff</theme_color>
+        <background_color>#000000</background_color>
+    </manifest>
+    """
+    return Response(xml_content, mimetype='application/xml')
 
 @app.route('/faq')
 def faq():
