@@ -242,6 +242,11 @@ body {
     font-size: 1.2rem;
     margin-bottom: 10px;
     color: #ffffff;
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .tags-container {
