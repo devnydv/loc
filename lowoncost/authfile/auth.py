@@ -9,7 +9,6 @@ import json
 @auth
 def login():
     form = LoginForm(request.form)
-    
     if request.method == "POST":
         username = request.form.get("username").lower()
         data = request.form
@@ -36,7 +35,7 @@ def sign():
         uniquename = checkusername(username)["case"]
         email = request.form.get("email")
         emailcheck = is_valid_email(email)
-        print(emailcheck)
+        
         if form.validate() and uniquename and emailcheck:
             data= request.form
             data = json.dumps(data)
