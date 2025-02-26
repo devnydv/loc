@@ -84,11 +84,16 @@
         </div>
 
         <div class="deal-info">
-            <h2 class="deal-title-large">{{data['title']}}</h2>
-
+            <h1 class="deal-title-large">{{data['title']}}</h1>
             <div class="tags-container">
-                <span class="tag">{{data['category'] |title}}</span>
-                <span class="tag">@ {{data['username']}}</span>
+                <!-- <span class="tag">{{data['category'] |title}}</span> -->
+                <a href="/{{data['category']}}" title="Profile of {{data['category']}}" style="text-decoration: none;">
+                    <span class="tag">{{data['category'] |title}}</span>
+                </a>
+                <a href="/profile/{{data['username']}}" title="Profile of {{data['username']}}" style="text-decoration: none;">
+                    <span class="tag"> @{{data['username']|title}}</span>
+                </a>
+                <!-- <span class="tag">@ {{data['username']}}</span> -->
 
             </div>
 
@@ -121,7 +126,7 @@
         </div>
     </div>
     <div class="description-section">
-        <h3 class="section-title">About This Deal</h3>
+        <h2 class="section-title">About This Deal</h2>
         <div class="description-content">
             <p>Hurry! "{{data['title']}}" created by user {{data['username']}} is now available in {{data['category'] |title}} category! Originally ₹{{data['originalPrice']}}, now just ₹{{data['currentPrice']}} —a massive {{disc |int}}% off! 😱 Don’t miss out—grab yours before it’s gone! 🛒 </p> <br>
             <p>{{data['description']}}</p>

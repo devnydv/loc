@@ -9,9 +9,11 @@
 
 {%block content%}
 {{nav(loggedin = False, userprofile = False)}}
+
 <div id="content">
     <div class="login-card">
-        <h2>Login</h2>
+        
+        <h1>Login to LowonCost</h1>
         {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
         

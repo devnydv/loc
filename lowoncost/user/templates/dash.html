@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="{{url_for('static', filename='css/home.css')}}">
 <link rel="stylesheet" href="{{url_for('static', filename='css/nav.css')}}">
 <link rel="stylesheet" href="{{url_for('static', filename='css/footer.css')}}">
-<title>User profile of {{username}}</title>
+<title>Profile Page of User {{username}}</title>
 <meta name="description" content="{{userdata[0]['description'][:120]}}">
 {%endblock%}
 
@@ -32,7 +32,7 @@
                 </svg>
             </div>
             <div class="profile-details">
-                <h2 class="profile-name">@ {{userdata[0]['username'] | title}}</h2>
+                <h1 class="profile-name">@{{userdata[0]['username'] | title}}</h1>
                 <p class="profile-description">{{userdata[0]['description']}}</p>
                 <div class="profile-stats">
                     <div class="basic-stats">
