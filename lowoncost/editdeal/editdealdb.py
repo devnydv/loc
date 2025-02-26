@@ -24,7 +24,7 @@ def editdealdata(deal_id, post_data):
     
     deals_collection = db.deals
     deal_id = ObjectId(deal_id)
-    print(deal_id)
+    #print(deal_id)
     result = deals_collection.find_one_and_update(
         {"_id": deal_id},
         {"$set": post_data}

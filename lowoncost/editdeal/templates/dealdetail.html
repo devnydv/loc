@@ -147,9 +147,27 @@
             </ul> -->
         </div>
     </div>
-
-
-
+{%if data["pros"] != [""] %}
+    <div class="terms-section">
+        <h3 class="section-title">Pros</h3>
+        <div class="description-content">
+            <ul class="features-list">
+                {%for pros in data["pros"]%}
+                <li>{{pros}}</li>
+                {%endfor%}
+                
+            </ul>
+        </div>
+        <h3 class="section-title">Cons</h3>
+        <div class="description-content">
+            <ul class="features-list">
+                {%for cons in data["cons"]%}
+                <li>{{cons}}</li>
+                {%endfor%}
+            </ul>
+        </div>
+    </div>
+{%endif%}
 
     <div class="terms-section">
         <h3 class="section-title">Terms &amp; Conditions</h3>

@@ -30,7 +30,19 @@ class adddeal(Form):
         'Description',
         validators=[
             DataRequired(message="Product link is required."),
-            Length(min=6, max=500, message="Description must be more than 6 and less than 500 characters.") 
+            Length(min=100, max=1500, message="Description must be more than 100 and less than 1500 characters.") 
+        ]
+    )
+    pros = StringField(
+        'Pros',
+        validators=[
+            Length(min=0, max=1000, message="Deal name must be between 0 and 1000 characters.")
+        ]
+    )
+    cons = StringField(
+        'Cons',
+        validators=[ 
+            Length(min=0, max=1000, message="Deal name must be between 0 and 1000 characters.")
         ]
     )
     currentPrice = IntegerField(

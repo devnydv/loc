@@ -19,13 +19,19 @@ def newdeal():
     if request.method == "POST":
         data = request.form
         data = dict(data)
+        pros = data["pros"].split(',')
+        pros = [item.strip() for item in pros]
+        cons = data["cons"].split(',')
+        cons = [item.strip() for item in cons]
+        data["pros"] = pros
+        data["cons"] = cons
         correntprice = int(data["currentPrice"])
         originalprice = int(data["originalPrice"])
+
         data["status"] = "pending"
-        
         data["currentPrice"] = correntprice
         data["originalPrice"] = originalprice
-        
+        print(pros, cons)
         if "username" in session:
             username = session["username"]
             data["username"] = username
@@ -44,7 +50,7 @@ def editdeal(id):
         username = session["username"]
         
         data = getaitem(id)
-        print(data)
+        #print(data)
         if request.method == "GET":
             item = data
             form.description.data = item["description"]
@@ -56,14 +62,20 @@ def editdeal(id):
     if request.method == "POST":
         data = request.form
         data = dict(data)
+        pros = data["pros"].split(',')
+        pros = [item.strip() for item in pros]
+        cons = data["cons"].split(',')
+        cons = [item.strip() for item in cons]
+        data["pros"] = pros
+        data["cons"] = cons
         correntprice = int(data["currentPrice"])
         originalprice = int(data["originalPrice"])
         data["status"] = "pending"
         data["username"] = username
         data["currentPrice"] = correntprice
         data["originalPrice"] = originalprice
+        
         res = editdealdata(id, data)
-        print(res)
         return redirect(url_for('dash', name=session["username"]))
     
 @app.route('/details/<id>')
