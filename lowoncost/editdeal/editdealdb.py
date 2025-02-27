@@ -55,3 +55,10 @@ def getaitem(id):
     id = ObjectId(id)
     data = deals_collection.find_one({"_id":id})
     return data
+
+
+
+def recomand():
+    deals_collection = db.deals
+    data = list(deals_collection.find().sort('_id', -1).limit(12))
+    return data

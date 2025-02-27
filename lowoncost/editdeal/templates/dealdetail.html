@@ -1,9 +1,11 @@
 {%extends"base.html" %}
 {% from "macros/nav.html" import nav%}
+{% from "macros/dealsCard.html" import Card%}
 {%block seo%}
 
 <link rel="stylesheet" href="{{url_for('editdeal.static', filename='css/detail.css')}}">
 <link rel="stylesheet" href="{{url_for('static', filename='css/nav.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='css/home.css')}}">
 
 <title>{{data['title'][:45]}} - LowonCost</title>
 <meta name="description" content="{{data['description'][:100]}}...">
@@ -184,6 +186,18 @@
     </div>
 </div>
 
+<div class="deals-header">
+    <h2 class="section-header" style="margin: 0;">More Deals</h2>
+</div>
+<div class="deals-container" id="deals-container">
+    {%for item in recomand %}
+    <!-- Deal Cards -->
+    {{Card(item, username, userprofile)}}
+    {%endfor%}
+
+
+
+</div>
 <!-- footer goes here -->
 {% include "footer.html"%}
 
