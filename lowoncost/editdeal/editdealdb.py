@@ -61,6 +61,6 @@ def getaitem(id):
 
 def recomand():
     deals_collection = db.deals
-    data = list(deals_collection.find().sort('_id', -1).limit(12))
+    data = list(deals_collection.find().sort('_id', -1).limit(18))
     data = json.loads(json_util.dumps(data))
     return data
