@@ -81,6 +81,10 @@ def how():
 def robots_txt():
     return send_from_directory(app.root_path, 'robots.txt')
 
+@app.route('/sitemap.xml')
+def sitemap():
+    return send_from_directory(app.root_path, 'sitemap.xml')
+
 # Custom error pages
 @app.route('/error_404')
 def error_404():
