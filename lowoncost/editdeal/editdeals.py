@@ -82,6 +82,9 @@ def editdeal(id):
 def dealdetails(id):
     data = getaitem(id)
     recomandation = recomand()
+    recomandation = [item for item in recomandation if item["_id"]['$oid'] != id]
+
+    
     if data == None:
         return redirect(url_for('error_404'))
     if "username" in session:
