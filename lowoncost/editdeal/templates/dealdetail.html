@@ -37,7 +37,7 @@
           "lowPrice": {{data['currentPrice']}},
           "highPrice": {{data['originalPrice']}},
           "priceCurrency": "INR",
-          "url": "https://www.lowoncost.xyz/details/{{data['id']}}"
+          "url": "https://www.lowoncost.xyz/details/{{data['_id']}}"
         }
       
       
@@ -64,7 +64,7 @@
         "@type": "ListItem",
         "position": 3,
         "name": "{{data['title'][:45]}}",
-        "item": "https://www.lowoncost.xyz/details/{{data['id']}}"
+        "item": "https://www.lowoncost.xyz/details/{{data['_id']}}"
       }
       ]
     }
