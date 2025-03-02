@@ -16,8 +16,9 @@
     {
       "@context": "https://schema.org/",
       "@type": "Product",
-      "name": "{{data['title'][:45]}}",
+      "name": "{{data['title']}}",
       "description": "{{data['description']}}",
+      "image": "{{data['imageUrl']}}",
       "review": {
         "@type": "Review",
         "reviewRating": {
@@ -31,11 +32,12 @@
           }
     },
         "offers": {
-          "@type": "AggregateOffer",
-          "offerCount": 1,
+          "@type": "Offer",
+          "price" : {{data['currentPrice']}},
           "lowPrice": {{data['currentPrice']}},
           "highPrice": {{data['originalPrice']}},
-          "priceCurrency": "INR"
+          "priceCurrency": "INR",
+          "url": "https://www.lowoncost.xyz/details/{{data['id']}}"
         }
       
       
@@ -61,7 +63,8 @@
       {
         "@type": "ListItem",
         "position": 3,
-        "name": "{{data['title'][:45]}}"
+        "name": "{{data['title'][:45]}}",
+        "item": "https://www.lowoncost.xyz/details/{{data['id']}}"
       }
       ]
     }
