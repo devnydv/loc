@@ -42,7 +42,7 @@
 
     
 
-
+//code for share button
 
     function addShareEventListeners() {
         const shareBtns = document.querySelectorAll('.share-button');

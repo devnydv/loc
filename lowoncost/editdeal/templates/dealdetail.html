@@ -96,13 +96,23 @@
             <h1 class="deal-title-large">{{data['title']}}</h1>
             <div class="tags-container">
                 <!-- <span class="tag">{{data['category'] |title}}</span> -->
-                <a href="/{{data['category']}}" title="Profile of {{data['category']}}" style="text-decoration: none;">
-                    <span class="tag">{{data['category'] |title}}</span>
+                <a href="/{{data['category']}}" class="tag" title="Profile of {{data['category']}}" style="text-decoration: none;">
+                    {{data['category'] |title}}
                 </a>
-                <a href="/profile/{{data['username']}}" title="Profile of {{data['username']}}"
+                <a href="/profile/{{data['username']}}" class="tag" title="Profile of {{data['username']}}"
                     style="text-decoration: none;">
-                    <span class="tag"> @{{data['username']|title}}</span>
+                     @{{data['username']|title}}
                 </a>
+                
+                <!-- <button class="tag" data-url="/details/{{data['_id']}}" aria-label="Share">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="18" cy="5" r="3" />
+                        <circle cx="6" cy="12" r="3" />
+                        <circle cx="18" cy="19" r="3" />
+                        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+                        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+                    </svg>
+                </button> -->
                 <!-- <span class="tag">@ {{data['username']}}</span> -->
 
             </div>
@@ -203,25 +213,6 @@
 </div>
 <!-- footer goes here -->
 {% include "footer.html"%}
+<script src="{{url_for('static', filename='js/loadmore.js')}}"></script>
 
-<!-- <script>
-        document.querySelectorAll('.action-btn').forEach(button => {
-            button.addEventListener('click', function () {
-                //alert(`${this.textContent} clicked!`);
-               let val = window.confirm("Save data?");
-               console.log(val)
-            });
-        });
-        document.querySelectorAll('.nav-icon').forEach(button => {
-            button.addEventListener('click', function () {
-                alert(`${this.textContent.trim()} clicked!`);
-            });
-        });
-        document.querySelectorAll('.footer-links a').forEach(link => {
-            link.addEventListener('click', function (e) {
-                e.preventDefault();
-                alert(`Navigating to: ${this.textContent}`);
-            });
-        });
-    </script> -->
 {%endblock%}
