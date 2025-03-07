@@ -35,13 +35,13 @@
             <div class="form-group">
     
                 {{form.pros.label}}
-                {%set pros = ', '.join(item['pros'])%}
-                {{form.pros(placeholder='List items Separated with commas(,)', value= pros) }}
+                {%set pros = '; '.join(item['pros'])%}
+                {{form.pros(placeholder='List items Separated with semicolons(;)', value= pros) }}
             </div>
             <div class="form-group">
                 {{form.cons.label}}
-                {%set cons = ', '.join(item['cons'])%}
-                {{form.cons(placeholder='List items Separated with commas(,)', value= cons) }}
+                {%set cons = '; '.join(item['cons'])%}
+                {{form.cons(placeholder='List items Separated with semicolons(;)', value= cons) }}
                 <!-- <input type="text" id="cons" name="cons" placeholder="Separate with comas(,)"
                         maxlength="1000" value="{%for cons in item['cons'] %}{{cons}}{%endfor%}">  -->
             </div>

@@ -19,9 +19,9 @@ def newdeal():
     if request.method == "POST":
         data = request.form
         data = dict(data)
-        pros = data["pros"].split(',')
+        pros = data["pros"].split(';')
         pros = [item.strip() for item in pros]
-        cons = data["cons"].split(',')
+        cons = data["cons"].split(';')
         cons = [item.strip() for item in cons]
         data["pros"] = pros
         data["cons"] = cons
@@ -62,9 +62,9 @@ def editdeal(id):
     if request.method == "POST":
         data = request.form
         data = dict(data)
-        pros = data["pros"].split(',')
+        pros = data["pros"].split(';')
         pros = [item.strip() for item in pros]
-        cons = data["cons"].split(',')
+        cons = data["cons"].split(';')
         cons = [item.strip() for item in cons]
         data["pros"] = pros
         data["cons"] = cons
