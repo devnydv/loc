@@ -147,7 +147,7 @@
             </div>
         </div>
     </div>
-    <div class="description-section">
+    <details class="description-section">
         <h2 class="section-title">About This Deal</h2>
         <div class="description-content">
             <p>Hurry! "{{data['title']}}" created by user {{data['username']}} is now available in {{data['category']
@@ -163,8 +163,8 @@
                     <li>Built-in High-Quality Microphone</li>
             </ul> -->
         </div>
-    </div>
-{%if data["pros"] != [""] %}
+    </details>
+        {%if data["pros"] != [""] %}
     <div class="terms-section">
         <h3 class="section-title">Pros</h3>
         <div class="description-content">
