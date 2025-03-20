@@ -4,13 +4,19 @@
 {% from "macros/nav.html" import nav%}
 {%block seo%}
 
-<title>Deals on {{cat |title}} | Lowoncost </title>
-<meta name="description" content="Find the lowest prices on the product you love with Lowoncost. Check out lowest priced deals from {{cat |title}} across different websites">
-<meta name="keywords" content="save money, Top deals from Ajio, Top deals from Amazon, Top deals from Flipkart, Top deals from Myntra, ajio offers">
+
+
+
+<title>Create and Grab Best Deals | Lowoncost</title>
+<meta name="description"
+  content="Find the lowest prices on the product you love with Lowoncost. Check out lowest priced deals across different websites.">
+<meta name="keywords"
+  content="save money, Top deals from Ajio, Top deals from Amazon, Top deals from Flipkart, Top deals from Myntra, ajio offers">
 
 <meta property="og:site_name" content="LowonCost">
-<meta property="og:title" content="Deals on {{cat |title}} | Lowoncost ">
-<meta property="og:description" content="Find the lowest prices on the product you love with Lowoncost. Check out lowest priced deals across different websites">
+<meta property="og:title" content="Lowoncost {{cat |title}}">
+<meta property="og:description"
+  content="Find the lowest prices on the product you love with Lowoncost. Check out lowest priced deals across different websites">
 <meta property="og:image" content="{{url_for('static', filename='icons/banner.webp')}}">
 <meta property="og:url" content="https://lowoncost.xyz/{{cat}}" />
 <meta property="og:type" content="website" />
@@ -44,39 +50,38 @@
 </script>
 
 {%endblock%}
-
 {%block content%}
-
 {{nav(loggedin, userprofile, username)}}
+<h1 class="section-header" style="color: #3498db;">Find The Lowest Prices on The Product You Love.</h1>
+{%for data in datas %}
+{% set cat = data.keys()%}
 
-  <h1 class="section-header" style= "color: #3498db;">Find The Lowest Prices on The Product You Love.</h1>
-
-<!-- #calling category macro -->
-{{category(username = False)}}
-
+{%for key in cat %}
+{%- set catname = key.replace("_", " ") -%}
 <div class="deals-header">
-    <h2 class="section-header" style="margin: 0;">Latest Deals</h2>
+  <h2 class="section-header">{{catname | title}}</h2>
 </div>
+{%set item = data[key]%}
 {%if items==[]%}
-<h3 style="text-align: center;">No deals found. Add new deal...</h3> 
+<h3 style="text-align: center;">No deals found. Add new deal...</h3>
 {%endif%}
 <div class="deals-container" id="deals-container">
-    {%for item in items %}
-    <!-- Deal Cards -->
-    {{Card(item, username, userprofile)}}
-    {%endfor%}
+  {%for i in item %}
+  <!-- Deal Cards -->
+  {{Card(i, username, userprofile)}}
+  {%endfor%}
 
 
 
 </div>
+<div class="deals-header">
+  <a href="/{{key}}" title="All items from {{key}} category" class="load-more" style="font-weight: 700;">View more</a>
+</div>
 
+{%endfor%}
 
- <!-- {%if items |length >= 12%}
-<button id="loadbut" class="load-more" onclick="loadmore()">
-    <p>Load more...</p>
-</button>
-{%endif%}  -->
+{%endfor%}
 
 {% include "footer.html"%}
-<script src="{{url_for('static', filename='js/loadmore.js')}}"></script>
+<script src="{{url_for('static', filename='js/share.js')}}"></script>
 {%endblock%}

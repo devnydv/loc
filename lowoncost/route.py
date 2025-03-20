@@ -1,5 +1,5 @@
 from lowoncost import app
-from lowoncost.db import get_deals
+from lowoncost.db import get_deals, home_deals
 from flask import render_template, request, flash, session, send_from_directory, Response
 
 import requests
@@ -11,7 +11,20 @@ def session_user():
     else:
         return False
     
+#old working code with index.html
+# @app.route("/")
+# def home():
+#     loggedin = session_user()
+#     if loggedin:
+#         username = session['username']
+#     else:
+#         username = None
+    
+#     items = get_deals(cat = "all")
+#     return render_template("index.html", loggedin = loggedin, userprofile = False, username= username, items = items)
+#old code ends heere 
 
+#new code for home page with 3 items from each category
 @app.route("/")
 def home():
     loggedin = session_user()
@@ -19,12 +32,10 @@ def home():
         username = session['username']
     else:
         username = None
+    items = home_deals()
     
-    items = get_deals(cat = "all")
-    return render_template("index.html", loggedin = loggedin, userprofile = False, username= username, items = items)
-
-
-
+    #return return render_template("index.html", loggedin = loggedin, userprofile = False, username= username, items = items)("index.html", loggedin = loggedin, userprofile = False, username= username, items = items)
+    return render_template("home.html", datas= items, loggedin = loggedin, userprofile = False, username= username)
 
 
 @app.route("/<cat>")

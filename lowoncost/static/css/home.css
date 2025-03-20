@@ -10,7 +10,11 @@ body {
     color: #ffffff;
 }
 
-
+a{
+    text-decoration: none;
+    color: #ffffff;
+    
+}
 
 .profile-segment {
     background: transparent;
@@ -362,7 +366,7 @@ body {
     padding: 0 15px;
     text-align: center;
     color: #ffffff;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     font-weight: 600;
 }
 

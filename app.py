@@ -3,6 +3,7 @@ from lowoncost import app
 from lowoncost.authfile import authfile
 from lowoncost.editdeal import editdeal
 from lowoncost.user import user
+from lowoncost.tabledeals import tabledeal
 from lowoncost.admin.adminauth import adminauth
 from lowoncost.admin.admindash import admindash
 
