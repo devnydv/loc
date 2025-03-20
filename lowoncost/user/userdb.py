@@ -9,7 +9,7 @@ def get_user_data(uname, page=1, page_size=12):
     if user == None:
         return []
     else:
-        print(user)
+        
         skip =   (12 * page) - 12
         # Fetch paginated deals
         deals_cursor = db.deals.find(
