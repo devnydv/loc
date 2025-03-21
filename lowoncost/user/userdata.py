@@ -68,6 +68,8 @@ def filter(items, cat ):
 @app.route("/profile/<username>/<cat>", methods = ["GET", "POST"])
 def dash_cate(username,cat):
     data = get_cat_data(username, cat)
+    if cat == "all":
+        return redirect(url_for('dash', name = username))
     if data == []:
         return redirect(url_for('error_404'))
     elif "username" in session and username == session['username']:
