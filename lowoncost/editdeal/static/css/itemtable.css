@@ -1,0 +1,35 @@
+.table-container {
+    font-family: Arial, sans-serif;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    margin: 0;
+}
+
+table {
+    width: 100%;
+    /* max-width: 800px; */
+    border-collapse: collapse;
+    background-color: #1e1e1e;
+    border-radius: 8px;
+    overflow: hidden;
+}
+th, td {
+    border: 1px solid #333;
+    padding: 12px;
+    text-align: left;
+}
+th {
+    background-color: #333;
+    color: #fff;
+}
+td {
+    background-color: #2a2a2a;
+}
+@media (max-width: 480px) {
+    table {
+        width: 100%;
+    }
+}

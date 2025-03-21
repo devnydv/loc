@@ -4,6 +4,7 @@
 {%block seo%}
 
 <link rel="stylesheet" href="{{url_for('editdeal.static', filename='css/detail.css')}}">
+<link rel="stylesheet" href="{{url_for('editdeal.static', filename='css/itemtable.css')}}">
 <link rel="stylesheet" href="{{url_for('static', filename='css/nav.css')}}">
 <link rel="stylesheet" href="{{url_for('static', filename='css/home.css')}}">
 
@@ -12,7 +13,7 @@
 <meta property="og:title" content="{{data['title']}}">
 <meta property="og:description" content="{{data['description'][:110]}}">
 <meta property="og:image" content="{{data['imageUrl']}}">
-<script type="application/ld+json">
+<!-- <script type="application/ld+json">
     {
       "@context": "https://schema.org/",
       "@type": "Product",
@@ -44,7 +45,7 @@
       
       
     }
-    </script>
+</script> -->
 <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -98,14 +99,15 @@
             <h1 class="deal-title-large">{{data['title']}}</h1>
             <div class="tags-container">
                 <!-- <span class="tag">{{data['category'] |title}}</span> -->
-                <a href="/{{data['category']}}" class="tag" title="Profile of {{data['category']}}" style="text-decoration: none;">
+                <a href="/{{data['category']}}" class="tag" title="Profile of {{data['category']}}"
+                    style="text-decoration: none;">
                     {{data['category'] |title}}
                 </a>
                 <a href="/profile/{{data['username']}}" class="tag" title="Profile of {{data['username']}}"
                     style="text-decoration: none;">
-                     @{{data['username']|title}}
+                    @{{data['username']|title}}
                 </a>
-                
+
                 <!-- <button class="tag" data-url="/details/{{data['_id']}}" aria-label="Share">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <circle cx="18" cy="5" r="3" />
@@ -147,8 +149,39 @@
             </div>
         </div>
     </div>
+    <div class="table-container">
+        <table>
+            <tr>
+                <th>Product Name</th>
+                <td>{{data['title'][:50]}}...</td>
+            </tr>
+            <tr>
+                <th>Discounted Price</th>
+                <td>₹{{data['currentPrice']}}</td>
+            </tr>
+            <tr>
+                <th>MRP</th>
+                <td>₹{{data['originalPrice']}}</td>
+            </tr>
+
+            <tr>
+                <th>Discount %</th>
+                <td>{{disc| int}}%</td>
+            </tr>
+            <tr>
+                <th>Category</th>
+                <td>{{data['category'] | title}}</td>
+            </tr>
+            <tr>
+                <th>Created By</th>
+                <td>{{data['username'] | title}}</td>
+            </tr>
+        </table>
+    </div>
     <div class="description-section">
         <h2 class="section-title">About This Deal</h2>
+
+
         <div class="description-content">
             <p>Hurry! "{{data['title']}}" created by user {{data['username']}} is now available in {{data['category']
                 |title}} category! Originally ₹{{data['originalPrice']}}, now just ₹{{data['currentPrice']}} —a massive
@@ -164,7 +197,7 @@
             </ul> -->
         </div>
     </div>
-        {%if data["pros"] != [""] %}
+    <!-- {%if data["pros"] != [""] %}
     <div class="terms-section">
         <h3 class="section-title">Pros</h3>
         <div class="description-content">
@@ -172,7 +205,7 @@
                 {%for pros in data["pros"]%}
                 <li>{{pros}}</li>
                 {%endfor%}
-                
+
             </ul>
         </div>
         <h3 class="section-title">Cons</h3>
@@ -184,7 +217,40 @@
             </ul>
         </div>
     </div>
-{%endif%}
+    {%endif%} -->
+    {%if data["pros"] != [""] %}
+
+    <div class="table-container">
+        <table style="margin-top: 1rem;">
+            <tr>
+                <th>Pros</th>
+                <th>Cons</th>
+            </tr>
+            <tr>
+                <td>
+                    <ul class="features-list">
+                        {%for pros in data["pros"]%}
+                        <li>{{pros}}</li>
+                        {%endfor%}
+
+
+                    </ul>
+
+                </td>
+                <td>
+                    <ul class="features-list">
+                        {%for cons in data["cons"]%}
+                        <li>{{cons}}</li>
+                        {%endfor%}
+
+                    </ul>
+
+                </td>
+            </tr>
+
+        </table>
+    </div>
+    {%endif%}
 
     <div class="terms-section">
         <h3 class="section-title">Terms &amp; Conditions</h3>

@@ -31,7 +31,7 @@ def newdeal():
         data["status"] = "pending"
         data["currentPrice"] = correntprice
         data["originalPrice"] = originalprice
-        print(pros, cons)
+        
         if "username" in session:
             username = session["username"]
             data["username"] = username
