@@ -33,18 +33,18 @@ class adddeal(Form):
             Length(min=100, max=1500, message="Description must be more than 100 and less than 1500 characters.") 
         ]
     )
-    pros = StringField(
-        'Pros',
-        validators=[
-            Length(min=0, max=1000, message="Deal name must be between 0 and 1000 characters.")
-        ]
-    )
-    cons = StringField(
-        'Cons',
-        validators=[ 
-            Length(min=0, max=1000, message="Deal name must be between 0 and 1000 characters.")
-        ]
-    )
+    # pros = StringField(
+    #     'Pros',
+    #     validators=[
+    #         Length(min=0, max=1000, message="Deal name must be between 0 and 1000 characters.")
+    #     ]
+    # )
+    # cons = StringField(
+    #     'Cons',
+    #     validators=[ 
+    #         Length(min=0, max=1000, message="Deal name must be between 0 and 1000 characters.")
+    #     ]
+    # )
     currentPrice = IntegerField(
         'Current Price',
         validators=[

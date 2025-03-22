@@ -19,12 +19,12 @@ def newdeal():
     if request.method == "POST":
         data = request.form
         data = dict(data)
-        pros = data["pros"].split(';')
-        pros = [item.strip() for item in pros]
-        cons = data["cons"].split(';')
-        cons = [item.strip() for item in cons]
-        data["pros"] = pros
-        data["cons"] = cons
+        # pros = data["pros"].split(';')
+        # pros = [item.strip() for item in pros]
+        # cons = data["cons"].split(';')
+        # cons = [item.strip() for item in cons]
+        #data["pros"] = pros
+        #data["cons"] = cons
         correntprice = int(data["currentPrice"])
         originalprice = int(data["originalPrice"])
 
@@ -62,12 +62,12 @@ def editdeal(id):
     if request.method == "POST":
         data = request.form
         data = dict(data)
-        pros = data["pros"].split(';')
-        pros = [item.strip() for item in pros]
-        cons = data["cons"].split(';')
-        cons = [item.strip() for item in cons]
-        data["pros"] = pros
-        data["cons"] = cons
+        # pros = data["pros"].split(';')
+        # pros = [item.strip() for item in pros]
+        # cons = data["cons"].split(';')
+        # cons = [item.strip() for item in cons]
+        # data["pros"] = pros
+        # data["cons"] = cons
         correntprice = int(data["currentPrice"])
         originalprice = int(data["originalPrice"])
         data["status"] = "pending"
