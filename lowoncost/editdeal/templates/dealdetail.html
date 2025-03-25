@@ -13,7 +13,7 @@
 <meta property="og:title" content="{{data['title']}}">
 <meta property="og:description" content="{{data['description'][:110]}}">
 <meta property="og:image" content="{{data['imageUrl']}}">
-<!-- <script type="application/ld+json">
+<script type="application/ld+json">
     {
       "@context": "https://schema.org/",
       "@type": "Product",
@@ -45,8 +45,8 @@
       
       
     }
-</script> -->
-<script type="application/ld+json">
+</script>
+<!-- <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
@@ -71,7 +71,7 @@
       }
       ]
     }
-</script>
+</script> -->
 {%endblock%}
 {%block content%}
 
@@ -143,8 +143,8 @@
 
             <div class="action-buttons">
                 <!-- <button class="action-btn btn-primary">Get This Deal</button> -->
-                <a href="{{data['dealUrl']}}" target="_blank" class="action-btn btn-primary">Get This Deal</a>
-                <a href="/" class="action-btn btn-secondary">Explore more Deals</a>
+                <a href="{{data['dealUrl']}}" target="_blank" class="action-btn btn-primary" title="Grab the deal">Get This Deal</a>
+                <a href="/" class="action-btn btn-secondary" title="Home">Explore more Deals</a>
                 <!-- <button class="action-btn btn-secondary">Explore more Deals</button> -->
             </div>
         </div>
