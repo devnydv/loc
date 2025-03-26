@@ -48,9 +48,11 @@
 {%block content%}
 
 {{nav(loggedin, userprofile, username)}}
-
-  <h1 class="section-header" style= "color: #3498db;">Find The Lowest Prices on The Product You Love.</h1>
-
+{% if cat == "all"%}
+  <h1 class="section-header" style= "color: #3498db;">Grab the Best Deals on Lowoncost</h1>
+{%else%}
+  <h1 class="section-header" style= "color: #3498db;">Grab the Best Deals on {{cat | title}} </h1>
+{%endif%}
 <!-- #calling category macro -->
 {{category(username = False)}}
 
