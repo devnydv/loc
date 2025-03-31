@@ -1,0 +1,34 @@
+<!-- removed seo for details page as things were not working properly.  --> 
+<script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Product",
+      "name": "{{data['title']}}",
+      "description": "{{data['description']}}",
+      "image": "{{data['imageUrl']}}",
+      "review": {
+        "@type": "Review",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": 4,
+          "bestRating": 5
+        },
+        "author": {
+            "@type": "Person",
+            "name": "User"
+          }
+    },
+        "offers": {
+          "@type": "Offer",
+          "price" : {{data['currentPrice']}},
+          "lowPrice": {{data['currentPrice']}},
+          "highPrice": {{data['originalPrice']}},
+          "priceCurrency": "INR",
+          "url": "https://www.lowoncost.xyz/details/{{data['_id']}}",
+          "availability": "InStock"
+
+        }
+      
+      
+    }
+</script>
