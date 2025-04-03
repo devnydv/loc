@@ -1,0 +1,80 @@
+main {
+    padding: 20px;
+}
+
+.student-filters {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: #2d2d2d;
+}
+
+.filter-group select {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+.filter-group label {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.students-table {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 8px;
+    background-color: #2d2d2d;
+}
+
+th,
+td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.action-cell a {
+    color: #3498db;
+    padding: 4px;
+}
+
+.action-cell a button {
+    border: none;
+    outline: none;
+
+    background-color: #3498db;
+    padding: 6px;
+    margin: 2px 4px;
+    text-decoration: none;
+    font-size: large;
+    font-weight: 500;
+    border-radius: 8px;
+}
+
+
+
+
+@media (max-width: 890px) {
+    .student-filters {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+    }
+}

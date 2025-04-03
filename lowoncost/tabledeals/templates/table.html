@@ -1,0 +1,218 @@
+{%extends "base.html"%}
+{% from "macros/nav.html" import nav%}
+{%block seo%}
+<title>Deals from all categories</title>
+<meta name="description" content="Best deals from all categories from different websites. Grab deals on a single page.">
+<meta name="keywords" content="deals, categories, websites, best deals, discounts, ratings">
+<meta name="author" content="Lowoncost">
+<meta name="theme-color" content="#3498db">
+<meta name="robots" content="index, follow">
+<meta name="revisit-after" content="7 days">
+<meta name="language" content="English">
+<meta name="rating" content="general">
+<meta name="distribution" content="global">
+<meta name="url" content="https://lowoncost.xyz">
+<meta name="og:title" content="Deals from all categories">
+<meta name="og:description" content="Best deals from all categories from different websites.">
+<meta name="og:image" content="https://yourwebsite.com/image.jpg">
+<meta name="og:url" content="https://lowoncost.xyz/dealtable">
+<meta name="og:type" content="website">
+<meta name="og:site_name" content="Lowoncost">
+
+
+<link rel="stylesheet" href="{{url_for('static', filename='css/nav.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='css/home.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='css/table.css')}}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" w-tid="13">
+<style>
+    main {
+        padding: 20px;
+    }
+
+    .student-filters {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        background: white;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        background-color: #2d2d2d;
+    }
+
+    .filter-group select {
+        padding: 8px;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+    }
+
+    .filter-group label {
+        margin-right: 10px;
+        font-weight: bold;
+    }
+
+    .students-table {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        border-radius: 8px;
+        background-color: #2d2d2d;
+    }
+
+    th,
+    td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #eee;
+    }
+
+    .action-cell a {
+        color: #3498db;
+        padding: 4px;
+    }
+
+    .action-cell a button {
+        border: none;
+        outline: none;
+
+        background-color: #3498db;
+        padding: 6px;
+        margin: 2px 4px;
+        text-decoration: none;
+        font-size: large;
+        font-weight: 500;
+        border-radius: 8px;
+    }
+
+
+
+
+    @media (max-width: 890px) {
+        .student-filters {
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        table {
+            display: block;
+            overflow-x: auto;
+        }
+    }
+</style>
+{%endblock%}
+{%block content%}
+{{nav(loggedin, userprofile = False, username = 'dev')}}
+<h1 class="section-header" style="color: #3498db;">Best deals from all categories from different websites</h1>
+<main>
+    
+    <!-- <div class="student-filters" w-tid="367">
+        <div class="filter-group" w-tid="369">
+            <label w-tid="371">Department:</label>
+            <select w-tid="373">
+                <option w-tid="375">All Departments</option>
+                <option w-tid="377">Computer Science</option>
+                <option w-tid="379">Business Admin</option>
+                <option w-tid="381">Engineering</option>
+                <option w-tid="383">Psychology</option>
+            </select>
+        </div>
+
+        <div class="filter-group" w-tid="385">
+            <label w-tid="387">Year:</label>
+            <select w-tid="389">
+                <option w-tid="391">All Years</option>
+                <option w-tid="393">First Year</option>
+                <option w-tid="395">Second Year</option>
+                <option w-tid="397">Third Year</option>
+                <option w-tid="399">Fourth Year</option>
+            </select>
+        </div>
+
+        <div class="filter-group" w-tid="401">
+            <label w-tid="403">Status:</label>
+            <select w-tid="405">
+                <option w-tid="407">All Status</option>
+                <option w-tid="409">Active</option>
+                <option w-tid="411">On Leave</option>
+                <option w-tid="413">Graduated</option>
+            </select>
+        </div>
+    </div> -->
+    <div class="table-container">
+        <table w-tid="417">
+            <thead w-tid="419">
+                <tr w-tid="421">
+
+                    <th w-tid="425">Name</th>
+                    <th w-tid="427">Price Range</th>
+                    <th>Discount %</th>
+                    <th w-tid="429">category</th>
+                    <th w-tid="429">Ratings</th>
+                    <th w-tid="431">Buy from</th>
+
+
+                </tr>
+            </thead>
+            <tbody w-tid="439">
+                <!-- <tr w-tid="441">
+
+                    <td w-tid="445">John Smith</td>
+                    <td w-tid="447">90</td>
+                    <td w-tid="447">30%</td>
+                    <td w-tid="447">mans wear</td>
+                    <td w-tid="449">
+                        ⭐
+                    </td>
+                    <td w-tid="451" class="action-cell">
+                        <a href="/dealstable">Flipkart</a>
+                        <a href="">Amazon</a>
+
+                    </td> -->
+
+                    <!-- <td w-tid="455"><span class="status active" w-tid="457">Active</span></td> -->
+                    <!-- <td class="action-cell" w-tid="459">
+                        <button class="action-btn view-btn" w-tid="461"><i class="fas fa-eye" w-tid="463"></i></button>
+                        <button class="action-btn edit-btn" w-tid="465"><i class="fas fa-edit" w-tid="467"></i></button>
+                        <button class="action-btn delete-btn" w-tid="469"><i class="fas fa-trash"
+                                w-tid="471"></i></button>
+                    </td> 
+                </tr>-->
+
+
+                {%for item in data%}
+
+
+                <tr w-tid="569">
+
+                    <td w-tid="573">{{item.name}}</td>
+                    <td w-tid="575">{{item.price_range}}</td>
+                    <td w-tid="577">{{item.discount}}</td>
+                    <td w-tid="579">{{item.category}}</td>
+                    <td w-tid="449">
+
+                        {% for rating in range(item.rating)%}
+                        ⭐
+                        {%endfor%}
+                    </td>
+                    <td w-tid="451" class="action-cell">
+                        {%for key, val in item.website.items()%}
+                            
+                        <a href="{{val}}">{{key | title}}</a>
+                        
+                        {%endfor%}
+                    </td>
+
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+    </div>
+</main>
+{%endblock%}

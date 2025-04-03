@@ -12,6 +12,7 @@ app.register_blueprint(editdeal)
 app.register_blueprint(user)
 app.register_blueprint(adminauth)
 app.register_blueprint(admindash)
+app.register_blueprint(tabledeal)
 
 
 if __name__=="__main__":
