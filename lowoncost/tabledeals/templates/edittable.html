@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block seo %}
+<title>Edit Deals table</title>
+<link rel="stylesheet" href="{{url_for('static', filename='css/nav.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='css/home.css')}}">
+
+<link rel="stylesheet" href="{{url_for('static', filename='css/adddeal.css')}}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" w-tid="13">
+{%endblock%}
+{% block content %}
+{{data}}
+<div class="form-container">
+    <form id="tableform" method="POST" action="/edittable/{{data._id}}">
+        <h2 class="form-title">Edit Deal into table</h2>
+        
+        <!-- <label for="id">ID</label>
+        <input id="id" name="id" type="text"  placeholder="Price range" value="{{data.id}}" readonly> -->
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text"  placeholder="Price range" value="{{data.name}}">
+    
+        <label for="price_range">Price</label>
+        <input id="price_range" name="price_range" type="text" placeholder="Price range" value="{{data.price_range}}">
+        
+        <label for="discount">Discount</label>
+        <input id="discount" name="discount" placeholder="Discount" required="" type="text" value="{{data.discount}}">
+    
+        <label for="category">Category</label>
+        <input type="text" id="category" name="category" placeholder="Category" value="{{data.category}}">
+    
+        <label for="rating">Ratings</label>
+        <input id="rating" name="rating" placeholder="Ratings" required="" type="number" value="{{data.rating}}">
+    
+        <label for="website">Website</label>
+        <input id="website" name="website" placeholder=" eg: flipkart, https://low.com; amazon, https://amazon" required="" type="text" value="{{data.website}}">
+        <div class="button-group">
+            <button type="submit" class="btn btn-primary">Create Deal</button>
+            <button type="button" class="btn btn-secondary" onclick="window.location.href='/dealtable'">Cancel</button>
+            <!-- <button type="button" class="btn btn-third" onclick="window.location.href='/'">Delete This Deal</button> -->
+        </div>
+    </form>
+    </div>
+{%endblock%}

@@ -2,9 +2,10 @@ from lowoncost.db import db, collection
 from bson.objectid import ObjectId
 from bson import json_util
 import json
+
+
+
 def addnewdeal(data):
-    
-    
     # Insert the new deal into the deals collection
     deals_collection = db.deals
     result = deals_collection.insert_one(data)

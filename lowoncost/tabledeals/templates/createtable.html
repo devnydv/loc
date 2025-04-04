@@ -3,7 +3,7 @@
 <title>Edit Deals table</title>
 <link rel="stylesheet" href="{{url_for('static', filename='css/nav.css')}}">
 <link rel="stylesheet" href="{{url_for('static', filename='css/home.css')}}">
-
+<link rel="stylesheet" href="{{url_for('static', filename='css/table.css')}}">
 <link rel="stylesheet" href="{{url_for('static', filename='css/adddeal.css')}}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" w-tid="13">
 {%endblock%}
@@ -34,5 +34,75 @@
         <!-- <button type="button" class="btn btn-third" onclick="window.location.href='/'">Delete This Deal</button> -->
     </div>
 </form>
+</div>
+<div class="table-container">
+    <table w-tid="417">
+        <thead w-tid="419">
+            <tr w-tid="421">
+
+                <th w-tid="425">Name</th>
+                <th w-tid="427">Price Range</th>
+                <th>Discount %</th>
+                <th w-tid="429">category</th>
+                <th w-tid="429">Ratings</th>
+                <th w-tid="431">Buy from</th>
+                <th w-tid="431">edit</th>
+
+
+            </tr>
+        </thead>
+        <tbody w-tid="439">
+            <!-- <tr w-tid="441">
+
+                <td w-tid="445">John Smith</td>
+                <td w-tid="447">90</td>
+                <td w-tid="447">30%</td>
+                <td w-tid="447">mans wear</td>
+                <td w-tid="449">
+                    ⭐
+                </td>
+                <td w-tid="451" class="action-cell">
+                    <a href="/dealstable">Flipkart</a>
+                    <a href="">Amazon</a>
+
+                </td> -->
+
+                <!-- <td w-tid="455"><span class="status active" w-tid="457">Active</span></td> -->
+                <!-- <td class="action-cell" w-tid="459">
+                    <button class="action-btn view-btn" w-tid="461"><i class="fas fa-eye" w-tid="463"></i></button>
+                    <button class="action-btn edit-btn" w-tid="465"><i class="fas fa-edit" w-tid="467"></i></button>
+                    <button class="action-btn delete-btn" w-tid="469"><i class="fas fa-trash"
+                            w-tid="471"></i></button>
+                </td> 
+            </tr>-->
+
+
+            {%for item in data%}
+
+
+            <tr w-tid="569">
+
+                <td w-tid="573">{{item.name}}</td>
+                <td w-tid="575">{{item.price_range}}</td>
+                <td w-tid="577">{{item.discount}}</td>
+                <td w-tid="579">{{item.category}}</td>
+                <td w-tid="449">
+
+                    {% for rating in range(item.rating)%}
+                    ⭐
+                    {%endfor%}
+                </td>
+                <td w-tid="451" class="action-cell">
+                    {%for key, val in item.website.items()%}
+                        
+                    <a href="{{val}}" title="Buy from {{key | title}}">{{key | title}}</a>
+                    
+                    {%endfor%}
+                </td>
+                <td w-tid="579"> <a href="/edittable/{{item._id}}"> Edit</a> </td>
+            </tr>
+            {%endfor%}
+        </tbody>
+    </table>
 </div>
 {%endblock%}
