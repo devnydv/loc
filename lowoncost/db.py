@@ -35,7 +35,7 @@ def home_deals():
     category: [
             {"$match": {"category": category}},  # Filter for the category
             {"$sort": {"_id": -1}},  # Sort if needed (e.g., latest first)
-            {"$limit": 3}  # Get only 6 documents
+            {"$limit": 6}  # Get only 6 documents
         ]
         for category in categories
         }
