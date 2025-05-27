@@ -1,7 +1,7 @@
 from lowoncost import app
 from lowoncost.db import get_deals, home_deals
 from flask import render_template, request, flash, session, send_from_directory, Response
-
+from flask_caching import Cache
 import requests
 
 
@@ -24,8 +24,13 @@ def session_user():
 #     return render_template("index.html", loggedin = loggedin, userprofile = False, username= username, items = items)
 #old code ends heere 
 
+cache =Cache(app)
+app.config["CACHE_TYPE"] = "SimpleCache"
+app.config["CACHE_DEFOULT_TIMEOUT"] = 600 * 6
+
 #new code for home page with 3 items from each category
 @app.route("/")
+@cache.cached()
 def home():
     loggedin = session_user()
     if loggedin:
