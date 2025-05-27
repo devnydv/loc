@@ -24,9 +24,10 @@ def session_user():
 #     return render_template("index.html", loggedin = loggedin, userprofile = False, username= username, items = items)
 #old code ends heere 
 
-cache =Cache(app)
+
 app.config["CACHE_TYPE"] = "SimpleCache"
 app.config["CACHE_DEFOULT_TIMEOUT"] = 600 * 6
+cache =Cache(app)
 
 #new code for home page with 3 items from each category
 @app.route("/")
