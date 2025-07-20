@@ -3,31 +3,27 @@
 {% from "macros/dealsCard.html" import Card%}
 {% from "macros/nav.html" import nav%}
 {%block seo%}
+    <title>Create and Grab Best Deals | Lowoncost</title>
+    <meta name="description"
+        content="Find the lowest prices on the product you love with Lowoncost. Check out lowest priced deals across different websites.">
+    <meta name="keywords"
+        content="save money, Top deals from Ajio, Top deals from Amazon, Top deals from Flipkart, Top deals from Myntra, ajio offers">
+
+    <meta property="og:site_name" content="LowonCost">
+    <meta property="og:title" content="Lowoncost {{cat |title}}">
+    <meta property="og:description"
+        content="Find the lowest prices on the product you love with Lowoncost. Check out lowest priced deals across different websites">
+    <meta property="og:image" content="{{url_for('static', filename='icons/banner.webp')}}">
+    <meta property="og:url" content="https://lowoncost.xyz/{{cat}}" />
+    <meta property="og:type" content="website" />
+    <meta image="https://lowoncost.xyz/static/icons/banner.webp" />
 
 
-
-
-<title>Create and Grab Best Deals | Lowoncost</title>
-<meta name="description"
-  content="Find the lowest prices on the product you love with Lowoncost. Check out lowest priced deals across different websites.">
-<meta name="keywords"
-  content="save money, Top deals from Ajio, Top deals from Amazon, Top deals from Flipkart, Top deals from Myntra, ajio offers">
-
-<meta property="og:site_name" content="LowonCost">
-<meta property="og:title" content="Lowoncost {{cat |title}}">
-<meta property="og:description"
-  content="Find the lowest prices on the product you love with Lowoncost. Check out lowest priced deals across different websites">
-<meta property="og:image" content="{{url_for('static', filename='icons/banner.webp')}}">
-<meta property="og:url" content="https://lowoncost.xyz/{{cat}}" />
-<meta property="og:type" content="website" />
-<meta image="https://lowoncost.xyz/static/icons/banner.webp" />
-
-
-<meta content="IN" name="country">
-<link rel="stylesheet" href="{{url_for('static', filename='css/home.css')}}">
-<link rel="stylesheet" href="{{url_for('static', filename='css/nav.css')}}">
-<link rel="stylesheet" href="{{url_for('static', filename='css/footer.css')}}">
-<script type="application/ld+json">
+    <meta content="IN" name="country">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/home.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/nav.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/footer.css')}}">
+    <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
@@ -36,54 +32,254 @@
       "url": "https://www.lowoncost.xyz"
     }
 </script>
-<!-- <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": "https://lowoncost.xyz"
-          } 
-        ]
-      }
-</script> -->
+    <style>
+        :root {
+            --primary: #6d28d9;
+            --secondary: #4c1d95;
+            --text: #f8fafc;
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --accent: #8b5cf6;
+        }
 
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: var(--secondary);
+            padding: 1.5rem 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        .nav-links a:hover::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--accent);
+        }
+
+        .hero {
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.8rem;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .deals-section {
+            padding: 4rem 0;
+        }
+
+        .deals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .deal-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .deal-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .deal-card h3 {
+            margin-top: 0;
+        }
+
+        .deal-card p {
+            color: #94a3b8;
+        }
+
+        .deal-discount {
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .feature-section {
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature {
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid var(--secondary);
+        }
+
+        .deal-card svg {
+            margin-bottom: 1.5rem;
+            height: 64px;
+            width: 64px;
+        }
+    </style>
 {%endblock%}
 {%block content%}
 {{nav(loggedin, userprofile, username)}}
-<h1 class="section-header" style="color: #3498db;">Find The Lowest Prices on The Product You Love.</h1>
-{%for data in datas %}
-{% set cat = data.keys()%}
 
-{%for key in cat %}
-{%- set catname = key.replace("_", " ") -%}
-<div class="deals-header">
-  <h2 class="section-header">{{catname | title}}</h2>
-</div>
-{%set item = data[key]%}
-{%if items==[]%}
-<h3 style="text-align: center;">No deals found. Add new deal...</h3>
-{%endif%}
-<div class="deals-container" id="deals-container">
-  {%for i in item %}
-  <!-- Deal Cards -->
-  {{Card(i, username, userprofile)}}
-  {%endfor%}
+    <!-- <header>
+        <div class="container">
+            <nav>
+                <div class="logo">AffiliateLink</div>
+                <div class="nav-links">
+                    <a href="#">Home</a>
+                    <a href="#">Features</a>
+                    <a href="#">Pricing</a>
+                    <a href="#">Login</a>
+                </div>
+            </nav>
+        </div>
+    </header> -->
 
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Launch Your Affiliate Page in Minutes</h1>
+                <p>No coding required. Just sign up and start earning commissions through your custom affiliate
+                    marketing page.</p>
+                <button class="cta-button">Get Started - It's Free</button>
+            </div>
+        </section>
 
+        <section class="deals-section">
+            <div class="container">
+                <h2 style="text-align: center; margin-bottom: 2rem;">Trending Deals Right Now</h2>
+                <div class="deals-grid">
+                    <a href="/electronics" title="All items from Electronics category">
+                    <div class="deal-card">
+                        <img src="{{url_for('static', filename='svg/electronics.svg')}}" width="100"
+                         height="100" alt="Electronics">
+                        <h3>Electronics</h3>
+                        <p class="deal-discount">50% OFF</p>
+                        <p>Limited time offer on premium audio gear with extended warranty.</p>
+                    </div>
+                    </a>
+                    
+                    <a href="/fashion" title="All items from Fashion category">
+                    <div class="deal-card">
+                        <img src="{{url_for('static', filename='svg/fashion.svg')}}" width="100" height="100" alt="Fashion">
+                        <h3>Trending Fashion Wear</h3>
+                        <p class="deal-discount">30% OFF</p>
+                        <p>New fashion wear and latest wearables at a discounted price.</p>
+                    </div>
+                    </a>
+                    <a href="/home_and_garden" title="All items from Home and Garden category">
+                    <div class="deal-card">
+                        <img src="{{url_for('static', filename='svg/home.svg')}}" width="100"
+                         height="100" alt="Home and Garden">
+                        <h3>Kitchen and Garden</h3>
+                        <p class="deal-discount">60% OFF</p>
+                        <p>Grab the latest kitchen gadgets and garden tools at unbeatable prices.</p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+        </section>
 
-</div>
-<div class="deals-header">
-  <a href="/{{key}}" title="All items from {{key}} category" class="load-more" style="font-weight: 700;">View more</a>
-</div>
+        <!-- <section class="feature-section">
+            <div class="container">
+                <h2>Why Choose AffiliateLink?</h2>
+                <p>Everything you need to succeed in affiliate marketing</p>
+                <div class="features">
+                    <div class="feature">
+                        <h3>One-Click Setup</h3>
+                        <p>Get your unique affiliate page online instantly after signing up.</p>
+                    </div>
+                    <div class="feature">
+                        <h3>Performance Tracking</h3>
+                        <p>Real-time analytics to monitor your conversions and earnings.</p>
+                    </div>
+                    <div class="feature">
+                        <h3>Premium Partners</h3>
+                        <p>Affiliate programs with top brands across multiple industries.</p>
+                    </div>
+                </div>
+            </div>
+        </section> -->
+    </main>
 
-{%endfor%}
-
-{%endfor%}
-
+    <!-- <script>
+        // Simple animation for the call-to-action button
+        document.querySelector('.cta-button').addEventListener('mouseover', function () {
+            this.style.boxShadow = '0 4px 14px rgba(139, 92, 246, 0.4)';
+        });
+        document.querySelector('.cta-button').addEventListener('mouseout', function () {
+            this.style.boxShadow = 'none';
+        });
+    </script> -->
 {% include "footer.html"%}
 <script src="{{url_for('static', filename='js/share.js')}}"></script>
 {%endblock%}
