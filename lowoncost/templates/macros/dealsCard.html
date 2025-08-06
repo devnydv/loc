@@ -34,7 +34,7 @@
             <div class="button-container">
                 {%if userprofile%}
                 <a href="{{item['dealUrl']}}" title="View Offer" target="_blank" class="btn btn-view">View Offer</a>
-                <a href="/details/{{id}}" title="Offer Details" class="btn btn-details"> Details</a>
+                <a href="/{{item['category']}}/{{id}}" title="Offer Details" class="btn btn-details"> Details</a>
                 <!-- <button class="btn btn-details">Details</button> -->
                 <!-- <button class="btn btn-edit">Edit Deal</button> -->
                 <a href="/profile/editdeal/{{id}}" title="Edit Deal" class="btn btn-edit">Edit Deal</a>
