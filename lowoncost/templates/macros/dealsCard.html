@@ -1,10 +1,10 @@
-{%macro Card(item, username, userprofile)%}
+{%macro Card(item, username, userprofile, cat)%}
 {% set disc = (item['originalPrice'] - item['currentPrice'])/ item['originalPrice'] *100%}
 {%set id = item['_id']['$oid'] %}
 
 
 {%if userprofile == False%}
-<a href="/details/{{id}}" title="Offer Details of {{item['title'][:70]}}">
+<a href="/{{cat}}/{{id}}" title="Offer Details of {{item['title'][:70]}}">
 {%endif%}
     <div class="deal-card">
         <div class="image-container">

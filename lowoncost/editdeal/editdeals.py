@@ -78,9 +78,11 @@ def editdeal(id):
         res = editdealdata(id, data)
         return redirect(url_for('dash', name=session["username"]))
     
-@app.route('/details/<id>')
-def dealdetails(id):
+@app.route('/<cat>/<id>')
+def dealdetails(cat, id):
+
     data = getaitem(id)
+    print(data)
     recomandation = recomand()
     recomandation = [item for item in recomandation if item["_id"]['$oid'] != id]
 
